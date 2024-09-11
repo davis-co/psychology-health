@@ -1,0 +1,49 @@
+.content {
+  @apply w-full flex flex-col font-semibold;
+}
+
+.content .label {
+  @apply inline-flex text-xs leading-5 text-ownGray-900 mt-3;
+}
+
+.content .innerDivider {
+  @apply w-full flex gap-1;
+}
+
+.content .innerDivider .pos {
+  @apply relative w-full;
+}
+
+.content .innerDivider .pos .field {
+  @apply w-full text-sm rounded-lg border-2 bg-white border-ownGray-200 hover:border-ownGray-300 focus:ring-1 focus:ring-ownGray-200;
+}
+
+.content .innerDivider .pos .fieldError {
+  @apply border-ownRed-400;
+}
+
+.content .innerDivider .pos .span {
+  @apply absolute text-sm left-0 top-1/2 translate-x-1/2 -translate-y-1/2;
+}
+
+.content .innerDivider .button {
+  @apply p-2 bg-ownGray-100 rounded-md hover:bg-ownGray-200;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  opacity: 1;
+  max-width: max-content;
+  padding-left: 10px;
+  padding-right: 10px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+
+input[type="number"]::-webkit-inner-spin-button::before,
+input[type="number"]::-webkit-outer-spin-button::before {
+  position: absolute;
+}

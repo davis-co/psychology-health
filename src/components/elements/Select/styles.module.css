@@ -1,0 +1,131 @@
+.container {
+  @apply w-full flex flex-col gap-2;
+}
+
+.header {
+  @apply w-full flex justify-between items-center;
+}
+
+.seeAll {
+  padding: 0;
+  font-size: 10px;
+}
+
+.selectedOptions {
+  @apply flex flex-wrap lg:flex-row-reverse lg:justify-end gap-1 px-2 py-1 cursor-pointer md:min-h-[40px];
+  border: 1px solid #444444aa;
+  border-radius: 4px;
+  overflow-x: auto;
+  background-color: white;
+}
+
+.modalSelectedList{
+  width: fit-content;
+}
+
+.selectedOption {
+  @apply flex items-center gap-1 max-h-[30px];
+  padding: 0.5rem;
+  color: #666;
+  font-family: YekanBakh700;
+  font-size: 9px;
+  background-color: #eee;
+  border-radius: 2px;
+}
+
+.delete {
+  width: fit-content;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  box-shadow: none;
+  font-size: 12px;
+  font-family: YekanBakh200;
+  font-weight: 100;
+}
+
+.inputContainer {
+  @apply flex flex-col md:gap-4;
+}
+
+.optionsList {
+  @apply w-full flex flex-wrap gap-2;
+  border-radius: 4px;
+  background: #ededed;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.15);
+  padding: 0.5rem;
+}
+
+.optionsContainer {
+  @apply w-full flex flex-wrap gap-2;
+  border-radius: 4px;
+  overflow: hidden;
+  transition: height 200ms;
+}
+
+.moreButton {
+  background: #eee;
+  opacity: 0.5;
+  max-height: 30px;
+}
+
+.moreButtonActive{
+  border-color: #02894c;
+  background: #fff !important;
+  opacity: 1;
+  max-height: 30px;
+}
+
+.modalBox {
+  @apply w-full flex flex-col p-1 gap-4;
+}
+
+.modalOptions {
+  @apply flex flex-col gap-4;
+}
+
+.modalOptionsHeader {
+  @apply flex gap-1 items-center;
+}
+
+.modalOptionsList {
+  @apply flex flex-wrap gap-1;
+}
+
+.modalOptionsHeader strong {
+  color: #000;
+  font-family: YekanBakh700;
+  font-size: 14px;
+}
+
+.modalLine {
+  flex: 1;
+  height: 2px;
+  background-color: black;
+}
+
+.textFieldContainer{
+  @apply w-[250px] lg:!w-[300px] border-none overflow-hidden !rounded-none;
+}
+
+.textField{
+  @apply border-none overflow-hidden rounded-none outline-none;
+}
+
+.textField:focus{
+  outline: 0;
+}
+
+.notFound{
+  color: #000;
+  font-family: YekanBakh700;
+  font-size: 12px;
+  margin: auto;
+}
+
+@media only screen and (max-width: 768px) {
+  .flex-1-1-0{
+    flex: 1 1 0;
+    min-width: fit-content;
+  }
+}

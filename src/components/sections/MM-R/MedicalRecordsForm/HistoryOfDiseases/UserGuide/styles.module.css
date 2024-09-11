@@ -1,0 +1,11 @@
+.container{
+  @apply md:max-w-[500px] lg:max-w-[600px] md:px-4 md:py-2;
+}
+
+.text {
+    color: #000;
+    font-family: YekanBakh400;
+    font-size: 15px;
+    line-height: 32px;
+    text-align: justify;
+}

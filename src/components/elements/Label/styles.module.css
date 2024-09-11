@@ -1,0 +1,30 @@
+.label {
+  @apply  items-center;
+  color: #000;
+  font-family: YekanBakh700;
+  font-size: 12px;
+  width: fit-content;
+}
+
+.required {
+  color: #960018;
+  position: relative;
+  bottom: 5px;
+}
+
+.labelError{
+  color: red;
+}
+
+.guideIcon{
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+
+}
+
+.guideButton{
+  @apply shadow-none border-none inline p-[0px];
+  position: relative;
+  top: 5px;
+}

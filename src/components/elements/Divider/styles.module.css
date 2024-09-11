@@ -1,0 +1,10 @@
+.container {
+    @apply w-full my-2;
+    background: radial-gradient(
+        50% 50% at 50% 50%,
+        #696969 0%,
+        rgba(217, 217, 217, 0) 100%
+    );
+    border-radius: 8px;
+    height: 1px;
+}

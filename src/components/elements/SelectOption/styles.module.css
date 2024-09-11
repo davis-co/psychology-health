@@ -1,0 +1,27 @@
+.content {
+  @apply w-full flex flex-wrap flex-col gap-2 font-semibold leading-5;
+}
+.content .questionContent {
+  @apply w-full inline-flex items-center justify-between gap-2 leading-5 text-xs;
+}
+.content .questionContent .label {
+  @apply inline-flex text-ownGray-900;
+}
+.content .questionContent .guideContent .guideContentButton {
+  @apply bg-ownGray-100 p-2 rounded-xl hover:bg-ownGray-200;
+}
+.content .field {
+  @apply w-full text-xs leading-5 rounded-lg border-2 border-ownGray-200 hover:border-ownGray-300 focus:ring-1 focus:ring-ownGray-100;
+}
+.content .options {
+  @apply bg-ownGray-100 hover:bg-ownGray-200 rounded-lg;
+}
+.content .fieldError {
+  @apply border-ownRed-400;
+}
+.content .educationalContentWrapper {
+  @apply mb-2 mt-4 w-full;
+}
+.content .educationalContentWrapper .educationalContentButton {
+  @apply flex w-full justify-center items-center gap-2 bg-ownGray-100 rounded-md p-2 hover:bg-ownGray-300;
+}/*# sourceMappingURL=styles.module.css.map */

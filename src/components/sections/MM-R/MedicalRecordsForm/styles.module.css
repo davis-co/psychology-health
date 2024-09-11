@@ -1,0 +1,15 @@
+.container {
+    @apply flex flex-col w-full gap-4 lg:px-8 lg:pb-2;
+}
+
+.title {
+    @apply md:mr-2 lg:mr-0;
+    color: #3d0c02;
+    text-align: right;
+    font-family: YekanBakh700;
+    font-size: 12px;
+}
+
+.sections{
+  @apply flex flex-col md:px-2 lg:px-4;
+}

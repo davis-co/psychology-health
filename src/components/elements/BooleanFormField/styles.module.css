@@ -1,0 +1,28 @@
+.formItem{
+  @apply flex items-center justify-between lg:w-[49%] mb-4;
+  border-radius: 4px;
+  background: #f7f7f7;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.15);
+  padding: 0.25rem 0.5rem;
+  z-index: 2; 
+}
+
+.error{
+  
+}
+
+.label{
+  color: #000;
+  font-family: YekanBakh700;
+  font-size: 12px;
+}
+
+.required{
+  color: #960018;
+  position: relative;
+  bottom: 5px;
+}
+
+.radios{
+  @apply flex lg:gap-6;
+}

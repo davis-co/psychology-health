@@ -1,0 +1,14 @@
+.form {
+  @apply w-full max-w-[100%] px-4 md:px-0 md:max-w-[91%] lg:max-w-[1280px] md:mx-auto mt-10 md:mb-20 flex flex-col md:gap-5 pb-20;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.6) 0%,
+    rgba(250, 254, 251, 0.6) 100%
+  );
+  box-shadow: 0px 0px 4px 0px rgba(0, 64, 26, 0.2);
+  backdrop-filter: blur(3px);
+}
+
+.submit{
+  @apply md:w-[200px] mt-6 md:mx-auto;
+}

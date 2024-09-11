@@ -1,0 +1,28 @@
+.container {
+  @apply z-50 fixed top-0 left-0 w-screen h-screen flex justify-center items-center;
+  background-color: rgba(2, 137, 76, 0.05);
+  backdrop-filter: blur(5px);
+}
+
+.modal {
+  @apply bg-white shadow-lg p-1 rounded-md w-fit max-w-md flex flex-col md:max-w-[90%] md:max-h-[80%] overflow-y-auto lg:max-w-[80%] overflow-hidden;
+  animation: popUp 0.35s 1;
+}
+
+.closeButton {
+  width: fit-content;
+  padding: 0.25rem 0.5rem;
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  font-size: 25px;
+}
+
+@keyframes popUp {
+  0% {
+    scale: 0;
+  }
+  100% {
+    scale: 1;
+  }
+}

@@ -1,0 +1,21 @@
+.content {
+  @apply w-full flex flex-col gap-2 font-semibold;
+}
+.content .label {
+  @apply inline-flex text-xs leading-5 text-ownGray-900;
+}
+.content .innerDivider {
+  @apply flex items-center gap-2 w-full;
+}
+.content .innerDivider .pos {
+  @apply w-full relative;
+}
+.content .innerDivider .pos .dateField {
+  @apply w-full text-sm rounded-lg border-2 bg-white border-ownGray-200 hover:border-ownGray-300 focus:ring-1 focus:ring-ownGray-200;
+}
+.content .innerDivider .pos .fieldError {
+  @apply border-ownRed-400;
+}
+.content .innerDivider .pos .icon {
+  @apply absolute text-sm left-0 top-1/2 translate-x-1/2 -translate-y-1/2;
+}

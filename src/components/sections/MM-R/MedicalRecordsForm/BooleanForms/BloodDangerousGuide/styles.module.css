@@ -1,0 +1,25 @@
+.container {
+    @apply md:max-w-[70vw] md:max-h-[70vh] md:px-4 lg:pt-2 md:pb-6 overflow-y-scroll;
+}
+
+.container > span,
+p,
+li {
+    color: #000;
+    font-family: YekanBakh400;
+    font-size: 14px;
+    line-height: 30px;
+}
+
+.container > p {
+    text-align: justify;
+}
+
+.container > span {
+    margin-top: 2rem;
+}
+
+.container > ul {
+    list-style: disc;
+    margin-right: 1rem;
+}

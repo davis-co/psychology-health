@@ -1,0 +1,45 @@
+.button{
+  border-width: 1px;
+  border-style: solid;
+  box-shadow: 2px 0px 4px rgba(0,0,0, 0.15);
+  font-size: 12px;
+  border-radius: 4px;
+  padding: 0.5rem 3rem;
+  font-family: YekanBakh600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.button:disabled{
+  cursor: not-allowed;
+}
+
+.variant{
+  background: #02894C;
+  border-color: #02894C;
+  color: white;
+}
+
+.text{
+  border: none;
+  padding: 0.5rem;
+  box-shadow: none;
+}
+
+.outlined{
+  background-color: #F7F7F7;
+  color: black;
+  border-color: black;
+}
+
+.disabled{
+  background-color: #DEDEDE;
+  color: #7E7E7E;
+  border-color: #7E7E7E;
+}
+
+.icon{
+  padding: 0.5rem;
+}

@@ -1,0 +1,10 @@
+.content {
+  @apply flex flex-col items-center justify-center h-screen;
+}
+
+.header {
+  @apply text-4xl font-bold text-center;
+}
+.description {
+  @apply text-center;
+}

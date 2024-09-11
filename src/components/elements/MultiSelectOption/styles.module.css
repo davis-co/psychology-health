@@ -1,0 +1,57 @@
+.content {
+  @apply w-full font-bold flex flex-wrap p-2 bg-white bg-opacity-50 flex-col gap-2 rounded-lg border-2 border-ownGray-200;
+}
+.content .questionContent {
+  @apply w-full inline-flex items-center justify-between;
+}
+.content .questionContent .label {
+  @apply w-fit text-ownGray-900 text-sm;
+}
+.content .questionContent .guideContent .guideContentButton {
+  @apply bg-ownGray-100 p-2 rounded-xl hover:bg-ownGray-200;
+}
+.content .dropDown {
+  @apply absolute z-10 bg-white w-full text-sm font-semibold border border-ownGray-100 rounded-md mt-1 shadow-lg;
+}
+.content .dropDown .dropDownTrue {
+  @apply bg-ownGray-100 px-4 py-2 cursor-pointer text-sm font-semibold hover:bg-ownGray-200;
+}
+.content .dropDown .dropDownFalse {
+  @apply px-4 py-2 cursor-pointer hover:bg-ownGray-100;
+}
+.content .posWrapper {
+  @apply relative;
+}
+.content .posWrapper .pos {
+  @apply relative;
+}
+.content .posWrapper .pos .field {
+  @apply w-full pl-10 text-sm font-semibold rounded-lg border-2 border-ownGray-100 hover:border-ownGray-200 focus:ring-1 focus:ring-ownGray-200;
+}
+.content .posWrapper .pos .span {
+  @apply absolute left-0 top-1/2 translate-x-1/2 -translate-y-1/2;
+}
+.content .posWrapper .pos .fieldError {
+  @apply border-ownRed-400;
+}
+.content .posWrapper .dropDownOverlay {
+  @apply fixed top-0 left-0 inset-0 z-0 bg-transparent w-screen h-screen;
+}
+.content .selectedOptionsContainer {
+  @apply flex flex-wrap w-auto gap-2 items-center;
+}
+.content .selectedOptionsContainer .selectedOptions {
+  @apply flex items-center text-sm p-2 rounded-lg bg-ownGray-100 text-ownGray-900 font-bold;
+}
+.content .selectedOptionsContainer .selectedOptions .optionCloseBtn {
+  @apply hover:cursor-pointer;
+}
+.content .selectedOptionsContainer .selectedOptions .optionLabel {
+  @apply px-2;
+}
+.content .educationalContentWrapper {
+  @apply mb-2 mt-4 w-full;
+}
+.content .educationalContentWrapper .educationalContentButton {
+  @apply flex w-full justify-center text-sm font-bold items-center gap-2 bg-ownGray-100 rounded-md p-2 hover:bg-ownGray-200;
+}

@@ -1,0 +1,21 @@
+.container{
+  @apply flex items-center justify-end gap-2 w-full px-1;
+}
+
+.currentPage{
+  @apply w-[34px] h-[34px] md:w-[40px] md:h-[40px] flex items-center justify-center;
+  color: black;
+  background-color: white;
+  border: 1px solid #e7e7e7;
+  font-size: 15px;
+  border-radius: 4px;
+  font-family: YekanBakh600;
+}
+
+.navigate{
+  @apply w-[34px] h-[34px] md:w-[40px] md:h-[40px] p-0;
+  box-shadow: none;
+  background-color: white;
+  border: 1px solid #e7e7e7;
+  font-size: 14px;
+}

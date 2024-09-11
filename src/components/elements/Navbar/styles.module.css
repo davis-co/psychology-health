@@ -1,0 +1,9 @@
+.navbar{
+  @apply w-full h-[48px] lg:h-[88px] ;
+  background-color: #F9FFF9;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.20);
+}
+
+.container{
+  @apply lg:w-full lg:max-w-[1280px] lg:mx-auto lg:h-full flex justify-between items-center ;
+}

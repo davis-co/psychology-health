@@ -1,0 +1,72 @@
+.container {
+    border: 0.5px solid black;
+    border-radius: 4px;
+    background-color: #f7f7f7;
+    opacity: 0.5;
+    padding: 2px 6px;
+    display: inline-flex;
+    gap: 24px;
+    cursor: pointer;
+    align-items: center;
+}
+
+.checkedContainer {
+    border-color: #02894c;
+    background: #fff;
+    opacity: 1;
+}
+
+.disabledContainer {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.input {
+    cursor: pointer;
+    width: 7px !important;
+    height: 7px !important;
+    background-color: rgb(153, 153, 153);
+    border-radius: 50% !important;
+}
+
+.input:checked {
+    background-color: rgba(2, 137, 76, 1) !important;
+    color: rgba(2, 137, 76, 1) !important;
+    background-image: none !important;
+}
+
+.input {
+    background-color: rgb(142, 142, 142) !important;
+    background-image: none !important;
+    outline: none !important;
+}
+
+.label {
+    color: #000;
+    font-family: YekanBakh600;
+    font-size: 11px;
+    user-select: none
+}
+
+.firstLayer {
+    @apply flex items-center justify-center;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background-color: #ddd;
+    border: 1px solid rgb(134, 134, 134);
+}
+
+.firstLayerChecked {
+    background-color: rgba(2, 137, 76, 0.5);
+}
+
+.secondLayer {
+    @apply flex items-center justify-center;
+    width: 19px;
+    height: 19px;
+    border-radius: 50%;
+    border: 1px solid rgb(171, 171, 171);
+    background-color: white;
+    box-shadow: 0px 0px 5px rgba(2, 137, 76, 0.2) !important;
+}

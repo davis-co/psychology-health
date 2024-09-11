@@ -1,0 +1,83 @@
+.container {
+    @apply flex flex-wrap md:w-full items-center md:gap-[2%] lg:gap-[2%];
+}
+
+.textFieldContainer {
+    @apply flex md:flex-row py-[0.75rem] md:py-[0.25rem] px-[0.5rem] md:w-[49%] items-center lg:gap-[15%] mb-4 md:max-h-[36px] lg:min-h-[40px];
+    border-radius: 4px;
+    background: rgba(247, 247, 247, 1);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.15);
+    animation: flipLeft 0.25s 1;
+}
+
+.textFieldContainer  input{
+    @apply w-full md:w-full;
+}
+
+.textFieldContainer  label{
+    @apply min-w-full md:min-w-fit;
+}
+
+.textFieldContainer  input{
+    flex: auto;
+}
+
+
+.textField {
+    @apply w-full md:w-auto;
+    background: rgba(235, 235, 235, 1);
+    padding: 0.25rem 0;
+}
+
+.actions {
+    @apply  flex-1 flex justify-end mb-4;
+}
+
+.addButton {
+    @apply border-none w-full md:w-auto mt-4 md:mt-0 md:h-[30px] lg:h-[35px] md:ml-2;
+    background: rgba(247, 247, 247, 1);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.15);
+}
+
+.bfi {
+    @apply lg:min-h-[40px];
+    animation: flipLeft 0.25s 1;
+}
+
+.formItem {
+    @apply flex flex-col py-[0.75rem] md:py-[0.25rem] px-[0.5rem] md:flex-row items-center justify-between w-full md:w-[49%] mb-4;
+    border-radius: 4px;
+    background: #f7f7f7;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.15);
+    z-index: 2;
+}
+
+.error {
+}
+
+.label {
+    @apply w-full md:w-auto;
+    color: #000;
+    font-family: YekanBakh700;
+    font-size: 12px;
+    text-align: center;
+}
+
+.required {
+    color: #960018;
+    position: relative;
+    bottom: 5px;
+}
+
+.radios {
+    @apply w-full flex justify-between md:w-fit md:gap-2 lg:gap-3;
+}
+
+@keyframes flipLeft {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
