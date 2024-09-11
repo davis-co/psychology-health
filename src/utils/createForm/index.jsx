@@ -6,25 +6,21 @@ import { useDispatch } from "react-redux"
 import styles from "./styles.module.css"
 // components
 import { Button, ProjectName } from "@/components/elements"
-import MedicalRecordsForm from "@/components/sections/MM-R/MedicalRecordsForm"
-import MedicineRecordsForm from "@/components/sections/MM-R/MedicineRecordsForm"
 
 // keys
-import { Medical_RF_keys } from "@/components/sections/MM-R/MedicalRecordsForm/data"
-import { Medicine_RF_keys } from "@/components/sections/MM-R/MedicineRecordsForm/data"
 
 // jobIds
-import { MR_JobId_Get, MR_JobId_Post } from "@/constants/jobId"
 
 // services
 import fetchData from "@/services/fetchData"
 import submitForm from "@/services/submitForm"
 import { successMessage } from "@/constants/form"
-import { setSelectErrors } from "@/states/reducers/serverData"
-import { selectInputKeys } from "@/constants/form"
-import { selectValidation } from "@/components/elements/Select/services"
+import { questions as NeoQuestions } from "@/components/sections/M-H/NEO/data"
+import { pages } from "@/constants/pages"
+import NEO from "@/components/sections/M-H/NEO"
+import Loading from "@/components/sections/Loading"
 
-export const CreateForm = ({ keys, hasSubmit, projectName }) => {
+export const CreateForm = ({ page, hasSubmit, projectName }) => {
     const dispatch = useDispatch()
     const [submitLoading, setSubmitLoading] = useState(false)
     const [fetchLoading, setFetchLoading] = useState(false)
@@ -43,30 +39,22 @@ export const CreateForm = ({ keys, hasSubmit, projectName }) => {
     const sections = []
 
     useEffect(() => {
-        setSubmitLoading(true)
-        fetchData(MR_JobId_Get, keys, setValue)
-            .catch((err) => console.log(err))
-            .finally(() => setSubmitLoading(false))
+        const jobId = page?.jobIds?.fetchJobId
+        if (jobId) {
+            setFetchLoading(true)
+            fetchData(jobId, pages[page], setValue)
+                .catch((err) => console.log(err))
+                .finally(() => setFetchLoading(false))
+        }
     }, [])
 
     if (projectName) {
         sections.push(<ProjectName name={projectName} />)
     }
 
-    if (Medical_RF_keys.every((key) => keys[key])) {
+    if (NeoQuestions.map((q) => q.key).every((key) => page.keys[key])) {
         sections.push(
-            <MedicalRecordsForm
-                errors={errors}
-                watch={watch}
-                register={register}
-                control={control}
-                setValue={setValue}
-            />
-        )
-    }
-    if (Medicine_RF_keys.every((key) => keys[key])) {
-        sections.push(
-            <MedicineRecordsForm
+            <NEO
                 errors={errors}
                 watch={watch}
                 register={register}
@@ -76,7 +64,7 @@ export const CreateForm = ({ keys, hasSubmit, projectName }) => {
         )
     }
 
-    if (hasSubmit) {
+    if (page.submit) {
         sections.push(
             <Button
                 className={styles.submit}
@@ -90,23 +78,23 @@ export const CreateForm = ({ keys, hasSubmit, projectName }) => {
 
     const onSubmit = (data) => {
         // validate select form
-        if (selectValidation(watch, dispatch)) {
-            setSubmitLoading(true)
-            submitForm(MR_JobId_Post, data, () =>
-                fetchData(MR_JobId_Get, keys, setValue)
-            )
-                .then(() => {
-                    toast.success(successMessage)
-                })
-                .catch((err) => {
-                    console.log(err)
-                })
-                .finally(() => {
-                    setTimeout(() => {
-                        setSubmitLoading(false)
-                    }, 1000)
-                })
-        }
+        setSubmitLoading(true)
+        const getJobId = page?.jobIds?.fetchJobId
+        const postJobId = page?.jobIds?.fetchJobId
+        submitForm(postJobId, data, () =>
+            fetchData(getJobId, page.keys, setValue)
+        )
+            .then(() => {
+                toast.success(successMessage)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+            .finally(() => {
+                setTimeout(() => {
+                    setSubmitLoading(false)
+                }, 1000)
+            })
     }
 
     return (

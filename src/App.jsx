@@ -1,18 +1,19 @@
 import "react-toastify/dist/ReactToastify.css"
 import NotFound from "@/components/sections/404"
-import { KEYS } from "@/constants/keys"
 import { CreateForm } from "@/utils/createForm"
 import Unauthorized from "@/components/sections/401"
 import { useEffect, useState } from "react"
-import Catalog from "./components/elements/Catalog"
+// import Catalog from "./components/elements/Catalog"
 import { Navbar } from "./components/elements"
 import { ToastContainer } from "react-toastify"
 import { AUTH_JobId } from "@/constants/jobId"
 import { smartRequest } from "@/services"
 import checkToken from "./services/checkToken"
 import Loading from "./components/sections/Loading"
+import { pages } from "./constants/pages"
 
 function App() {
+    const [page, setPage] = useState(localStorage.getItem("prevPage") || "NEO")
     const [isAuthorized, setIsAuthorized] = useState(null)
 
     useEffect(() => {
@@ -22,6 +23,7 @@ function App() {
                 handlePostMessage(e, (val) => setIsAuthorized(val))
             )
             localStorage.clear()
+            localStorage.setItem("prevPage", page)
         }
     }, [])
 
@@ -32,8 +34,7 @@ function App() {
             <div className={"body"}>
                 <Navbar />
                 <CreateForm
-                    keys={KEYS}
-                    hasSubmit={true}
+                    page={pages[page]}
                     projectName="سوابق پزشکی فردی و خانوادگی"
                 />
                 <ToastContainer

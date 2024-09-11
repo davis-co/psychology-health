@@ -7,20 +7,3 @@ export const Medicine_RF_keys = [
   10522, // usageType
   12750, // isPrescribed
 ]
-
-export const usageType = [
-  { label: "منظم", value: "13971" },
-  { label: "نامنظم", value: "13972" },
-]
-
-export const medicineTableColumns = [
-  "ردیف",
-  "نام داروی مصرفی",
-  "مقدار داروی مصرف شده ",
-  "مدت زمان مصرف دارو",
-  "علت مصرف دارو",
-  "نحوه مصرف دارو",
-  "با دستور پزشک",
-  "عملیات",
-]
-

@@ -1,7 +1,0 @@
-.container {
-    @apply flex flex-col max-w-full overflow-x-auto md:overflow-x-hidden md:min-w-full lg:min-w-[900px] mx-auto overflow-hidden;
-}
-
-.deleteButton{
-    @apply border-none bg-transparent shadow-none text-[red];
-}
