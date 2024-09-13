@@ -4,6 +4,7 @@ export const pages = {
     HOME: {
         pages: ["NEO", "SCL90", "DEFAULT"],
         keys: null,
+        name: 'سوابق پزشکی و خانوادگی'
     },
     NEO: {
         jobIds: {
@@ -256,8 +257,11 @@ export const pages = {
             1558761235938: true,
             1558761261325: true,
         },
+        name: 'تست NEO'
     },
-    SCL90: {},
+    SCL90: {
+        name: "تست SCL90"
+    },
     DEFAULT: {
         
     },

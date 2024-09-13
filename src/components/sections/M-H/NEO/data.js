@@ -1,4 +1,4 @@
-import { text } from "./text";
+import { text } from "./text"
 
 export const questions = [
     { label: text.q1, key: "1558470393312" },
@@ -241,7 +241,7 @@ export const questions = [
     { label: text.q238, key: "1558761160574" },
     { label: text.q239, key: "1558761175137" },
     { label: text.q240, key: "1558761189545" },
-    { label: text.q241, key: "1558761209401" },
-    { label: text.q242, key: "1558761235938" },
-    { label: text.q243, key: "1558761261325" },
+    { label: text.q241, isBoolean: true, key: "1558761209401" },
+    { label: text.q242, isBoolean: true, key: "1558761235938" },
+    { label: text.q243, isBoolean: true, key: "1558761261325" },
 ]

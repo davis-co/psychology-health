@@ -19,8 +19,9 @@ import { questions as NeoQuestions } from "@/components/sections/M-H/NEO/data"
 import { pages } from "@/constants/pages"
 import NEO from "@/components/sections/M-H/NEO"
 import Loading from "@/components/sections/Loading"
+import { validateForm } from "@/components/sections/M-H/NEO/services"
 
-export const CreateForm = ({ page, hasSubmit, projectName }) => {
+export const CreateForm = ({ page }) => {
     const dispatch = useDispatch()
     const [submitLoading, setSubmitLoading] = useState(false)
     const [fetchLoading, setFetchLoading] = useState(false)
@@ -29,7 +30,7 @@ export const CreateForm = ({ page, hasSubmit, projectName }) => {
         register,
         setValue,
         setError,
-        // reset,
+        reset,
         watch,
         handleSubmit,
         formState: { errors },
@@ -42,14 +43,18 @@ export const CreateForm = ({ page, hasSubmit, projectName }) => {
         const jobId = page?.jobIds?.fetchJobId
         if (jobId) {
             setFetchLoading(true)
-            fetchData(jobId, pages[page], setValue)
+            fetchData(jobId, page.keys, setValue)
                 .catch((err) => console.log(err))
                 .finally(() => setFetchLoading(false))
         }
     }, [])
 
-    if (projectName) {
-        sections.push(<ProjectName name={projectName} />)
+    useEffect(() => {
+        reset({}, { keepValues: false })
+    }, [page])
+
+    if (page.name) {
+        sections.push(<ProjectName name={page.name} />)
     }
 
     if (NeoQuestions.map((q) => q.key).every((key) => page.keys[key])) {
@@ -64,7 +69,7 @@ export const CreateForm = ({ page, hasSubmit, projectName }) => {
         )
     }
 
-    if (page.submit) {
+    if (page.submit && validateForm(page.keys, watch)) {
         sections.push(
             <Button
                 className={styles.submit}

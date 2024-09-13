@@ -35,7 +35,6 @@ function App() {
                 <Navbar />
                 <CreateForm
                     page={pages[page]}
-                    projectName="سوابق پزشکی فردی و خانوادگی"
                 />
                 <ToastContainer
                     position="bottom-right"

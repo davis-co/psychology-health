@@ -3,6 +3,14 @@ export const booleanOptions = [
     { label: "خیر", value: "10362" },
 ]
 
+export const matchOptions = [
+    { label: "کاملا موافقم", value: "1542705872225" },
+    { label: "موافقم", value: "1542705885437" },
+    { label: "نظری ندارم", value: "1558739127817" },
+    { label: "مخالفم", value: "1542705896541" },
+    { label: "کاملا مخالفم", value: "1542705907754" },
+]
+
 export const tableSize = 10
 export const successMessage = "اطلاعات با موفقیت ذخیره شد."
 export const selectInputKeys = [
