@@ -1,5 +1,5 @@
 .form {
-  @apply w-full max-w-[100%] px-4 md:px-0 md:max-w-[91%] lg:max-w-[1280px] mx-auto mt-10 md:mb-20 flex flex-col md:gap-5 pb-20;
+  @apply w-full max-w-[100%] min-h-[70vh] px-4 md:px-0 md:max-w-[91%] lg:max-w-[1280px] mx-auto mt-10 md:mb-20 flex flex-col md:gap-5 lg:gap-6 pb-20;
   background: linear-gradient(
     180deg,
     rgba(255, 255, 255, 0.6) 0%,
@@ -10,7 +10,7 @@
 }
 
 .submit{
-  @apply md:w-[200px] mt-8 md:mt-6 mx-auto;
+  @apply md:w-[200px] mt-8 md:mt-auto mx-auto;
 }
 
 @media only screen and (max-width: 767px) {

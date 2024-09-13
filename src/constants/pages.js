@@ -1,4 +1,6 @@
 import {
+    MH_JobId_Get,
+    MH_JobId_Post,
     NEO_JobId_Get,
     NEO_JobId_Post,
     SCL_JobId_Get,
@@ -9,7 +11,7 @@ export const pages = {
     HOME: {
         pages: ["NEO", "SCL90", "DEFAULT"],
         keys: null,
-        name: "سوابق پزشکی و خانوادگی",
+        name: "سلامت روان",
     },
     NEO: {
         jobIds: {
@@ -365,5 +367,15 @@ export const pages = {
             1560613578933: true,
         },
     },
-    DEFAULT: {},
+    MentalHealth: {
+        name: "تست سلامت روان",
+        jobIds: {
+            fetchJobId: MH_JobId_Get,
+            postJobId: MH_JobId_Post,
+        },
+        submit: true,
+        keys: {
+            
+        },
+    },
 }

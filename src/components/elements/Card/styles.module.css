@@ -1,0 +1,15 @@
+.container {
+    @apply flex gap-2 md:gap-3 w-full items-center p-1 md:bg-white border border-gray-500 font-semibold transition-all rounded-xl hover:border-2 hover:p-[1px] cursor-pointer;
+}
+
+.content {
+    @apply w-full flex justify-between md:p-4 font-bold md:text-2xl leading-9;
+}
+
+.content img {
+    @apply pl-2 transition-transform;
+}
+
+.container:hover content img {
+    @apply -translate-x-3 transition-transform duration-300;
+}

@@ -13,9 +13,7 @@ import Loading from "./components/sections/Loading"
 import { pages } from "./constants/pages"
 
 function App() {
-    const [page, setPage] = useState(
-        localStorage.getItem("prevPage") || "SCL90"
-    )
+    const [page, setPage] = useState("HOME")
     const [isAuthorized, setIsAuthorized] = useState(null)
 
     useEffect(() => {
@@ -35,7 +33,7 @@ function App() {
         return (
             <div className={"body"}>
                 <Navbar />
-                <CreateForm page={pages[page]} />
+                <CreateForm page={pages[page]} setPage={setPage} />
                 <ToastContainer
                     position="bottom-right"
                     autoClose={3000}

@@ -2,7 +2,6 @@ import { Fragment } from "react/jsx-runtime"
 import { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import { toast } from "react-toastify"
-import { useDispatch } from "react-redux"
 import styles from "./styles.module.css"
 // components
 import { Button, ProjectName } from "@/components/elements"
@@ -20,9 +19,10 @@ import { questions as NeoQuestions } from "@/components/sections/M-H/NEO/data"
 import { questions as SCL90Questions } from "@/components/sections/M-H/SCL90/data"
 import { pages } from "@/constants/pages"
 import { validateForm } from "@/components/sections/M-H/NEO/services"
+import Home from "@/components/sections/M-H/Home"
+import MentalHealth from "@/components/sections/M-H/MentalHealth"
 
-export const CreateForm = ({ page }) => {
-    const dispatch = useDispatch()
+export const CreateForm = ({ page, setPage }) => {
     const [submitLoading, setSubmitLoading] = useState(false)
     const [fetchLoading, setFetchLoading] = useState(false)
     const {
@@ -47,11 +47,11 @@ export const CreateForm = ({ page }) => {
                 .catch((err) => console.log(err))
                 .finally(() => setFetchLoading(false))
         }
-    }, [])
-
-    useEffect(() => {
-        reset({}, { keepValues: false })
+        {
+            reset({}, { keepValues: false })
+        }
     }, [page])
+
 
     if (page.name) {
         sections.push(<ProjectName name={page.name} />)
@@ -67,9 +67,7 @@ export const CreateForm = ({ page }) => {
                 setValue={setValue}
             />
         )
-    }
-
-    if (page.name === "تست SCL90") {
+    } else if (page.name === "تست SCL90") {
         if (SCL90Questions.map((q) => q.key).every((key) => page.keys[key])) {
             sections.push(
                 <SCL90
@@ -81,6 +79,18 @@ export const CreateForm = ({ page }) => {
                 />
             )
         }
+    } else if (page.name === "تست سلامت روان") {
+        sections.push(
+            <MentalHealth
+                errors={errors}
+                watch={watch}
+                register={register}
+                control={control}
+                setValue={setValue}
+            />
+        )
+    } else {
+        sections.push(<Home setPage={setPage} />)
     }
 
     if (page.submit && validateForm(page.keys, watch)) {
