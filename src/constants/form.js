@@ -11,6 +11,14 @@ export const matchOptions = [
     { label: "کاملا مخالفم", value: "1542705907754" },
 ]
 
+export const measureOptions = [
+    { label: "اصلا", value: "10431" },
+    { label: "کمی", value: "19787" },
+    { label: "تا اندازه ای", value: "1542098190076" },
+    { label: "زیاد", value: "19790" },
+    { label: "بسیار زیاد", value: "1542098157627" },
+]
+
 export const tableSize = 10
 export const successMessage = "اطلاعات با موفقیت ذخیره شد."
 export const selectInputKeys = [

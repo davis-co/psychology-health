@@ -6,8 +6,9 @@ import { useDispatch } from "react-redux"
 import styles from "./styles.module.css"
 // components
 import { Button, ProjectName } from "@/components/elements"
-
-// keys
+import NEO from "@/components/sections/M-H/NEO"
+import Loading from "@/components/sections/Loading"
+import SCL90 from "@/components/sections/M-H/SCL90"
 
 // jobIds
 
@@ -16,9 +17,8 @@ import fetchData from "@/services/fetchData"
 import submitForm from "@/services/submitForm"
 import { successMessage } from "@/constants/form"
 import { questions as NeoQuestions } from "@/components/sections/M-H/NEO/data"
+import { questions as SCL90Questions } from "@/components/sections/M-H/SCL90/data"
 import { pages } from "@/constants/pages"
-import NEO from "@/components/sections/M-H/NEO"
-import Loading from "@/components/sections/Loading"
 import { validateForm } from "@/components/sections/M-H/NEO/services"
 
 export const CreateForm = ({ page }) => {
@@ -57,7 +57,7 @@ export const CreateForm = ({ page }) => {
         sections.push(<ProjectName name={page.name} />)
     }
 
-    if (NeoQuestions.map((q) => q.key).every((key) => page.keys[key])) {
+    if (page.name === "تست NEO") {
         sections.push(
             <NEO
                 errors={errors}
@@ -67,6 +67,20 @@ export const CreateForm = ({ page }) => {
                 setValue={setValue}
             />
         )
+    }
+
+    if (page.name === "تست SCL90") {
+        if (SCL90Questions.map((q) => q.key).every((key) => page.keys[key])) {
+            sections.push(
+                <SCL90
+                    errors={errors}
+                    watch={watch}
+                    register={register}
+                    control={control}
+                    setValue={setValue}
+                />
+            )
+        }
     }
 
     if (page.submit && validateForm(page.keys, watch)) {

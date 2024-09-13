@@ -1,0 +1,74 @@
+.container {
+    @apply grid grid-cols-1 gap-5 px-5 md:grid-cols-2;
+}
+
+.booleanFormItem {
+    @apply flex flex-col gap-2 md:gap-0 py-[0.75rem] md:py-[0.25rem] px-[0.5rem] md:flex-row items-center justify-between;
+    border-radius: 4px;
+    background: #f7f7f7;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.15);
+    z-index: 2;
+}
+
+.booleanFormItem .radios {
+    @apply flex w-full justify-between md:w-fit md:gap-1 lg:gap-3;
+}
+
+.booleanFormItem input{
+    @apply max-h-[30px];
+    border-radius: 4px;
+}
+
+.matchFormItem {
+    @apply flex flex-col items-center py-[0.75rem] md:py-[0.25rem] px-[0.5rem];
+    border-radius: 4px;
+    background: #f7f7f7;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.15);
+    z-index: 2;
+}
+
+.matchFormItem .radios {
+    @apply w-full grid gap-x-3 lg:gap-x-2 gap-y-2 grid-cols-2 lg:grid-cols-3 xl:grid-cols-4;
+}
+
+.matchFormItem .radios label {
+    @apply flex justify-between lg:flex-auto min-w-fit;
+}
+
+.newAnimation {
+    animation: newAnimate  0.25s 1;
+}
+
+.oldAnimation{
+    animation: oldAnimate 0.25s 1;
+}
+
+@keyframes newAnimate {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes oldAnimate {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+}
+
+.next {
+    @apply md:w-[200px] mt-8 md:mt-6 mx-auto;
+}
+
+@media only screen and (max-width: 767px) {
+    .next {
+        width: calc(100% - 2.5rem);
+    }
+}
