@@ -2,11 +2,18 @@
     @apply flex flex-col md:flex-row md:flex-wrap w-full md:justify-between gap-y-3 px-4 overflow-hidden;
 }
 
-.timer{
+.timer {
     @apply mr-auto;
 }
 
-.matchFormItem .question{
+.intro {
+    color: #000;
+    text-align: justify;
+    font-family: YekanBakh600;
+    font-size: 9px;
+}
+
+.matchFormItem .question {
     @apply mx-auto lg:mx-0;
 }
 
@@ -22,7 +29,7 @@
     @apply flex w-full justify-between md:w-fit md:gap-2 lg:gap-3;
 }
 
-.booleanFormItem .radios label{
+.booleanFormItem .radios label {
     @apply w-[30%] md:w-[60px] lg:w-[80px] lg:min-h-[28px] flex justify-between;
 }
 
@@ -42,19 +49,19 @@
     @apply flex justify-between lg:min-h-[28px] w-[32%] lg:w-auto lg:flex-auto;
 }
 
-.matchFormItem .question{
+.matchFormItem .question {
     @apply lg:max-w-[35%] text-center text-[8px] lg:text-[11px];
 }
 
-.booleanFormItem .question{
+.booleanFormItem .question {
     @apply text-center text-[8px] md:text-right lg:text-[11px] md:w-1/2;
 }
 
 .newAnimation {
-    animation: newAnimate  0.25s 1;
+    animation: newAnimate 0.25s 1;
 }
 
-.oldAnimation{
+.oldAnimation {
     animation: oldAnimate 0.25s 1;
 }
 

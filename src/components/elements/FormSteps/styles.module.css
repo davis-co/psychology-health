@@ -1,0 +1,29 @@
+.mContainer {
+    @apply w-full flex h-[28px] overflow-hidden;
+    border-radius: 4px;
+}
+
+.mContainer button {
+    @apply p-0 rounded-none relative;
+    font-size: 8px;
+    /* box-shadow: 0 4px 2px black; */
+    border: 0;
+}
+
+.mContainer .currentStep {
+    @apply min-w-fit md:min-w-[240px] text-white;
+    background-color: rgb(46, 139, 87);
+    padding: 0 0.5rem;
+}
+
+.mContainer .prevSteps{
+  @apply text-white flex-1;
+  background-color: rgb(73, 121, 107);
+}
+
+.step {
+    border-radius: 2px;
+    background: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    flex: 1;
+}
