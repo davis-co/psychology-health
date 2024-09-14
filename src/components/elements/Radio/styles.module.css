@@ -5,7 +5,7 @@
     opacity: 0.5;
     padding: 2px 6px;
     display: inline-flex;
-    gap: 24px;
+    gap: 12px;
     cursor: pointer;
     align-items: center;
 }
@@ -42,9 +42,9 @@
 }
 
 .label {
+    @apply text-[8px] lg:text-[11px];
     color: #000;
     font-family: YekanBakh600;
-    font-size: 11px;
     user-select: none
 }
 

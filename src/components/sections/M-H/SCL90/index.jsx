@@ -8,12 +8,12 @@ import { questions } from "./data"
 import { lastPage } from "../NEO/services"
 
 export default function SCL90({ errors, watch, register }) {
-    const [startIndex, setStartIndex] = useState(
-        lastPage(
-            questions.map((q) => q.key),
-            watch,
-            questions.length
-        )
+    const [startIndex, setStartIndex] = useState(0
+        // lastPage(
+        //     questions.map((q) => q.key),
+        //     watch,
+        //     questions.length
+        // )
     )
     const [oldAnimation, setOldAnimation] = useState(false)
     const [newAnimation, setNewAnimation] = useState(false)
@@ -38,7 +38,7 @@ export default function SCL90({ errors, watch, register }) {
     return (
         <>
             <div className={styles.container}>
-                {questions.slice(startIndex, startIndex + 9).map((q, index) => (
+                {questions.slice(startIndex, startIndex + 27).map((q, index) => (
                     <div
                         className={classNames(
                             q.isPassword

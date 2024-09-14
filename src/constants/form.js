@@ -19,6 +19,7 @@ export const measureOptions = [
     { label: "بسیار زیاد", value: "1542098157627" },
 ]
 
+export const FORM_SIZE = 27;
 export const tableSize = 10
 export const successMessage = "اطلاعات با موفقیت ذخیره شد."
 export const selectInputKeys = [

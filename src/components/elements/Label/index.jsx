@@ -6,14 +6,24 @@ import { GuideIcon } from "@/assets/icons"
 import Button from "../Button"
 import Modal from "../Modal/new"
 
-export default function Label({ title, required, isError, userGuide }) {
+export default function Label({
+    title,
+    required,
+    isError,
+    userGuide,
+    containerClassName,
+}) {
     const [openModal, setOM] = useState(false)
     return (
         <>
             <label
-                className={classNames(styles.label, {
-                    [styles.labelError]: isError,
-                })}
+                className={classNames(
+                    styles.label,
+                    {
+                        [styles.labelError]: isError,
+                    },
+                    containerClassName
+                )}
                 htmlFor={title}
             >
                 {title + " "}

@@ -1,7 +1,7 @@
 .label {
   @apply  items-center;
   color: #000;
-  font-family: YekanBakh700;
+  font-family: YekanBakh600;
   font-size: 12px;
   width: fit-content;
 }

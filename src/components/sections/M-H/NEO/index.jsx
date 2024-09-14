@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import styles from "./styles.module.css"
 import { questions } from "./data"
 import { Button, Divider, Label, Radio } from "@/components/elements"
-import { booleanOptions, matchOptions } from "@/constants/form"
+import { booleanOptions, FORM_SIZE, matchOptions } from "@/constants/form"
 import classNames from "classnames"
 import { lastPage } from "./services"
 import { text } from "./text"
@@ -20,13 +20,13 @@ export default function NEO({ errors, watch, register }) {
     const goToNext = () => {
         if (
             questions
-                .slice(startIndex, startIndex + 9)
+                .slice(startIndex, startIndex + FORM_SIZE)
                 .every((q) => watch(q.key))
         ) {
             setOldAnimation(true)
             setNewAnimation(false)
             setTimeout(() => {
-                setStartIndex(startIndex + 9)
+                setStartIndex(startIndex + FORM_SIZE)
                 setOldAnimation(false)
                 setNewAnimation(true)
                 window.scrollTo({ top: 0, behavior: "smooth" })
@@ -37,7 +37,7 @@ export default function NEO({ errors, watch, register }) {
     return (
         <>
             <div className={styles.container}>
-                {questions.slice(startIndex, startIndex + 9).map((q, index) => (
+                {questions.slice(startIndex, startIndex + FORM_SIZE).map((q, index) => (
                     <div
                         className={classNames(
                             q.isBoolean
@@ -49,13 +49,14 @@ export default function NEO({ errors, watch, register }) {
                         key={q.label}
                     >
                         <Label
+                            containerClassName={styles.question}
                             title={q.label}
                             required={true}
                             isError={!!errors[q.key]}
                         />
                         <Divider
-                            className={`block ${
-                                q.isBoolean ? "md:hidden" : ""
+                            className={`block w-1/2 mx-auto my-3 ${
+                                q.isBoolean ? "md:hidden " : "lg:hidden"
                             }`}
                         />
                         <div
@@ -80,7 +81,7 @@ export default function NEO({ errors, watch, register }) {
                     </div>
                 ))}
             </div>
-            {questions.length - startIndex != 9 ? (
+            {questions.length - startIndex != FORM_SIZE ? (
                 <Button
                     className={styles.next}
                     title={text.next}
