@@ -1,9 +1,18 @@
 .container {
-    @apply grid grid-cols-1 gap-5 px-5 md:grid-cols-2;
+    @apply flex flex-col md:flex-row md:flex-wrap w-full md:justify-between gap-y-6 px-4 overflow-hidden;
+}
+
+.booleanFormItem input {
+    @apply max-h-[30px];
+    border-radius: 4px;
+}
+
+.booleanFormItem .question {
+    @apply text-center text-[8px] md:text-right lg:text-[11px] md:w-1/2;
 }
 
 .booleanFormItem {
-    @apply flex flex-col gap-2 md:gap-0 py-[0.75rem] md:py-[0.25rem] px-[0.5rem] md:flex-row items-center justify-between;
+    @apply flex flex-col gap-2 md:w-[49%] md:gap-0 py-[0.75rem] md:py-[0.75rem] px-[0.5rem] md:flex-row items-center justify-between;
     border-radius: 4px;
     background: #f7f7f7;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.15);
@@ -11,16 +20,15 @@
 }
 
 .booleanFormItem .radios {
-    @apply flex w-full justify-between md:w-fit md:gap-1 lg:gap-3;
+    @apply flex w-full justify-between md:w-fit md:gap-2 lg:gap-3;
 }
 
-.booleanFormItem input{
-    @apply max-h-[30px];
-    border-radius: 4px;
+.booleanFormItem .radios label {
+    @apply w-[30%] md:w-[60px] lg:w-[80px] lg:min-h-[28px] flex justify-between;
 }
 
 .matchFormItem {
-    @apply flex flex-col items-center py-[0.75rem] md:py-[0.25rem] px-[0.5rem];
+    @apply flex items-center flex-col lg:flex-row justify-between md:w-[49%] py-[0.75rem] md:py-[0.75rem] px-[0.5rem] lg:w-full;
     border-radius: 4px;
     background: #f7f7f7;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.15);
@@ -28,24 +36,28 @@
 }
 
 .matchFormItem .radios {
-    @apply w-full grid gap-x-3 lg:gap-x-2 gap-y-2 grid-cols-2 lg:grid-cols-3 xl:grid-cols-4;
+    @apply w-full flex flex-wrap gap-[1%] justify-center lg:justify-between gap-y-1.5 lg:flex-nowrap lg:w-3/5 lg:gap-2;
 }
 
 .matchFormItem .radios label {
-    @apply flex justify-between lg:flex-auto min-w-fit;
+    @apply flex justify-between lg:min-h-[28px] w-[32%] lg:w-auto lg:flex-auto;
+}
+
+.matchFormItem .question {
+    @apply lg:max-w-[35%] text-center text-[8px] lg:text-[11px] mx-auto lg:mx-0;
 }
 
 .newAnimation {
-    animation: newAnimate  0.25s 1;
+    animation: newAnimate 0.25s 1;
 }
 
-.oldAnimation{
+.oldAnimation {
     animation: oldAnimate 0.25s 1;
 }
 
 @keyframes newAnimate {
     0% {
-        transform: translateX(100%);
+        transform: translateX(-100%);
     }
     100% {
         transform: translateX(0);
@@ -58,7 +70,7 @@
         opacity: 1;
     }
     100% {
-        transform: translateX(-100%);
+        transform: translateX(100%);
         opacity: 0;
     }
 }

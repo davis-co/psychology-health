@@ -1,8 +1,8 @@
 .label {
+  @apply text-[8px] lg:text-[11px];
   @apply  items-center;
   color: #000;
   font-family: YekanBakh600;
-  font-size: 12px;
   width: fit-content;
 }
 

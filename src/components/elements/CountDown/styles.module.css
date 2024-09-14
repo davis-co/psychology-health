@@ -1,0 +1,10 @@
+.container {
+    @apply flex items-center gap-4;
+}
+
+.title {
+    color: #000;
+    text-align: right;
+    font-family: YekanBakh600;
+    font-size: 10px;
+}

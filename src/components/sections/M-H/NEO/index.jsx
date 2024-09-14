@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import styles from "./styles.module.css"
 import { questions } from "./data"
-import { Button, Divider, Label, Radio } from "@/components/elements"
+import { Button, CountDown, Divider, Label, Radio } from "@/components/elements"
 import { booleanOptions, FORM_SIZE, matchOptions } from "@/constants/form"
 import classNames from "classnames"
 import { lastPage } from "./services"
@@ -12,7 +12,7 @@ export default function NEO({ errors, watch, register }) {
         lastPage(
             questions.map((q) => q.key),
             watch
-        ) 
+        )
     )
     const [oldAnimation, setOldAnimation] = useState(false)
     const [newAnimation, setNewAnimation] = useState(false)
@@ -37,35 +37,41 @@ export default function NEO({ errors, watch, register }) {
     return (
         <>
             <div className={styles.container}>
-                {questions.slice(startIndex, startIndex + FORM_SIZE).map((q, index) => (
-                    <div
-                        className={classNames(
-                            q.isBoolean
-                                ? styles.booleanFormItem
-                                : styles.matchFormItem,
-                            oldAnimation ? styles.oldAnimation : "",
-                            newAnimation ? styles.newAnimation : ""
-                        )}
-                        key={q.label}
-                    >
-                        <Label
-                            containerClassName={styles.question}
-                            title={q.label}
-                            required={true}
-                            isError={!!errors[q.key]}
-                        />
-                        <Divider
-                            className={`block w-1/2 mx-auto my-3 ${
-                                q.isBoolean ? "md:hidden " : "lg:hidden"
-                            }`}
-                        />
+                <CountDown containerClassName={styles.timer} />
+                <Divider className="my-1" />
+                {questions
+                    .slice(startIndex, startIndex + FORM_SIZE)
+                    .map((q, index) => (
                         <div
-                            className={classNames(styles.radios, {
-                                [styles.error]: !!errors[q.key],
-                            })}
+                            className={classNames(
+                                q.isBoolean
+                                    ? styles.booleanFormItem
+                                    : styles.matchFormItem,
+                                oldAnimation ? styles.oldAnimation : "",
+                                newAnimation ? styles.newAnimation : ""
+                            )}
+                            key={q.label}
                         >
-                            {(q.isBoolean ? booleanOptions : matchOptions)?.map(
-                                (o) => (
+                            <Label
+                                containerClassName={styles.question}
+                                title={q.label}
+                                required={true}
+                                isError={!!errors[q.key]}
+                            />
+                            <Divider
+                                className={`block w-1/2 mx-auto my-3 ${
+                                    q.isBoolean ? "md:hidden " : "lg:hidden"
+                                }`}
+                            />
+                            <div
+                                className={classNames(styles.radios, {
+                                    [styles.error]: !!errors[q.key],
+                                })}
+                            >
+                                {(q.isBoolean
+                                    ? booleanOptions
+                                    : matchOptions
+                                )?.map((o) => (
                                     <Radio
                                         checked={o.value === watch(q.key)}
                                         value={o.value}
@@ -75,11 +81,10 @@ export default function NEO({ errors, watch, register }) {
                                             required: true,
                                         })}
                                     />
-                                )
-                            )}
+                                ))}
+                            </div>
                         </div>
-                    </div>
-                ))}
+                    ))}
             </div>
             {questions.length - startIndex != FORM_SIZE ? (
                 <Button

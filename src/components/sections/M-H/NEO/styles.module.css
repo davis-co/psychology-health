@@ -1,5 +1,9 @@
 .container {
-    @apply flex flex-col md:flex-row md:flex-wrap w-full md:justify-between gap-y-6 px-4 overflow-hidden;
+    @apply flex flex-col md:flex-row md:flex-wrap w-full md:justify-between gap-y-3 px-4 overflow-hidden;
+}
+
+.timer{
+    @apply mr-auto;
 }
 
 .matchFormItem .question{
@@ -56,7 +60,7 @@
 
 @keyframes newAnimate {
     0% {
-        transform: translateX(100%);
+        transform: translateX(-100%);
     }
     100% {
         transform: translateX(0);
@@ -69,7 +73,7 @@
         opacity: 1;
     }
     100% {
-        transform: translateX(-100%);
+        transform: translateX(100%);
         opacity: 0;
     }
 }
