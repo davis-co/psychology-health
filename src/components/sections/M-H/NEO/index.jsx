@@ -14,7 +14,7 @@ import classNames from "classnames"
 import { lastPage, onFinishTime } from "./services"
 import { text } from "./text"
 
-export default function NEO({ errors, watch, register }) {
+export default function NEO({ errors, watch, register, submitLoading }) {
     const [startIndex, setStartIndex] = useState(
         0
         // lastPage(
@@ -37,23 +37,25 @@ export default function NEO({ errors, watch, register }) {
                 setStartIndex(startIndex + FORM_SIZE)
                 setOldAnimation(false)
                 setNewAnimation(true)
-                window.scrollTo({ top: 0, behavior: "smooth" })
+                document
+                    .getElementById("formContainer")
+                    .scrollTo({ top: 0, behavior: "smooth" })
             }, 250)
         }
     }
 
     return (
-        <>
-            <div className={styles.container}>
-                <CountDown
-                    containerClassName={styles.timer}
-                    onComplete={() => {
-                        onFinishTime()
-                    }}
-                />
-                <Divider className="my-1 lg:my-3" />
-                <p className={styles.intro}>{text.description}</p>
-                <FormSteps currentStep={startIndex / FORM_SIZE + 1} />
+        <div className={styles.container} id="formContainer">
+            <CountDown
+                containerClassName={styles.timer}
+                onComplete={() => {
+                    onFinishTime()
+                }}
+            />
+            <Divider className="my-1 lg:my-1" />
+            <p className={styles.intro}>{text.description}</p>
+            <FormSteps currentStep={startIndex / FORM_SIZE + 1} />
+            <div className={styles.questions}>
                 {questions
                     .slice(startIndex, startIndex + FORM_SIZE)
                     .map((q, index) => (
@@ -108,7 +110,15 @@ export default function NEO({ errors, watch, register }) {
                     style="outlined"
                     onClick={() => goToNext()}
                 />
-            ) : null}
-        </>
+            ) : (
+                <Button
+                    className={styles.next}
+                    title={text.submit}
+                    style="outlined"
+                    loading={submitLoading}
+                    type="submit"
+                />
+            )}
+        </div>
     )
 }

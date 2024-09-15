@@ -1,20 +1,20 @@
 .form {
-  @apply w-full max-w-[100%] min-h-[70vh] px-4 md:px-0 md:max-w-[91%] lg:max-w-[1280px] mx-auto md:mb-20 mt-10 flex flex-col md:gap-2 lg:gap-2 pb-20;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.6) 0%,
-    rgba(250, 254, 251, 0.6) 100%
-  );
-  box-shadow: 0px 0px 4px 0px rgba(0, 64, 26, 0.2);
-  backdrop-filter: blur(3px);
+    @apply w-full max-w-[100%] min-h-[70vh] px-4 md:px-0 md:max-w-[91%] lg:max-w-[1280px] mx-auto mt-10 flex flex-col;
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.6) 0%,
+        rgba(250, 254, 251, 0.6) 100%
+    );
+    box-shadow: 0px 0px 4px 0px rgba(0, 64, 26, 0.2);
+    backdrop-filter: blur(3px);
 }
 
-.submit{
-  @apply md:w-[200px] mt-8 md:mt-auto mx-auto;
+.submit {
+    @apply md:w-[200px] mt-8 md:mt-auto mx-auto mb-14;
 }
 
 @media only screen and (max-width: 767px) {
-  .submit {
-      width: calc(100% - 2.5rem);
-  }
+    .submit {
+        width: calc(100% - 2.5rem);
+    }
 }

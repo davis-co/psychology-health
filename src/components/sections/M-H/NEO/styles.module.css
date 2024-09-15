@@ -1,9 +1,9 @@
 .container {
-    @apply flex flex-col md:flex-row md:flex-wrap w-full md:justify-between gap-y-3 px-4 overflow-hidden;
+    @apply flex flex-col w-full overflow-y-auto gap-y-3 px-4 overflow-x-hidden pb-4 max-h-[80vh] lg:max-h-[75vh];
 }
 
 .timer {
-    @apply mr-auto;
+    @apply flex justify-end w-full sticky top-0 z-20 bg-white pb-3;
 }
 
 .intro {
@@ -47,7 +47,7 @@
 }
 
 .matchFormItem .question {
-    @apply lg:max-w-[35%] text-center text-[8px] lg:text-[11px];
+    @apply lg:max-w-[35%] text-center lg:text-right text-[8px] lg:text-[11px];
 }
 
 .booleanFormItem .question {
@@ -60,6 +60,10 @@
 
 .oldAnimation {
     animation: oldAnimate 0.25s 1;
+}
+
+.questions {
+    @apply px-2 md:px-4 flex flex-col gap-y-3 md:flex-row md:flex-wrap w-full md:justify-between;
 }
 
 @keyframes newAnimate {
@@ -83,11 +87,5 @@
 }
 
 .next {
-    @apply md:w-[200px] mt-8 md:mt-6 mx-auto;
-}
-
-@media only screen and (max-width: 767px) {
-    .next {
-        width: calc(100% - 2.5rem);
-    }
+    @apply w-full text-[10px] md:text-[12px] md:w-[200px] mt-8 md:mt-6 mx-auto;
 }

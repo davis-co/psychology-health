@@ -1,29 +1,65 @@
 .mContainer {
-    @apply w-full flex h-[28px] overflow-hidden;
+    @apply w-full flex min-h-[40px] overflow-hidden sticky py-2 top-[30px] z-20 bg-white;
     border-radius: 4px;
 }
 
 .mContainer button {
-    @apply p-0 rounded-none relative;
+    @apply px-0 rounded-none h-full;
     font-size: 8px;
     /* box-shadow: 0 4px 2px black; */
     border: 0;
 }
 
 .mContainer .currentStep {
-    @apply min-w-fit md:min-w-[240px] text-white;
+    @apply min-w-fit px-0.5 md:min-w-[240px] text-white h-full;
     background-color: rgb(46, 139, 87);
-    padding: 0 0.5rem;
 }
 
-.mContainer .prevSteps{
-  @apply text-white flex-1;
-  background-color: rgb(73, 121, 107);
+.mContainer .prevSteps {
+    @apply text-white flex-1;
+    background-color: rgb(73, 121, 107);
 }
 
-.step {
+.mContainer .step {
     border-radius: 2px;
     background: rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(10px);
     flex: 1;
+}
+
+.container {
+    @apply w-full flex items-center bg-white z-20 sticky py-2 top-[30px];
+}
+
+.container button {
+    @apply px-0 py-2 rounded-md border-none flex-1 lg:text-[10px] xl:text-xs;
+}
+
+.container .stepButton {
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+}
+
+.container .currentStepButton {
+    background-color: rgb(46, 139, 87);
+    color: white;
+}
+
+.container span {
+    @apply w-2 h-3;
+}
+
+.container .shape {
+    @apply bg-[#8A8A8A];
+}
+
+.container .prevShape,
+.container .prevStepButton {
+    background-color: rgb(73, 121, 107);
+    color: white;
+}
+
+.container .currentShape {
+    background: #00a693;
 }

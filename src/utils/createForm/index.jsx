@@ -65,6 +65,7 @@ export const CreateForm = ({ page, setPage }) => {
                 register={register}
                 control={control}
                 setValue={setValue}
+                submitLoading={submitLoading}
             />
         )
     } else if (page.name === "تست SCL90") {

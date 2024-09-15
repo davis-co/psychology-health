@@ -1,5 +1,5 @@
 import classNames from "classnames"
-import React from "react"
+import React, { useEffect } from "react"
 import styles from "./styles.module.css"
 import Button from "../Button"
 import { stepToWord } from "./data"
@@ -14,9 +14,9 @@ export default function FormSteps({
                 {steps.map((step) => (
                     <Button
                         className={
-                            currentStep > step ?
-                            styles.prevSteps :
-                            currentStep === step
+                            currentStep > step
+                                ? styles.prevSteps
+                                : currentStep === step
                                 ? styles.currentStep
                                 : styles.step
                         }
@@ -29,9 +29,34 @@ export default function FormSteps({
                     />
                 ))}
             </div>
-            <div
-                className={classNames(styles.container, "hidden lg:flex")}
-            ></div>
+            <div className={classNames(styles.container, "hidden lg:flex")}>
+                {steps.map((step) => (
+                    <>
+                        <Button
+                            className={
+                                currentStep > step
+                                    ? styles.prevStepButton
+                                    : currentStep === step
+                                    ? styles.currentStepButton
+                                    : styles.stepButton
+                            }
+                            title={`سری ${stepToWord[step]} سوالات`}
+                            key={"step" + step}
+                        />
+                        {step !== steps.length ? (
+                            <span
+                                className={
+                                    currentStep > step
+                                        ? styles.prevShape
+                                        : currentStep === step
+                                        ? styles.currentShape
+                                        : styles.shape
+                                }
+                            ></span>
+                        ) : null}
+                    </>
+                ))}
+            </div>
         </>
     )
 }

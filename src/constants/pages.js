@@ -18,7 +18,6 @@ export const pages = {
             fetchJobId: NEO_JobId_Get,
             postJobId: NEO_JobId_Post,
         },
-        submit: true,
         keys: {
             1558470393312: true,
             1558472061528: true,
