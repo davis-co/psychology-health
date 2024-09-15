@@ -7,7 +7,7 @@ export default function Home({ setPage }) {
     return (
         <div className={styles.container}>
             {pages.map((page) => (
-                <Card page={page} setPage={setPage} />
+                <Card page={page} setPage={setPage} key={page.name} />
             ))}
         </div>
     )

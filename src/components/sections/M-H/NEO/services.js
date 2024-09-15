@@ -23,3 +23,8 @@ export const lastPage = (keys, watch, qLength = 243, size = FORM_SIZE) => {
         return Math.floor(keys.findLastIndex((key) => watch(key)) / size) * FORM_SIZE
     }
 }
+
+export const onFinishTime = () => {
+    document.getElementById('submitButton').click();
+    
+}

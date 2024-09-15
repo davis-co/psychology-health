@@ -7,10 +7,7 @@
 }
 
 .intro {
-    color: #000;
-    text-align: justify;
-    font-family: YekanBakh600;
-    font-size: 9px;
+    @apply text-[9px] lg:text-[14px] text-justify text-black;
 }
 
 .matchFormItem .question {

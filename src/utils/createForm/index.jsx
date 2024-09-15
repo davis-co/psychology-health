@@ -96,6 +96,7 @@ export const CreateForm = ({ page, setPage }) => {
     if (page.submit && validateForm(page.keys, watch)) {
         sections.push(
             <Button
+                id={'submitButton'}
                 className={styles.submit}
                 title={"ذخیره اطلاعات"}
                 style="outlined"

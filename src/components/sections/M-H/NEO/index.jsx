@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import styles from "./styles.module.css"
 import { questions } from "./data"
 import {
@@ -11,11 +11,12 @@ import {
 } from "@/components/elements"
 import { booleanOptions, FORM_SIZE, matchOptions } from "@/constants/form"
 import classNames from "classnames"
-import { lastPage } from "./services"
+import { lastPage, onFinishTime } from "./services"
 import { text } from "./text"
 
 export default function NEO({ errors, watch, register }) {
-    const [startIndex, setStartIndex] = useState(0
+    const [startIndex, setStartIndex] = useState(
+        0
         // lastPage(
         //     questions.map((q) => q.key),
         //     watch
@@ -44,8 +45,13 @@ export default function NEO({ errors, watch, register }) {
     return (
         <>
             <div className={styles.container}>
-                <CountDown containerClassName={styles.timer} />
-                <Divider className="my-1" />
+                <CountDown
+                    containerClassName={styles.timer}
+                    onComplete={() => {
+                        onFinishTime()
+                    }}
+                />
+                <Divider className="my-1 lg:my-3" />
                 <p className={styles.intro}>{text.description}</p>
                 <FormSteps currentStep={startIndex / FORM_SIZE + 1} />
                 {questions

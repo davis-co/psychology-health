@@ -6,13 +6,13 @@ import classNames from "classnames"
 import styles from "./styles.module.css";
 import { i18n } from "./i18n";
 
-const CountDown = ({ onComplete, containerClassName }) => {
+const CountDown = ({ onComplete = () => {}, containerClassName }) => {
     return (
         <div className={classNames(styles.container, containerClassName)}>
             <span className={styles.title}>{i18n.timeLeft}</span>
             <FlipClockCountdown
                 renderMap={[false, true, true, true]}
-                to={new Date().getTime() + 2 * 3600 * 1000 - 1000}
+                to={(new Date().getTime() +  2 * 60 * 60 * 1000)}
                 onComplete={() => onComplete()}
                 labels={["", "", "", ""]}
                 digitBlockStyle={{

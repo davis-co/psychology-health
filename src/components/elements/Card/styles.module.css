@@ -6,6 +6,14 @@
     @apply w-full flex justify-between md:p-4 font-bold md:text-2xl leading-9;
 }
 
+.content h2{
+    @apply text-[80%];
+}
+
+.cardIcon{
+    @apply w-1/4;
+}
+
 .content img {
     @apply pl-2 transition-transform;
 }
