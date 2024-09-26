@@ -1,5 +1,5 @@
 // const origin = window.location.origin.toString()
-const origin = "https://self-declaration.salamatehr.ir"
+const origin = window.location.origin.includes('localhost') ? "https://self-declaration.salamatehr.ir" : window.location.origin.toString();
 export const baseURL = `${origin}/EGW/`
 
 // export const baseURL = `https://self-declaration.salamatehr.ir/EGW/`

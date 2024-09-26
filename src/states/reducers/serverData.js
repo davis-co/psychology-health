@@ -5,6 +5,7 @@ export const serverDataSlice = createSlice({
     initialState: {
         isAuthorized: null,
         selectErrors: [],
+        mentalAssesmentTotal:null
     },
     reducers: {
         setIsAuthroized: (state, action) => {
@@ -13,9 +14,12 @@ export const serverDataSlice = createSlice({
         setSelectErrors: (state, action) => {
             state.selectErrors = action.payload
         },
+        setMentalAssesmentTotal:(state,action)=>{
+            state.mentalAssesmentTotal=action.payload
+        }
     },
 })
 
-export const { setSelectErrors, setIsAuthroized } = serverDataSlice.actions
+export const { setSelectErrors, setIsAuthroized,setMentalAssesmentTotal } = serverDataSlice.actions
 
 export default serverDataSlice.reducer
