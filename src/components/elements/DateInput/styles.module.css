@@ -1,21 +1,24 @@
-.content {
-  @apply w-full flex flex-col gap-2 font-semibold;
+.container {
+    @apply w-full flex justify-between flex-col gap-0.5;
 }
-.content .label {
-  @apply inline-flex text-xs leading-5 text-ownGray-900;
+
+.field {
+    @apply w-full relative;
 }
-.content .innerDivider {
-  @apply flex items-center gap-2 w-full;
+
+.input {
+    @apply w-full lg:py-[5px] md:h-7 xs:h-6 bg-gray-100 md:text-sm xs:text-sm lg:px-2 border-[0.5px] border-solid border-black rounded text-gray-darker;
 }
-.content .innerDivider .pos {
-  @apply w-full relative;
+
+.input:focus,
+.input:hover {
+    @apply outline-0 bg-white border-black text-black ring-0;
 }
-.content .innerDivider .pos .dateField {
-  @apply w-full text-sm rounded-lg border-2 bg-white border-ownGray-200 hover:border-ownGray-300 focus:ring-1 focus:ring-ownGray-200;
+
+.fieldError {
+    @apply border-red;
 }
-.content .innerDivider .pos .fieldError {
-  @apply border-ownRed-400;
-}
-.content .innerDivider .pos .icon {
-  @apply absolute text-sm left-0 top-1/2 translate-x-1/2 -translate-y-1/2;
+
+.icon {
+    @apply absolute h-[14px] w-[14px] lg:h-[19px] lg:w-[19px] left-0 top-1/2 translate-x-1/2 -translate-y-1/2;
 }

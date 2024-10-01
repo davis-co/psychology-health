@@ -5,9 +5,9 @@ import { toast } from "react-toastify"
 import styles from "./styles.module.css"
 // components
 import { Button, ProjectName } from "@/components/elements"
-import NEO from "@/components/sections/M-H/NEO"
-import Loading from "@/components/sections/Loading"
-import SCL90 from "@/components/sections/M-H/SCL90"
+import NEO from "@/pages/NEO"
+import Loading from "@/pages/Loading"
+import SCL90 from "@/pages/SCL90"
 
 // jobIds
 
@@ -15,12 +15,12 @@ import SCL90 from "@/components/sections/M-H/SCL90"
 import fetchData from "@/services/fetchData"
 import submitForm from "@/services/submitForm"
 import { successMessage } from "@/constants/form"
-import { questions as NeoQuestions } from "@/components/sections/M-H/NEO/data"
-import { questions as SCL90Questions } from "@/components/sections/M-H/SCL90/data"
+import { questions as NeoQuestions } from "@/pages/NEO/data"
+import { questions as SCL90Questions } from "@/pages/SCL90/data"
 import { pages } from "@/constants/pages"
-import { validateForm } from "@/components/sections/M-H/NEO/services"
-import Home from "@/components/sections/M-H/Home"
-import MentalHealth from "@/components/sections/M-H/MentalHealth"
+import { validateForm } from "@/pages/NEO/services"
+import Home from "@/pages/M-H/Home"
+import MentalHealth from "@/pages/M-H/MentalHealth"
 
 export const CreateForm = ({ page, setPage }) => {
     const [submitLoading, setSubmitLoading] = useState(false)

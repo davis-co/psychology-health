@@ -3,7 +3,7 @@
 }
 
 .content .label {
-  @apply inline-flex text-xs leading-5 text-ownGray-900 mt-3;
+  @apply inline-flex text-xs leading-5 text-gray-darkest mt-3;
 }
 
 .content .innerDivider {
@@ -15,11 +15,11 @@
 }
 
 .content .innerDivider .pos .field {
-  @apply w-full text-sm rounded-lg border-2 bg-white border-ownGray-200 hover:border-ownGray-300 focus:ring-1 focus:ring-ownGray-200;
+  @apply w-full text-sm rounded-lg border-2 bg-white border-gray-light hover:border-ownGray-300 focus:ring-1 focus:ring-gray-light;
 }
 
 .content .innerDivider .pos .fieldError {
-  @apply border-ownRed-400;
+  @apply border-red;
 }
 
 .content .innerDivider .pos .span {
@@ -27,7 +27,7 @@
 }
 
 .content .innerDivider .button {
-  @apply p-2 bg-ownGray-100 rounded-md hover:bg-ownGray-200;
+  @apply p-2 bg-gray-lighter rounded-md hover:bg-gray-light;
 }
 
 input[type="number"]::-webkit-inner-spin-button,

@@ -1,56 +1,23 @@
 .container {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+    @apply w-full flex justify-between flex-col gap-0.5;
 }
 
 .field {
-  flex: 1;
-  border: 0.5px solid #444444aa;
-  padding: 7px 6px;
-  border-radius: 4px;
-  font-size: 12px;
-  line-height: 15px;
-  font-family: YekanBakh700;
-  background-color: transparent;
+    @apply w-full relative;
 }
 
-.field::placeholder {
-  color: rgba(102, 102, 102, 1);
-  font-size: 10px;
-  line-height: 15px;
+.input {
+    @apply w-full lg:py-[5px] bg-transparent lg:text-sm lg:px-2 border-[0.5px] border-solid border-black rounded text-input;
 }
 
-.field:disabled {
-  cursor: not-allowed;
-}
-
-.disabled {
-  background-color: #dedede;
-  color: #7e7e7e;
-  border-color: #7e7e7e;
+.input:focus,
+.input:hover {
+    @apply outline-0 bg-white border-black text-black ring-0;
 }
 
 .fieldError {
-  border-color: red;
-  color: red;
 }
 
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-  opacity: 1;
-  max-width: max-content;
-  padding-left: 10px;
-  padding-right: 10px;
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-}
-
-input[type="number"]::-webkit-inner-spin-button::before,
-input[type="number"]::-webkit-outer-spin-button::before {
-  position: absolute;
+.icon {
+    @apply absolute h-[14px] w-[14px] lg:h-[19px] lg:w-[19px] left-0 top-1/2 translate-x-1/2 -translate-y-1/2;
 }

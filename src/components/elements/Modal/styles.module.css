@@ -5,8 +5,9 @@
 }
 
 .modal {
-  @apply bg-white shadow-lg p-1 rounded-md w-fit max-w-md flex flex-col md:max-w-[90%] md:max-h-[80%] overflow-y-auto lg:max-w-[80%] overflow-hidden;
+  @apply bg-white shadow-lg p-1 rounded-md w-full max-w-md max-h-[80vh] overflow-y-auto overflow-x-hidden  flex flex-col lg:max-w-[90%];
   animation: popUp 0.35s 1;
+  direction: rtl;
 }
 
 .closeButton {
@@ -16,6 +17,7 @@
   border: none;
   box-shadow: none;
   font-size: 25px;
+
 }
 
 @keyframes popUp {

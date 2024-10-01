@@ -2,22 +2,20 @@
     @apply flex gap-2 md:gap-3 w-full items-center p-1 md:bg-white border border-gray-500 font-semibold transition-all rounded-xl hover:border-2 hover:p-[1px] cursor-pointer;
 }
 
-.content {
-    @apply w-full flex justify-between md:p-4 font-bold md:text-2xl leading-9;
-}
-
-.content h2{
-    @apply text-[80%];
-}
 
 .cardIcon{
-    @apply w-1/4;
+    @apply w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 xl:w-24 xl:h-24 transition-all;
 }
 
-.content img {
-    @apply pl-2 transition-transform;
+.container h2{
+    @apply text-[10px] lg:text-[13px] text-center;
+    font-family: YekanBakh400;
 }
 
-.container:hover content img {
-    @apply -translate-x-3 transition-transform duration-300;
+.container:hover{
+    @apply shadow-md;
+}
+
+.container:hover .cardIcon{
+    @apply scale-110;
 }

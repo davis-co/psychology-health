@@ -12,51 +12,47 @@ const DateInput = ({
     id,
     control,
     containerClassName,
-    fieldClassName,
+    className,
     required,
-    labelClassName,
     isError = false,
 }) => {
     return (
-        <div className={classNames(styles.content, containerClassName)}>
+        <div className={classNames(styles.container, containerClassName)}>
             <Label title={label} required={required} isError={isError} />
-            <div className={classNames(styles.innerDivider, fieldClassName)}>
-                <div className={styles.pos}>
-                    <Controller
-                        control={control}
-                        name={id}
-                        render={({ field: { onChange, value } }) => (
-                            <DatePicker
-                                containerClassName="w-full"
-                                render={
-                                    <input
-                                        id={id}
-                                        placeholder="روز/ ماه/ سال"
-                                        className={classNames(
-                                            styles.dateField,
-                                            {
-                                                [styles.fieldError]: isError,
-                                            }
-                                        )}
-                                    />
-                                }
-                                calendar={persian}
-                                locale={persian_fa}
-                                format="YYYY/MM/DD"
-                                calendarPosition="top"
-                                fixMainPosition={false}
-                                showOtherDays
-                                fixRelativePosition={false}
-                                value={value || ""}
-                                onChange={(date) => {
-                                    onChange(date ? date.toString() : "")
-                                }}
-                                id={id}
-                            />
-                        )}
-                    />
-                    <img className={styles.icon} src={EventIcon} />
-                </div>
+            <div
+                className={classNames(className, styles.field, {
+                    [styles.fieldError]: isError,
+                })}
+            >
+                <Controller
+                    control={control}
+                    name={id}
+                    render={({ field: { onChange, value } }) => (
+                        <DatePicker
+                            containerClassName="w-full"
+                            render={
+                                <input
+                                    id={id}
+                                    placeholder="روز/ ماه/ سال"
+                                    className={classNames(styles.input)}
+                                />
+                            }
+                            calendar={persian}
+                            locale={persian_fa}
+                            format="YYYY/MM/DD"
+                            calendarPosition="top"
+                            fixMainPosition={false}
+                            showOtherDays
+                            fixRelativePosition={false}
+                            value={value || ""}
+                            onChange={(date) => {
+                                onChange(date ? date.toString() : "")
+                            }}
+                            id={id}
+                        />
+                    )}
+                />
+                <img className={styles.icon} src={EventIcon} />
             </div>
         </div>
     )

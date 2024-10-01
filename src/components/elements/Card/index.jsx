@@ -1,16 +1,18 @@
 import { LeftIcon } from "@/assets/icons"
-
 import styles from "./styles.module.css"
+import { Link } from "react-router-dom"
 
-const Card = ({ page, setPage }) => {
+const Card = ({ page }) => {
     return (
-        <div className={styles.container} onClick={() => setPage(page.name)}>
-            <img src={page.image} className={styles.cardIcon} alt={page.title} loading="lazy" />
-            <div className={styles.content}>
-                <h2>{page.title}</h2>
-                <img src={LeftIcon} alt="جهت" />
-            </div>
-        </div>
+        <Link to={page.link} className={styles.container}>
+            <img
+                src={page.image}
+                className={styles.cardIcon}
+                alt={page.title}
+                loading="lazy"
+            />
+            <h2>{page.title}</h2>
+        </Link>
     )
 }
 

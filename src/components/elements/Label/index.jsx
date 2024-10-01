@@ -11,19 +11,15 @@ export default function Label({
     required,
     isError,
     userGuide,
-    containerClassName,
+    className,
 }) {
     const [openModal, setOM] = useState(false)
     return (
         <>
             <label
-                className={classNames(
-                    styles.label,
-                    {
-                        [styles.labelError]: isError,
-                    },
-                    containerClassName
-                )}
+                className={classNames(className, styles.label, {
+                    [styles.labelError]: isError,
+                })}
                 htmlFor={title}
             >
                 {title + " "}

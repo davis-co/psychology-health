@@ -2,11 +2,12 @@ import React, { forwardRef } from "react"
 import styles from "./styles.module.css"
 import classNames from "classnames"
 
-const Radio = forwardRef(({ label,customStyle, ...props }, ref) => {
+const Radio = forwardRef(({ className, label, ...props }, ref) => {
     return (
         <label
             className={classNames(
-                styles.container,customStyle,
+                className,
+                styles.container,
                 props?.checked ? styles.checkedContainer : null,
                 props?.disabled ? styles.disabledContainer : null
             )}

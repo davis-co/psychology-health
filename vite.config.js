@@ -16,6 +16,7 @@ export default defineConfig(({ mode }) => {
     },
     define: {
       TEST_TOKEN: JSON.stringify(env.TEST_TOKEN),
+      BASE_URL: JSON.stringify(env.BASE_URL)
     },
     resolve: {
       alias: {

@@ -1,20 +1,20 @@
-.content {
+/* .content {
   @apply flex flex-col items-center gap-2 font-bold leading-5;
 }
 .content .questionContent {
   @apply w-full inline-flex items-center justify-between text-sm leading-5 pt-1 gap-2;
 }
 .content .questionContent .label {
-  @apply w-fit text-ownGray-900 leading-5 text-sm;
+  @apply w-fit text-gray-darkest leading-5 text-sm;
 }
 .content .questionContent .guideContent .guideContentButton {
-  @apply bg-ownGray-100 p-2 rounded-xl hover:bg-ownGray-200;
+  @apply bg-gray-lighter p-2 rounded-xl hover:bg-gray-light;
 }
 .content .radioContent {
   @apply w-full flex flex-wrap items-center gap-1;
 }
 .content .radioContent .radioLabel {
-  @apply flex flex-grow border-2 has-[input:checked]:bg-ownPurple-500 has-[input:checked]:text-white has-[input:checked]:border-ownPurple-700 border-ownGray-200 rounded-lg px-2 py-2 hover:bg-ownPurple-500 hover:border-ownPurple-700 hover:text-white duration-300;
+  @apply flex flex-grow border-2 has-[input:checked]:bg-ownPurple-500 has-[input:checked]:text-white has-[input:checked]:border-ownPurple-700 border-gray-light rounded-lg px-2 py-2 hover:bg-ownPurple-500 hover:border-ownPurple-700 hover:text-white duration-300;
 }
 .content .radioContent .radioLabel .radioInput {
   @apply text-ownPurple-600 focus:ring-ownPurple-600;
@@ -26,5 +26,5 @@
   @apply mb-2 mt-4 w-full;
 }
 .content .educationalContentWrapper .educationalContentButton {
-  @apply flex w-full justify-center items-center gap-2 bg-ownGray-100 rounded-md p-2 hover:bg-ownGray-200;
-}/*# sourceMappingURL=styles.module.css.map */
+  @apply flex w-full justify-center items-center gap-2 bg-gray-lighter rounded-md p-2 hover:bg-gray-light;
+}# sourceMappingURL=styles.module.css.map */

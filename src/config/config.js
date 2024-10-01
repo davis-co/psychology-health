@@ -1,6 +1,7 @@
 // const origin = window.location.origin.toString()
 const origin = window.location.origin.includes('localhost') ? "https://self-declaration.salamatehr.ir" : window.location.origin.toString();
 export const baseURL = `${origin}/EGW/`
+export const fileURL = "https://self-declaration.salamatehr.ir"
 
 // export const baseURL = `https://self-declaration.salamatehr.ir/EGW/`
 export const GWT =

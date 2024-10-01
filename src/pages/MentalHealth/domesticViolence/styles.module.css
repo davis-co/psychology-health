@@ -1,0 +1,153 @@
+/* .container {
+  @apply my-4 mx-16
+} */
+.title {
+  color: #3d0c02;
+}
+.description {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18.6px;
+  text-align: right;
+}
+/* #F7F7F7 */
+.mentalDisorder {
+  background-color: #e4e4e4;
+}
+.calBtn{
+  @apply md:text-sm xs:text-xs bg-transparent border border-gray-400 text-gray-500 w-[38px] h-[20px] rounded;
+}
+.message {
+    
+  color: #000;
+  font-family: YekanBakh400;
+ 
+  line-height: 12px;
+  background-color: #e4e4e4;
+  width: 100%;
+  border:8px solid #F7F7F7;
+  border-radius: 4px;
+}
+.message p {
+  @apply md:text-md xs:text-xs;
+  margin: 8px 16px;
+  /* padding: 9px 8px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ 
+  font-weight: 400;
+  line-height: 18.6px;
+  text-align: right;
+
+  /* box-shadow: 0px 1px 2px 0px #00000026 inset; */
+}
+
+.container {
+  @apply flex  flex-col md:flex-row md:flex-wrap w-full md:justify-between py-10 gap-y-6 px-4 overflow-x-hidden;
+}
+.questionPart {
+  @apply flex  flex-col md:flex-row md:flex-wrap w-full md:justify-between py-1 gap-y-6 px-1 overflow-x-hidden bg-zinc-200;
+}
+.listOfQuestions {
+  @apply flex    flex-wrap w-full md:justify-between py-1 gap-y-6 px-1  border rounded;
+}
+.twoPartQuestion{
+  @apply flex justify-between w-full md:gap-16 xs:gap-4 bg-[#e4e4e4] p-[2px] xs:flex-col md:flex-row;
+}
+.onePartQuestion{
+  @apply md:grid md:grid-cols-2 md:gap-16 md:w-full bg-[#e4e4e4] p-[2px];
+}
+.question{
+  @apply font-yekan700 leading-4 md:text-sm xs:text-xs pl-5;
+
+}
+.booleanFormItem {
+  @apply flex justify-between items-center bg-white-light py-2 pr-2 pl-4  xs:w-full rounded ;
+}
+
+.booleanFormItem .radios {
+  @apply flex lg:gap-10 xs:gap-2;
+}
+/* 
+.booleanFormItem {
+  @apply flex  gap-2 md:w-[49%] md:gap-0 py-[0.75rem] md:py-[0.64rem] px-[0.5rem] md:flex-row items-center justify-between;
+  border-radius: 4px;
+  background: #f7f7f7;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.15);
+  z-index: 2;
+}
+
+.booleanFormItem input {
+  @apply max-h-[30px];
+  border-radius: 4px;
+}
+
+.booleanFormItem .question {
+  @apply  text-[8px] md:text-right lg:text-[11px] w-[55%];
+}
+.booleanFormItem .radios {
+  @apply flex w-full justify-end   lg:gap-3 xs:gap-2;
+}
+
+.booleanFormItem .radios label {
+  @apply w-[30%] md:w-[60px] lg:w-[80px] lg:min-h-[28px] flex justify-between;
+}
+
+.matchFormItem {
+  @apply flex items-center flex-col lg:flex-row justify-between md:w-[49%] py-[0.75rem] md:py-[0.75rem] px-[0.5rem] lg:w-full;
+  border-radius: 4px;
+  background: #f7f7f7;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.15);
+  z-index: 2;
+}
+
+.matchFormItem .radios {
+  @apply w-full flex flex-wrap gap-[1%] justify-center lg:justify-between gap-y-1.5 lg:flex-nowrap lg:w-3/5 lg:gap-2;
+}
+
+.matchFormItem .radios label {
+  @apply flex justify-between lg:min-h-[28px] w-[32%] lg:w-auto lg:flex-auto;
+}
+
+.matchFormItem .question {
+  @apply lg:max-w-[35%] text-center lg:text-right text-[8px] lg:text-[11px] mx-auto lg:mx-0;
+}
+
+.newAnimation {
+  animation: newAnimate 0.25s 1;
+}
+
+.oldAnimation {
+  animation: oldAnimate 0.25s 1;
+}
+
+@keyframes newAnimate {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes oldAnimate {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.next {
+  @apply md:w-[200px] mt-8 md:mt-6 mx-auto;
+}
+
+@media only screen and (max-width: 767px) {
+  .next {
+    width: calc(100% - 2.5rem);
+  }
+} */

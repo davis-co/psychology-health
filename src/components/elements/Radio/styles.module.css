@@ -1,72 +1,48 @@
 .container {
-    border: 0.5px solid black;
-    border-radius: 4px;
-    background-color: #f7f7f7;
-    opacity: 0.5;
-    padding: 2px 6px;
-    display: inline-flex;
-    gap: 12px;
-    cursor: pointer;
-    align-items: center;
+    @apply inline-flex justify-between items-center gap-3 lg:gap-6 rounded-sm bg-white-light lg:rounded px-[6px] py-0.5 lg:py-1 border-[0.25px] border-solid border-black cursor-pointer opacity-60 hover:bg-transparent hover:opacity-100;
 }
 
 .checkedContainer {
-    border-color: #02894c;
-    background: #fff;
-    opacity: 1;
+    @apply opacity-100 bg-white border-green;
 }
 
 .disabledContainer {
-    opacity: 0.5;
-    cursor: not-allowed;
+    @apply cursor-not-allowed;
 }
 
 .input {
-    cursor: pointer;
-    width: 7px !important;
-    height: 7px !important;
+    @apply !w-1 lg:!w-1.5 !h-1 lg:!h-1.5 cursor-pointer rounded-full;
     background-color: rgb(153, 153, 153);
-    border-radius: 50% !important;
-}
-
-.input:checked {
-    background-color: rgba(2, 137, 76, 1) !important;
-    color: rgba(2, 137, 76, 1) !important;
     background-image: none !important;
-}
-
-.input {
     background-color: rgb(142, 142, 142) !important;
-    background-image: none !important;
     outline: none !important;
 }
 
+.input:focus {
+    @apply !ring-0 !bg-green !text-green;
+}
+
+.input:checked {
+    @apply !bg-green !text-green;
+    background-image: none !important;
+}
+
 .label {
-    @apply text-[8px] lg:text-[11px];
-    color: #000;
-    font-family: YekanBakh600;
-    user-select: none
+    @apply text-black font-yekan600 text-xs md:text-[11px] select-none;
 }
 
 .firstLayer {
-    @apply flex items-center justify-center;
-    width: 13px;
-    height: 13px;
-    border-radius: 50%;
+    @apply w-[10px] h-[10px] lg:w-[12px] lg:h-[12px] flex items-center justify-center rounded-full;
     background-color: #ddd;
-    border: 1px solid rgb(134, 134, 134);
+    border: 0.25px solid rgb(134, 134, 134);
 }
 
 .firstLayerChecked {
-    background-color: rgba(2, 137, 76, 0.5);
+    @apply bg-green bg-opacity-50;
+    box-shadow: 0px 0px 6px rgba(2, 137, 76, 0.6) !important;
 }
 
 .secondLayer {
-    @apply flex items-center justify-center;
-    width: 19px;
-    height: 19px;
-    border-radius: 50%;
-    border: 1px solid rgb(171, 171, 171);
-    background-color: white;
-    box-shadow: 0px 0px 5px rgba(2, 137, 76, 0.2) !important;
+    @apply flex items-center justify-center w-[14px] h-[14px] lg:w-[18px] lg:h-[18px] rounded-full bg-white;
+    border: 0.25px solid rgb(171, 171, 171);
 }

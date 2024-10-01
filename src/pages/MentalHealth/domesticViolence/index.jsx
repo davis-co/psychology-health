@@ -3,25 +3,33 @@ import styles from "./styles.module.css"
 import classNames from "classnames"
 import { text } from "./text"
 import alertIcon from "@/assets/icons/alert-solid.svg"
-import { Button, Divider, Label, Modal, Radio } from "@/components/elements"
+import { Button, Divider, Label, Radio } from "@/components/elements"
 import { radioFiveMentalHealth } from "./text"
 import { questionsDomesticViolence } from "./data"
-import CalculateAssessment from "../CalculateAssessment"
-import { yesNoQuestion } from "../text"
-import { useViolenceAssessmentStore } from "./store"
+import CalculateAssessment from "../MultiProgress"
+import { yesNoQuestion } from "../i18n"
 import PDF from "@/assets/icons/PDF.svg"
 import pdfDoc from "@/assets/multimedia/documents/violenceDoc.pdf"
 import { createPortal } from "react-dom"
+import RadioOptions from "@/components/elements/RadioOptions"
+import { fileURL } from "@/config/config"
+import { calcIconsvg } from "@/assets/icons"
+import Modal from "@/components/elements/Modal/new"
+
 export default function DomesticViolence({
   errors,
   watch,
   register,
   setValue,
+  setPointDomestic,
+  pointDomestic,
 }) {
-  const { violenceAssessmentTotal, setViolenceAssessmentTotal } =
-    useViolenceAssessmentStore()
-  const [point, setPoint] = useState(0)
+ 
+  const watchedValues = watch(["10443", "10444", "10445", "10446"])
+
+  const [iconCalc, setIconCalc] = useState(false)
   const [pdfContent, setPdfContent] = useState(false)
+
   const scoreMap = {
     10428: 4,
     10429: 3,
@@ -30,7 +38,6 @@ export default function DomesticViolence({
     10431: 0,
   }
 
-  const watchedValues = watch(["10443", "10444", "10445", "10446"])
 
   const calcTotalScore = () => {
     const totalScore = questionsDomesticViolence.reduce(
@@ -41,9 +48,9 @@ export default function DomesticViolence({
       0
     )
 
-    setPoint(totalScore)
+    setPointDomestic(totalScore)
     setValue("10552", totalScore)
-    setViolenceAssessmentTotal(totalScore)
+    setIconCalc(true)
   }
 
   const generalData = [
@@ -54,7 +61,7 @@ export default function DomesticViolence({
   ]
   const userData = {
     name: "userMentalPoint",
-    value: point,
+    value: pointDomestic,
   }
   return (
     <>
@@ -65,52 +72,45 @@ export default function DomesticViolence({
         <p className={styles.description}>{text.domesticViolenceDescription}</p>
         {questionsDomesticViolence.map((q) => (
           <section className="flex items-center py-3 px-2  rounded flex-wrap  flex-row w-full md:justify-between    bg-zinc-50 shadow-md">
-            <Label
-              containerClassName=" md:w-1/2 xs:w-1/3 "
-              title={q.label}
+            <RadioOptions
+              className=" xs:justify-between my-1 mx-1 flex-auto item-center font-yekan700 text-[10px] leading-4 text-black"
+              label={q.label}
+              questionKey={q.key}
               required={true}
-              // isError={!!errors[q.key]}
+              options={radioFiveMentalHealth}
+              register={register}
+              active={watch(q.key)}
+              isError={!!errors[q.key]}
             />
-
-            {radioFiveMentalHealth?.map((o) => (
-              <Radio
-                customStyle=" xs:justify-between my-1 mx-1 flex-auto item-center"
-                checked={o.value === watch(q.key)}
-                value={o.value}
-                label={o.label}
-                key={o.label + q.label}
-                {...register(q.key, {
-                  required: true,
-                })}
-              />
-            ))}
           </section>
         ))}
       </fieldset>
-      <section className="flex py-[2px] px-[2px] flex-wrap w-full flex-col gap-6 bg-zinc-200">
+      <section className="flex py-[2px] px-[2px] flex-wrap w-full flex-col gap-6 bg-[#e4e4e4]">
         <div className="flex justify-between md:gap-16 xs:gap-4 md:flex-row xs:flex-col">
-          <div className="bg-zinc-50 shadow-md md:w-1/2 xs:h-full flex items-center p-2 justify-between rounded">
+          <div className="bg-zinc-50 shadow-md  xs:w-full flex items-center p-2 justify-between rounded">
             <Label
               containerClassName=""
               title={text.domesticAssesment}
               required={true}
               // isError={!!errors[q.key]}
             />
-            <div className="flex items-center justify-center gap-2  ">
-              <Button
-                type="button"
-                style="text"
-                icon={<img src={alertIcon} width={16} height={16} />}
-              />
-              <Button
-                className="w-12"
-                style="outlined"
+            <div className="flex flex-1 items-center justify-center gap-2 ">
+              {pointDomestic > 10 ? (
+                <Button
+                  type="button"
+                  style="text"
+                  icon={<img src={alertIcon} width={16} height={16} />}
+                />
+              ) : null}
+             <button
+                className={styles.calBtn}
                 type="button"
                 onClick={calcTotalScore}
-                title="محاسبه"
-              />
-
-              <div className="w-[242px] h-7 margin-auto self-start bg-zinc-50 ">
+              >
+                {iconCalc ? <img src={calcIconsvg} /> : "محاسبه"}
+                </button>
+              <Label title={userData.value} />
+              <div className="flex-1">
                 <CalculateAssessment
                   generalData={generalData}
                   userData={userData}
@@ -143,21 +143,21 @@ export default function DomesticViolence({
           </div>
         </div>
         <div>
-          {violenceAssessmentTotal > 4 && violenceAssessmentTotal >= 10 ? (
+          {pointDomestic > 4 && pointDomestic <= 10 ? (
             <div className={styles.message}>
               <p>{text.result6MentalHealt}</p>
             </div>
           ) : null}
 
-          {violenceAssessmentTotal <= 4 ? (
+          {pointDomestic <= 4 ? (
             <div className={styles.message}>
               <p>{text.result7MentalHealt}</p>
             </div>
           ) : null}
         </div>
       </section>
-      <section className="flex items-center py-3  rounded flex-wrap  flex-row w-full  justify-between  ">
-        <div className="bg-zinc-50 shadow-md w-1/2 flex items-center p-2 justify-between rounded">
+      <section className={styles.onePartQuestion}>
+        <div className={styles.booleanFormItem}>
           <Label
             containerClassName="text-[11px]"
             title={text.violenceContent}
@@ -165,12 +165,13 @@ export default function DomesticViolence({
           />
           <div
             className=" flex justify-between  gap-6 border border-zinc-500 rounded p-1 cursor-pointer"
-            onClick={() => setPdfContent(true)}
+            
           >
-            <span className="text-[11px]">محتوای متنی</span>
+            <span className="text-[11px]" onClick={() => setPdfContent(true)}>محتوای متنی</span>
             <span>
               <img src={PDF} />
             </span>
+          
           </div>
         </div>
       </section>

@@ -73,17 +73,45 @@ textarea:focus,
 input:focus {
     outline: none;
 }
-
+/* count down start */
 .fcc {
     flex-direction: row-reverse;
 }
 
-.fcc__separator{
+.fcc__separator {
     margin: 0 !important;
 }
 
-.fcc__unit_time{
-  flex-direction: row-reverse;
-  margin: 0 !important;
-  gap: 0 !important;
+.fcc__unit_time {
+    flex-direction: row-reverse;
+    margin: 0 !important;
+    gap: 0 !important;
+}
+/* count down end */
+
+.router-page {
+    @apply grid grid-cols-3 gap-y-8 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-6 w-full h-full px-4 pt-4 lg:pt-6 max-h-full overflow-y-auto pb-10;
+}
+
+.message{
+    @apply text-[9px] md:text-[14px] px-4;
+    font-family: YekanBakh600;
+}
+
+.fileUrl{
+    @apply flex items-center gap-4;
+}
+
+strong{
+    @apply text-[9px] lg:text-[13px];
+    font-family: YekanBakh600;
+}
+
+.fileUrl a{
+    @apply !text-blue-600 text-[8px] lg:text-[12px] hover:underline;
+    font-family: YekanBakh400;
+}
+
+.noDataTextStyle{
+    color: gray
 }

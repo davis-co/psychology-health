@@ -1,4 +1,4 @@
-import { illnesses } from "@/components/sections/MM-R/MedicalRecordsForm/data"
+import { illnesses } from "@/pages/MM-R/MedicalRecordsForm/data"
 import {
     Button,
     DateInput,
@@ -11,7 +11,7 @@ import {
     Table,
 } from ".."
 import { BurgerIcon } from "@/assets/icons"
-import { medicineTableColumns } from "@/components/sections/MM-R/MedicineRecordsForm/data"
+import { medicineTableColumns } from "@/pages/MM-R/MedicineRecordsForm/data"
 import Pagination from "../Pagination"
 export const elements = [
     {

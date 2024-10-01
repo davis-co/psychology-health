@@ -1,7 +1,8 @@
-import { forwardRef, useState } from "react"
+import { forwardRef } from "react"
 import classNames from "classnames"
-import styles from "./styles.module.css"
+import styles from "../DateInput/styles.module.css"
 import Label from "../Label"
+import { EditIcon } from "@/assets/icons"
 
 const TextField = forwardRef(
     (
@@ -11,6 +12,7 @@ const TextField = forwardRef(
             className,
             label,
             isError = false,
+            icon,
             ...props
         },
         ref
@@ -25,33 +27,42 @@ const TextField = forwardRef(
                         isError={isError}
                     />
                 ) : null}
-
-                {props.rows > 1 ? (
-                    <textarea
-                        className={classNames(
-                            styles.field,
-                            disabled ? styles.disabled : null,
-                            {
-                                [styles.fieldError]: isError,
-                            }
-                        )}
-                        {...props}
-                        ref={ref}
-                    />
-                ) : (
-                    <input
-                        className={classNames(
-                            styles.field,
-                            disabled ? styles.disabled : null,
-                            {
-                                [styles.fieldError]: isError,
-                            },
-                            className
-                        )}
-                        {...props}
-                        ref={ref}
-                    />
-                )}
+                <div
+                    className={classNames(
+                        className,
+                        styles.field,
+                        disabled ? styles.disabled : null,
+                        {
+                            [styles.fieldError]: isError,
+                        }
+                    )}
+                >
+                    {props.rows > 1 ? (
+                        <textarea
+                            className={styles.input}
+                            {...props}
+                            ref={ref}
+                        />
+                    ) : (
+                        <>
+                            <input
+                                className={styles.input}
+                                {...props}
+                                ref={ref}
+                            />
+                        </>
+                    )}
+                    {props.rows > 1 ? (
+                        icon ? (
+                            <img className={styles.icon} src={icon} />
+                        ) : null
+                    ) : (
+                        <img
+                            className={styles.icon}
+                            src={icon ? icon : EditIcon}
+                        />
+                    )}
+                </div>
             </div>
         )
     }

@@ -7,6 +7,6 @@ export default async function fetchData(
 ) {
     const response = await smartRequest(jobId)
     const data = response.data
-    Object.keys(keys).forEach((key) => setValue(key, data[key]))
+    keys.forEach((key) => setValue(String(key), data[String(key)]))
     return
 }

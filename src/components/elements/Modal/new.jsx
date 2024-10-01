@@ -3,7 +3,7 @@ import styles from "./styles.module.css"
 import { CloseButtonIcon } from "@/assets/icons"
 import Button from "../Button"
 
-const Modal = ({ onClose, children }) => {
+const Modal = ({ onClose, children,minSize }) => {
   return (
     <div className={styles.container} onClick={() => onClose()}>
       <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
@@ -12,7 +12,7 @@ const Modal = ({ onClose, children }) => {
           className={styles.closeButton}
           title="&times;"
           onClick={() => {
-            onClose()
+            onClose(),console.log("fff")
           }}
         />
         {children}

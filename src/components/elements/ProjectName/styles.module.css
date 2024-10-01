@@ -1,21 +1,15 @@
 .container {
-    @apply w-full flex items-center gap-1 mb-0 -translate-y-[50%];
+    @apply w-full flex items-center gap-1 -translate-y-[50%];
 }
 
 .rightLine {
-    width: 1rem;
-    height: 2px;
-    background-color: #00401a;
+    @apply bg-green lg:w-10 h-[2px];
 }
 
 .name {
-    color: #000;
-    font-family: YekanBakh700;
-    font-size: 15px;
+    @apply text-black font-yekan700 text-sm lg:text-lg;
 }
 
 .leftLine {
-    flex: 1;
-    height: 2px;
-    background-color: #00401a;
+    @apply flex-1 h-[2px] bg-green;
 }
