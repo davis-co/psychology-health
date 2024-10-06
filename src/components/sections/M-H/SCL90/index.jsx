@@ -1,11 +1,17 @@
-import React, { useState } from "react"
-import styles from "./styles.module.css"
-import { Button, Divider, Label, Radio, TextField } from "@/components/elements"
-import classNames from "classnames"
-import { measureOptions } from "@/constants/form"
-import { text } from "./text"
-import { questions } from "./data"
-import { lastPage } from "../NEO/services"
+import React from 'react';
+
+import classNames from 'classnames';
+
+import {
+  Divider,
+  Label,
+  Radio,
+  TextField,
+} from '@/components/elements';
+import { measureOptions } from '@/constants/form';
+
+import { questions } from './data';
+import styles from './styles.module.css';
 
 export default function SCL90({ errors, watch, register }) {
     return (
@@ -32,7 +38,7 @@ export default function SCL90({ errors, watch, register }) {
                         <>
                             <Label
                                 containerClassName={styles.question}
-                                title={q.label}
+                                label={q.label}
                                 required={true}
                                 isError={!!errors[q.key]}
                             />

@@ -1,22 +1,26 @@
-import React, { useEffect, useState } from "react";
-import styles from "./styles.module.css";
+import React, {
+  useEffect,
+  useState,
+} from 'react';
+
+import { useForm } from 'react-hook-form';
+
 import {
   Button,
-  Divider,
-  Label,
-  Radio,
+  RadioOptions,
   TextField,
-} from "@/components/elements";
-import classNames from "classnames";
-import { measureOptions } from "@/constants/form";
-import { text } from "./text";
-import { questions } from "./data";
-import { lastPage } from "../NEO/services";
-import submitForm from "@/services/submitForm";
-import fetchData from "@/services/fetchData";
-import { SCL_JobId_Get, SCL_JobId_Post } from "@/constants/jobId";
-import { useForm } from "react-hook-form";
-import { KEYS } from "@/constants/keys";
+} from '@/components/elements';
+import { measureOptions } from '@/constants/form';
+import {
+  SCL_JobId_Get,
+  SCL_JobId_Post,
+} from '@/constants/jobId';
+import { KEYS } from '@/constants/keys';
+import fetchData from '@/services/fetchData';
+import submitForm from '@/services/submitForm';
+
+import { questions } from './data';
+import styles from './styles.module.css';
 
 export default function SCL90() {
   const {
@@ -60,13 +64,13 @@ export default function SCL90() {
         <div className={styles.container}>
           {questions.map((q, index) => (
             <div
-              className={classNames(
-                q.isPassword ? styles.booleanFormItem : styles.matchFormItem
-              )}
+              className={styles.gridcontainer}
               key={q.label}
             >
               {q.isPassword ? (
                 <TextField
+                containerClassName="flex-row items-center rounded bg-white-light p-3"
+
                   type="password"
                   label={q.label}
                   required={true}
@@ -75,36 +79,18 @@ export default function SCL90() {
                   value={watch(q.key)}
                 />
               ) : (
-                <>
-                  <Label
-                    containerClassName={styles.question}
-                    title={q.label}
-                    required={true}
-                    isError={!!errors[q.key]}
-                  />
-                  <Divider
-                    className={`block w-1/2 mx-auto my-3 ${
-                      q.isPassword ? "md:hidden " : "lg:hidden"
-                    }`}
-                  />
-                  <div
-                    className={classNames(styles.radios, {
-                      [styles.error]: !!errors[q.key],
-                    })}
-                  >
-                    {measureOptions?.map((o) => (
-                      <Radio
-                        checked={o.value === watch(q.key)}
-                        value={o.value}
-                        label={o.label}
-                        key={o.label + q.label}
-                        {...register(q.key, {
-                          required: true,
-                        })}
-                      />
-                    ))}
-                  </div>
-                </>
+                <div className='col-span-full'>
+                <RadioOptions
+                labelClassName={"lg:!w-[350px]"}
+                label={q.label}
+                options={measureOptions}
+                questionKey={q.key}
+                active={watch(q.key)}
+                register={register}
+                required={true}
+                />
+                </div>
+               
               )}
             </div>
           ))}

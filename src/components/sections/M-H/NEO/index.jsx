@@ -1,18 +1,25 @@
-import React, { useEffect, useState } from "react"
-import styles from "./styles.module.css"
-import { questions } from "./data"
+import React, { useState } from 'react';
+
+import classNames from 'classnames';
+
 import {
-    Button,
-    CountDown,
-    Divider,
-    FormSteps,
-    Label,
-    Radio,
-} from "@/components/elements"
-import { booleanOptions, FORM_SIZE, matchOptions } from "@/constants/form"
-import classNames from "classnames"
-import { lastPage, onFinishTime } from "./services"
-import { text } from "./text"
+  Button,
+  CountDown,
+  Divider,
+  FormSteps,
+  Label,
+  Radio,
+} from '@/components/elements';
+import {
+  booleanOptions,
+  FORM_SIZE,
+  matchOptions,
+} from '@/constants/form';
+
+import { questions } from './data';
+import { onFinishTime } from './services';
+import styles from './styles.module.css';
+import { text } from './text';
 
 export default function NEO({ errors, watch, register, submitLoading }) {
     const [startIndex, setStartIndex] = useState(
@@ -71,7 +78,7 @@ export default function NEO({ errors, watch, register, submitLoading }) {
                         >
                             <Label
                                 containerClassName={styles.question}
-                                title={q.label}
+                                label={q.label}
                                 required={true}
                                 isError={!!errors[q.key]}
                             />

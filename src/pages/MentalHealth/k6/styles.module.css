@@ -2,124 +2,60 @@
   @apply my-4 mx-16
 } */
 .title {
-    color: #3d0c02;
-  }
-  .description {
-    @apply font-yekan400 md:text-xs xs:text-[9px] md:leading-5 xs:leading-4
-  
-  }
+  @apply mb-2 font-yekan700 xs:hidden md:block md:text-md;
+  color: #3d0c02;
+}
+
+.description {
+  @apply md:text-md font-yekan600 xs:text-[9px] text-right mr-2;
+  line-height: 18.6px;
+}
+
   /* #F7F7F7 */
   .mentalDisorder {
     background-color: #e4e4e4;
   }
   
   .message {
-    
+    position: relative;
     color: #000;
     font-family: YekanBakh400;
     font-size: 8px;
     line-height: 12px;
-    background-color: #e4e4e4;
     width: 100%;
     border:8px solid #F7F7F7;
     border-radius: 4px;
   }
   .message p {
-    @apply md:text-md xs:text-xs;
-    /* margin: 13px 96px; */
-    padding: 9px 8px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-   
-    
+    @apply flex items-center justify-center overflow-hidden rounded px-2 py-2 text-right xs:text-xs md:text-md;
     font-weight: 400;
     line-height: 18.6px;
     text-align: right;
-  
-    /* box-shadow: 0px 1px 2px 0px #00000026 inset; */
+    box-shadow: 0px 1px 2px 0px #00000026 inset;
+  }
+  .messageWarning{ @apply absolute mr-4 text-[#3D0C02] -top-4 font-yekan600 text-md;
+
   }
   .calBtn{
     @apply md:text-sm xs:text-xs bg-transparent border border-gray-400 text-gray-500 w-[38px] h-[20px] rounded;
   }
   .container {
-    @apply flex  flex-col md:flex-row md:flex-wrap w-full md:justify-between py-10 gap-y-6 px-4 overflow-x-hidden;
+    @apply flex w-full flex-col gap-y-6 overflow-x-hidden px-4 py-10 md:flex-row md:flex-wrap md:justify-between;
   }
   .questionPart {
-    @apply flex  flex-col md:flex-row md:flex-wrap w-full md:justify-between py-1 gap-y-6 px-1 overflow-x-hidden bg-zinc-200;
+    @apply flex w-full flex-col gap-y-6 overflow-x-hidden bg-zinc-200 px-1 py-1 md:flex-row md:flex-wrap md:justify-between;
   }
   .listOfQuestions {
-    @apply flex    flex-wrap w-full md:justify-between py-1 gap-y-6 px-1  border rounded;
+    @apply flex w-full flex-wrap gap-y-6 rounded border-2 border-gray-dark px-1 py-1 md:justify-between;
   }
   .question{
     @apply font-yekan700 md:leading-4 xs:leading-3 md:text-[10px] xs:text-xs flex-1;
   
   }
   .radios {
-    @apply w-full flex flex-wrap justify-between md:gap-y-1.5   lg:gap-2;
+    @apply flex w-full flex-wrap justify-between md:gap-y-1.5 lg:gap-2;
   }
   .radios label {
     @apply flex justify-between lg:min-h-[28px] w-[32%] lg:w-full ;
   }
-  .listOfQuestions {
-    @apply flex    flex-wrap w-full md:justify-between py-1 gap-y-6 px-1  border rounded;
-  }
-/*   
-  .matchFormItem {
-    @apply flex items-center flex-col lg:flex-row justify-between md:w-[49%] py-[0.75rem] md:py-[0.75rem] px-[0.5rem] lg:w-full;
-    border-radius: 4px;
-    background: #f7f7f7;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.15);
-    z-index: 2;
-  }
-
-  .matchFormItem .radios {
-    @apply w-full flex flex-wrap justify-between md:gap-y-1.5   lg:gap-2;
-  }
-  
-  .matchFormItem .radios label {
-    @apply flex justify-between lg:min-h-[28px] w-[32%] lg:w-full ;
-  }
-  
-  .matchFormItem .question {
-    @apply w-full text-center lg:text-right text-[8px] lg:text-[11px] mx-auto lg:mx-0;
-  }
-  
-  .newAnimation {
-    animation: newAnimate 0.25s 1;
-  }
-  
-  .oldAnimation {
-    animation: oldAnimate 0.25s 1;
-  }
-  
-  @keyframes newAnimate {
-    0% {
-      transform: translateX(-100%);
-    }
-    100% {
-      transform: translateX(0);
-    }
-  }
-  
-  @keyframes oldAnimate {
-    0% {
-      transform: translateX(0);
-      opacity: 1;
-    }
-    100% {
-      transform: translateX(100%);
-      opacity: 0;
-    }
-  }
-  
-  .next {
-    @apply md:w-[200px] mt-8 md:mt-6 mx-auto;
-  }
-  
-  @media only screen and (max-width: 767px) {
-    .next {
-      width: calc(100% - 2.5rem);
-    }
-  }
-   */
+ 

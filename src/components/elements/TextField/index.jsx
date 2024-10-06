@@ -1,8 +1,11 @@
-import { forwardRef } from "react"
-import classNames from "classnames"
-import styles from "../DateInput/styles.module.css"
-import Label from "../Label"
-import { EditIcon } from "@/assets/icons"
+import { forwardRef } from 'react';
+
+import classNames from 'classnames';
+
+import { EditIcon } from '@/assets/icons';
+
+import styles from '../DateInput/styles.module.css';
+import Label from '../Label';
 
 const TextField = forwardRef(
     (
@@ -22,7 +25,7 @@ const TextField = forwardRef(
             <div className={classNames(styles.container, containerClassName)}>
                 {label ? (
                     <Label
-                        title={label}
+                        label={label}
                         required={required}
                         isError={isError}
                     />

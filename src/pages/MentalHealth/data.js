@@ -1,4 +1,4 @@
-import { text } from "./i18n"
+import { text } from './i18n';
 
 export const questionsK6 = [
   { label: text.k6Q1, key: "10422" },

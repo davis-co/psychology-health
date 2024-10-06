@@ -1,13 +1,18 @@
-import React, { useState } from "react"
-import styles from "./styles.module.css"
-import classNames from "classnames"
-import { createPortal } from "react-dom"
-import { GuideIcon } from "@/assets/icons"
-import Button from "../Button"
-import Modal from "../Modal/new"
+import React, { useState } from 'react';
+import { createPortal } from 'react-dom';
+
+import classNames from 'classnames';
+
+import { GuideIcon } from '@/assets/icons';
+import {
+  Button,
+  Modal,
+} from '@/components/elements';
+
+import styles from './styles.module.css';
 
 export default function Label({
-    title,
+    label,
     required,
     isError,
     userGuide,
@@ -20,9 +25,9 @@ export default function Label({
                 className={classNames(className, styles.label, {
                     [styles.labelError]: isError,
                 })}
-                htmlFor={title}
+                htmlFor={label}
             >
-                {title + " "}
+                {label + " "}
                 {required ? <span className={styles.required}>*</span> : null}
                 {userGuide ? (
                     <Button

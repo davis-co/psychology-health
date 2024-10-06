@@ -1,30 +1,38 @@
-import React, { useEffect, useState } from "react";
-import styles from "./styles.module.css";
-import classNames from "classnames";
-import { mentalHealthDisOrder, text, yesNoQuestion } from "./i18n";
+import React, {
+  useEffect,
+  useState,
+} from 'react';
+
+import classNames from 'classnames';
+import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 
 import {
   Button,
   CheckBox,
   Divider,
   Label,
-  Page,
-  Radio,
+  Modal,
   TextField,
-} from "@/components/elements";
-import K6Test from "./k6";
-import DomesticViolence from "./domesticViolence";
-import { useForm } from "react-hook-form";
-import { i18n } from "../Home/i18n";
-import CheckBoxGroup from "@/components/elements/CheckBox/CheckBoxGroup";
-import { MH_JobId_Get, MH_JobId_Post } from "@/constants/jobId";
-import fetchData from "@/services/fetchData";
-import { KEYS } from "@/constants/keys";
-import submitForm from "@/services/submitForm";
-import TextGuide from "./TextGuide";
-import { createPortal } from "react-dom";
-import Modal from "@/components/elements/Modal/new";
-import { toast } from "react-toastify";
+} from '@/components/elements';
+import RadioOptions from '@/components/elements/RadioOptions';
+import {
+  MH_JobId_Get,
+  MH_JobId_Post,
+} from '@/constants/jobId';
+import { KEYS } from '@/constants/keys';
+import fetchData from '@/services/fetchData';
+import submitForm from '@/services/submitForm';
+
+import DomesticViolence from './domesticViolence';
+import {
+  mentalHealthDisOrder,
+  text,
+  yesNoQuestion,
+} from './i18n';
+import K6Test from './k6';
+import styles from './styles.module.css';
+import TextGuide from './TextGuide';
 
 export default function MentalHealth() {
   const {
@@ -43,9 +51,9 @@ export default function MentalHealth() {
   const [openModal, setOpernModal] = useState(false);
   useEffect(() => {
     fetchData(MH_JobId_Get, KEYS, setValue)
-    .then(res=>console.log(res))
-    .catch((err) => console.log(err));
-    
+      // .then(res => console.log(res))
+      // .catch((err) => console.log(err));
+
     // .finally(() => setFetchLoading(false))
   }, []);
 
@@ -67,33 +75,46 @@ export default function MentalHealth() {
         }, 1001);
       });
   };
-console.log(watch("10437"))
+  // console.log(watch("10437"))
   return (
     <>
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+        <section className={styles.titleSection}>
+          <h5 className={styles.title}>{text.title}</h5>
+          <p className={styles.description}>{text.description}</p>
+        </section>
         <main className={styles.container} id="formContainer">
-          <section className={styles.titleSection}>
-            <h5 className={styles.title}>{text.title}</h5>
-            <p className={styles.description}>{text.description}</p>
-          </section>
-          <div className={styles.questionPart}>
+
+          
+          <div
+           className={classNames(
+            styles.gridContainer,
+            "pt-0.5 transition-all mb-3",
+            watch("10437")?.includes("1514109071882") ||
+              watch("10437")?.includes("1514109106067")
+              ? "bg-gray-d6 rounded-t px-1 pb-5 mb-0"
+                  : ""
+                
+        )}
+          
+         >
             <section className={styles.chekboxPart}>
-              <div className=" flex-auto">
+              <div className="flex-auto">
                 <Label
                   className={styles.question}
-                  title={text.mentalDisorder}
+                  label={text.mentalDisorder}
                   required={true}
                   isError={!!errors[10437]}
                 />
               </div>
 
-              {mentalHealthDisOrder?.map((o , index) => (
-               
-                <div key={o.index } className={classNames(styles.radios, "flex-auto")}>
+              {mentalHealthDisOrder?.map((o, index) => (
+
+                <div key={o.index} className={classNames(styles.radios, "flex-auto")}>
                   <CheckBox
                     value={o.value}
                     label={o.label}
-                    // key={o.value}
+                    key={o.value}
                     checked={watch("10437")?.includes(o.value)}
                     onChange={(e) => {
                       const values = watch("10437") || [];
@@ -106,19 +127,15 @@ console.log(watch("10437"))
                         );
                       }
                     }}
-                    // {...register("10437", { required: true })}
+
                   />
                 </div>
               ))}
             </section>
             {watch("10437")?.includes("10652") ? (
-              <section className={styles.booleanFormItem}>
-                <div className="flex-1">
                   <TextField
-                    containerClassName={
-                      "form-item flex-row items-center lg:gap-10"
-                    }
-                    className={"md:w-[85%] xs:w-[70%] "}
+                    containerClassName="flex-row items-center rounded bg-white-light p-3"
+                    className={"xs:w-[70%] md:w-[85%]"}
                     label={text.typeOfMentalDisease + ":"}
                     placeholder={text.typeOfMentalDisease}
                     isError={!!errors[10438]}
@@ -126,140 +143,87 @@ console.log(watch("10437"))
                     value={watch("10438")}
                     required
                   />
-                </div>
-              </section>
             ) : null}
 
             {watch("10437")?.includes("1514109071882") ||
-            watch("10437")?.includes("1514109106067") ? (
-              <div className={styles.onePartQuestion}>
-                <section className={styles.booleanFormItem}>
-                  <Label
-                    className={styles.question}
-                    title={text.historyOfSuicideAttempts}
-                    required={true}
-                    isError={!!errors[10441]}
-                  />
+              watch("10437")?.includes("1514109106067") ? (
+              // console.log(text.historyOfSuicideAttempts),
+              
+                  <RadioOptions
+                    label={text.historyOfSuicideAttempts}
+                    options={yesNoQuestion}
+                    active={watch("10441")}
+                    questionKey={"10441"}
+                    register={register}
+                    wrap={true}
+                    className={styles.questionBox}
 
-                  <div className={classNames(styles.radios)}>
-                    {yesNoQuestion?.map((o) => (
-                      <Radio
-                        checked={o.value === watch("10441")}
-                        value={o.value}
-                        label={o.label}
-                        key={o.value}
-                        {...register("10441", {
-                          required: true,
-                        })}
-                      />
-                    ))}
-                  </div>
-                </section>
-              </div>
+                  />
+              
             ) : null}
           </div>
-          <div className={styles.twoPartQuestion}>
-            <section className={classNames(styles.booleanFormItemTwo)}>
-              <Label
-                className={styles.question}
-                title={text.currentlyHavingSuicidalThoughts}
-                required={true}
-                userGuide={<TextGuide text={text.guidePopUpSuicidalThoughts} />}
-                // userGuide=<div className="p-5 lg:text-[16px]">{text.guidePopUpSuicidalThoughts}</div>
-                isError={!!errors[11892]}
+          <div
+          className={classNames(
+            styles.gridContainer,
+            "pt-0.5 transition-all mb-3  px-1",
+            watch("11892") === "10361" 
+              ? "bg-gray-d6 rounded-t pb-5 mb-0"
+                  : ""
+                
+        )}
+          >
+              <RadioOptions
+                label={text.currentlyHavingSuicidalThoughts}
+                options={yesNoQuestion}
+                active={watch("11892")}
+                questionKey={"11892"}
+                register={register}
+                wrap={true}
               />
-              <div className={classNames(styles.radios)}>
-                {yesNoQuestion?.map((o) => (
-                  <Radio
-                    onClick={(e) => {
-                      console.log(e.target.value);
-                      const event = e.target.value;
-                      if (event === "10362" && watch("11892") !== "10362") {
-                        setOpernModal(true);
-                      }
-                    }}
-                    checked={o.value === watch("11892")}
-                    value={o.value}
-                    label={o.label}
-                    key={o.value}
-                    {...register("11892", {
-                      required: true,
-                    })}
-                  />
-                ))}
-              </div>
-            </section>
+
+
             {watch("11892") === "10361" ? (
-              <section className={styles.booleanFormItemTwo}>
-                <Label
-                  className={styles.question}
-                  title={text.willingnessToTalkWithHealthConsultant}
-                  isError={!!errors[12504]}
+                <RadioOptions
+                  label={text.willingnessToTalkWithHealthConsultant}
+                  options={yesNoQuestion}
+                  active={watch("12504")}
+                  questionKey={"12504"}
+                  register={register}
+                  wrap={true}
                 />
-                <div className={classNames(styles.radios)}>
-                  {yesNoQuestion?.map((o) => (
-                    <Radio
-                      checked={o.value === watch("12504")}
-                      value={o.value}
-                      label={o.label}
-                      key={o.label}
-                      {...register("12504")}
-                    />
-                  ))}
-                </div>
-              </section>
             ) : null}
-          </div>
-          {watch("11892") === "10361" &&
-          (watch("10437")?.includes("1514108884563") ||
-            watch("10437")?.includes("1514109185115") ||
-            watch("10437")?.includes("1513768760443") ||
-            watch("10437")?.includes("1514190240786") ||
-            watch("10437")?.includes("10652") ||
-            watch("10437")?.includes("10653")) ? (
-            <div className={styles.onePartQuestion}>
-              <section className={styles.booleanFormItem}>
-                <Label
-                  className={styles.question}
-                  title={text.historyOfSuicideAttempts}
-                  required={true}
-                  isError={!!errors[10441]}
+            {watch("11892") === "10361" ?(
+                <RadioOptions
+                 label={text.historyOfThinkingSuicideAttempts}
+                 options={yesNoQuestion}
+                 active={watch("10440")}
+                 questionKey={"10440"}
+                 register={register}
+                 wrap={true}
+                
                 />
+            ): null}
+          </div>
+          
+            
+            <Divider className="mx-auto my-3 block w-1/2" />
+            <K6Test
+              errors={errors}
+              watch={watch}
+              register={register}
+              setValue={setValue}
+              pointK6={pointK6}
+              setPointK6={setPointK6}
+            />
 
-                <div className={classNames(styles.radios)}>
-                  {yesNoQuestion?.map((o) => (
-                    <Radio
-                      checked={o.value === watch("10441")}
-                      value={o.value}
-                      label={o.label}
-                      key={o.value}
-                      {...register("10441", {
-                        required: true,
-                      })}
-                    />
-                  ))}
-                </div>
-              </section>
-            </div>
-          ) : null}
-          <Divider className="block w-1/2 mx-auto my-3 " />
-          <K6Test
-            errors={errors}
-            watch={watch}
-            register={register}
-            setValue={setValue}
-            pointK6={pointK6}
-            setPointK6={setPointK6}
-          />
-
-          <DomesticViolence
-            errors={errors}
-            watch={watch}
-            register={register}
-            setValue={setValue}
-            setPointDomestic={setPointDomestic}
-            pointDomestic={pointDomestic}
-          />
+            <DomesticViolence
+              errors={errors}
+              watch={watch}
+              register={register}
+              setValue={setValue}
+              setPointDomestic={setPointDomestic}
+              pointDomestic={pointDomestic}
+            />
         </main>
 
         <Button
@@ -271,16 +235,15 @@ console.log(watch("10437"))
         />
       </form>
       {openModal
-        ? createPortal(
-            <Modal
-              onClose={() => {
-                setOpernModal(false);
-              }}
-            >
-              <TextGuide text={text.alertSuicidalThoughts} />
-            </Modal>,
-            modal
-          )
+        ? (
+          <Modal
+            onClose={() => {
+              setOpernModal(false);
+            }}
+          >
+            <TextGuide text={text.alertSuicidalThoughts} />
+          </Modal>
+        )
         : null}
     </>
 

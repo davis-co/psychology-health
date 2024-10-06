@@ -2,13 +2,13 @@
     @apply flex flex-col w-full overflow-y-auto gap-y-3 px-4 overflow-x-hidden pb-4 max-h-[80vh] lg:max-h-[75vh];
 }
 .form{
-    @apply  overflow-y-auto md:py-4 xs:py-2 md:px-12 xs:px-4;
+    @apply  overflow-y-auto xs:px-4 xs:py-2 md:px-12 md:py-4;
   }
   .submit {
     @apply w-full md:w-auto md:px-16 xs:w-1/2 mt-6 mx-auto bg-white !min-h-10 border-green text-black lg:hover:bg-green lg:hover:border-green lg:hover:text-white;
   }
 .timer {
-    @apply flex justify-end w-full sticky top-0 z-20 bg-white pb-3;
+    @apply sticky top-0 z-20 flex w-full justify-end bg-white pb-3;
 }
 
 .intro {
@@ -68,7 +68,7 @@
 }
 
 .questions {
-    @apply px-2 md:px-4 flex flex-col gap-y-3 md:flex-row md:flex-wrap w-full md:justify-between;
+    @apply flex w-full flex-col gap-y-3 px-2 md:flex-row md:flex-wrap md:justify-between md:px-4;
 }
 
 @keyframes newAnimate {
@@ -91,6 +91,14 @@
     }
 }
 
-.next {
-    @apply w-full text-[10px] md:text-[12px] md:w-[200px] mt-8 md:mt-6 mx-auto;
-}
+/* .next {
+    @apply w-[200px] text-[10px] md:text-[12px] md:w-[200px] mt-8 md:mt-6 mx-auto;
+} */
+.gridcontainer{
+    @apply grid w-full grid-cols-1 gap-6 px-[2px] py-[2px] md:grid-cols-2
+  }
+  
+  .next {
+    @apply w-[150px] md:text-md text-xs md:px-16 md:w-[250px] mt-6 mx-auto bg-white !min-h-10 border-green text-black lg:hover:bg-green lg:hover:border-green lg:hover:text-white;
+  }
+  

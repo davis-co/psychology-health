@@ -1,14 +1,27 @@
-import React, { useEffect, useState, useRef, useMemo, useCallback } from "react"
-import styles from "./styles.module.css"
-import CheckBox from "../CheckBox/new"
-import classNames from "classnames"
-import Button from "../Button"
-import { MoreIconActive, MoreIconDisable } from "@/assets/icons"
-import Modal from "../Modal/new"
-import { createPortal } from "react-dom"
-import TextField from "../TextField"
-import { debounce } from "@/utils/helpers"
-import Label from "../Label"
+import React, {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
+import { createPortal } from 'react-dom';
+
+import classNames from 'classnames';
+
+import {
+  MoreIconActive,
+  MoreIconDisable,
+} from '@/assets/icons';
+import {
+  Label,
+  Modal,
+  TextField,
+} from '@/components/elements';
+import { debounce } from '@/utils/helpers';
+
+import Button from '../Button';
+import CheckBox from '../CheckBox/new';
+import styles from './styles.module.css';
 
 export default function Select({
     type,
@@ -115,7 +128,7 @@ export default function Select({
             >
                 <div className={styles.header}>
                     <Label
-                        title={label}
+                        label={label}
                         required={required}
                         isError={isError}
                         userGuide={userGuide}

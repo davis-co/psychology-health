@@ -1,20 +1,24 @@
-import React, { useState } from "react"
-import styles from "./styles.module.css"
-import classNames from "classnames"
-import { text } from "./text"
-import alertIcon from "@/assets/icons/alert-solid.svg"
-import { Button, Divider, Label, Radio } from "@/components/elements"
-import { radioFiveMentalHealth } from "./text"
-import { questionsDomesticViolence } from "./data"
-import CalculateAssessment from "../MultiProgress"
-import { yesNoQuestion } from "../i18n"
-import PDF from "@/assets/icons/PDF.svg"
-import pdfDoc from "@/assets/multimedia/documents/violenceDoc.pdf"
-import { createPortal } from "react-dom"
-import RadioOptions from "@/components/elements/RadioOptions"
-import { fileURL } from "@/config/config"
-import { calcIconsvg } from "@/assets/icons"
-import Modal from "@/components/elements/Modal/new"
+import React, { useState } from 'react';
+
+import { calcIconsvg } from '@/assets/icons';
+import alertIcon from '@/assets/icons/alert-solid.svg';
+import PDF from '@/assets/icons/PDF.svg';
+import pdfDoc from '@/assets/multimedia/documents/violenceDoc.pdf';
+import {
+  Button,
+  Label,
+  Modal,
+  RadioOptions,
+} from '@/components/elements';
+
+import { yesNoQuestion } from '../i18n';
+import CalculateAssessment from '../MultiProgress';
+import { questionsDomesticViolence } from './data';
+import styles from './styles.module.css';
+import {
+  radioFiveMentalHealth,
+  text,
+} from './text';
 
 export default function DomesticViolence({
   errors,
@@ -24,7 +28,7 @@ export default function DomesticViolence({
   setPointDomestic,
   pointDomestic,
 }) {
- 
+
   const watchedValues = watch(["10443", "10444", "10445", "10446"])
 
   const [iconCalc, setIconCalc] = useState(false)
@@ -37,7 +41,6 @@ export default function DomesticViolence({
     10432: 1,
     10431: 0,
   }
-
 
   const calcTotalScore = () => {
     const totalScore = questionsDomesticViolence.reduce(
@@ -71,9 +74,8 @@ export default function DomesticViolence({
         </legend>
         <p className={styles.description}>{text.domesticViolenceDescription}</p>
         {questionsDomesticViolence.map((q) => (
-          <section className="flex items-center py-3 px-2  rounded flex-wrap  flex-row w-full md:justify-between    bg-zinc-50 shadow-md">
+          <div className='col-span-full' key={q.key}>
             <RadioOptions
-              className=" xs:justify-between my-1 mx-1 flex-auto item-center font-yekan700 text-[10px] leading-4 text-black"
               label={q.label}
               questionKey={q.key}
               required={true}
@@ -82,67 +84,50 @@ export default function DomesticViolence({
               active={watch(q.key)}
               isError={!!errors[q.key]}
             />
-          </section>
-        ))}
-      </fieldset>
-      <section className="flex py-[2px] px-[2px] flex-wrap w-full flex-col gap-6 bg-[#e4e4e4]">
-        <div className="flex justify-between md:gap-16 xs:gap-4 md:flex-row xs:flex-col">
-          <div className="bg-zinc-50 shadow-md  xs:w-full flex items-center p-2 justify-between rounded">
-            <Label
-              containerClassName=""
-              title={text.domesticAssesment}
-              required={true}
-              // isError={!!errors[q.key]}
-            />
-            <div className="flex flex-1 items-center justify-center gap-2 ">
-              {pointDomestic > 10 ? (
-                <Button
-                  type="button"
-                  style="text"
-                  icon={<img src={alertIcon} width={16} height={16} />}
-                />
-              ) : null}
-             <button
-                className={styles.calBtn}
-                type="button"
-                onClick={calcTotalScore}
-              >
-                {iconCalc ? <img src={calcIconsvg} /> : "محاسبه"}
-                </button>
-              <Label title={userData.value} />
-              <div className="flex-1">
-                <CalculateAssessment
-                  generalData={generalData}
-                  userData={userData}
-                  valuesLength={20}
-                />
-              </div>
-            </div>
           </div>
-          <div className={styles.booleanFormItem}>
-            <Label
-              containerClassName="w-full"
-              title={text.willingnessReceiveSpecializedServices}
-              required={true}
-              isError={!!errors[10667]}
-            />
+        ))}
 
-            <div className={classNames(styles.radios)}>
-              {yesNoQuestion?.map((o) => (
-                <Radio
-                  checked={o.value === watch("10667")}
-                  value={o.value}
-                  label={o.label}
-                  key={o.value}
-                  {...register("10667", {
-                    required: true,
-                  })}
-                />
-              ))}
+      </fieldset>
+      <section className={styles.gridcontainer}>
+        <div className="flex items-center justify-between rounded bg-zinc-50 p-2 shadow-md xs:w-full">
+          <Label
+            containerClassName=""
+            label={text.domesticAssesment}
+            required={true}
+          />
+          <div className="flex flex-1 items-center justify-center gap-2">
+            {pointDomestic > 10 ? (
+              <Button
+                type="button"
+                style="text"
+                icon={<img src={alertIcon} width={16} height={16} />}
+              />
+            ) : null}
+            <button
+              className={styles.calBtn}
+              type="button"
+              onClick={calcTotalScore}
+            >
+              {iconCalc ? <img src={calcIconsvg} /> : "محاسبه"}
+            </button>
+            <Label label={userData.value} />
+            <div className="flex-1">
+              <CalculateAssessment
+                generalData={generalData}
+                userData={userData}
+                valuesLength={20}
+              />
             </div>
           </div>
         </div>
-        <div>
+        <RadioOptions
+          label={text.willingnessReceiveSpecializedServices}
+          options={yesNoQuestion}
+          questionKey={"10667"}
+          active={watch("10667")}
+          register={register}
+        />
+        <div className='col-span-full'>
           {pointDomestic > 4 && pointDomestic <= 10 ? (
             <div className={styles.message}>
               <p>{text.result6MentalHealt}</p>
@@ -156,40 +141,32 @@ export default function DomesticViolence({
           ) : null}
         </div>
       </section>
-      <section className={styles.onePartQuestion}>
-        <div className={styles.booleanFormItem}>
+      <section className="flex items-center justify-center">
+        <div className="m-auto flex w-full items-center justify-between rounded bg-zinc-50 p-2 shadow-md md:w-1/2">
           <Label
             containerClassName="text-[11px]"
-            title={text.violenceContent}
+            label={text.violenceContent}
             isError={!!errors[10435]}
           />
-          <div
-            className=" flex justify-between  gap-6 border border-zinc-500 rounded p-1 cursor-pointer"
-            
-          >
-            <span className="text-[11px]" onClick={() => setPdfContent(true)}>محتوای متنی</span>
-            <span>
-              <img src={PDF} />
-            </span>
-          
+          <div className="flex cursor-pointer items-center justify-between gap-6 rounded border border-zinc-500 p-1">
+            <span className="text-xs md:text-md" onClick={() => setPdfContent(true)}>محتوای متنی</span>
+            <span><img src={PDF} /></span>
           </div>
         </div>
       </section>
       {pdfContent
-        ? createPortal(
-            <Modal onClose={() => setPdfContent(false)}>
-              {" "}
-              <section className="h-[474px] bg-slate-700 text-white mt-4 mb-6 ">
-                <object
-                  data={pdfDoc}
-                  type="application/pdf"
-                  width="100%"
-                  height="100%"
-                ></object>
-              </section>
-            </Modal>,
-            modal
-          )
+        ? 
+          <Modal onClose={() => setPdfContent(false)}>
+            <section className="mb-6 mt-4 h-[474px] bg-slate-700 text-white">
+              <object
+                data={pdfDoc}
+                type="application/pdf"
+                width="100%"
+                height="100%"
+              ></object>
+            </section>
+          </Modal>
+        
         : null}
     </>
   )

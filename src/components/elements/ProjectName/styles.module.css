@@ -7,7 +7,7 @@
 }
 
 .name {
-    @apply text-black font-yekan700 text-sm lg:text-lg;
+    @apply font-yekan700 text-sm text-black lg:text-lg;
 }
 
 .leftLine {

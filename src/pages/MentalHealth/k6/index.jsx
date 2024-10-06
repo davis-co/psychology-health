@@ -1,17 +1,22 @@
-import React, { useEffect, useState } from "react"
-import styles from "./styles.module.css"
-import classNames from "classnames"
-import { score, text } from "./text"
+import React, { useState } from 'react';
 
-import { Button, Divider, Label, Radio } from "@/components/elements"
-import alertIcon from "@/assets/icons/alert-solid.svg"
-import { radioFiveMentalHealth } from "./text"
-import { questionsK6 } from "./data"
-import CalculateAssessment from "../MultiProgress"
-import StackedBarChart from "../MultiProgress"
-import { useDispatch } from "react-redux"
-import { calcIconsvg } from "@/assets/icons"
-import RadioOptions from "@/components/elements/RadioOptions"
+import classNames from 'classnames';
+
+import { calcIconsvg } from '@/assets/icons';
+import alertIcon from '@/assets/icons/alert-solid.svg';
+import {
+  Button,
+  Label,
+} from '@/components/elements';
+import RadioOptions from '@/components/elements/RadioOptions';
+
+import CalculateAssessment from '../MultiProgress';
+import { questionsK6 } from './data';
+import styles from './styles.module.css';
+import {
+  radioFiveMentalHealth,
+  text,
+} from './text';
 
 export default function K6Test({
   errors,
@@ -55,8 +60,8 @@ export default function K6Test({
 
   const generalData = [
     { name: "level1", value: { min: 0, max: 6 }, color: "#86efac" },
-    { name: "level2", value: { min: 6.1, max: 12 }, color: "#16a34a" },
-    { name: "level3", value: { min: 12.1, max: 18 }, color: "#FFFF00" },
+    { name: "level2", value: { min: 6.1, max: 12 }, color: "#008000" },
+    { name: "level3", value: { min: 12.1, max: 18 }, color: "#FFB200" },
     { name: "level4", value: { min: 18.1, max: 24 }, color: "#FF0000" },
   ]
   const userData = {
@@ -71,10 +76,11 @@ export default function K6Test({
         <p className={styles.description}>{text.k6Description}</p>
 
         {questionsK6.map((q) => (
-          <section className="flex items-center p-2  rounded flex-wrap  flex-row w-full md:justify-between gap-6   bg-zinc-50 shadow-md">
             <RadioOptions
-              className=" xs:justify-between my-1 mx-1 flex-auto item-center font-yekan700 text-[10px] leading-4 text-black"
+              key={q.key}
+              className="item-center mx-1 my-1 flex-auto font-yekan700 text-[10px] leading-4 text-black xs:justify-between"
               label={q.label}
+              labelClassName={'lg:w-[350px]'}
               questionKey={q.key}
               required={true}
               options={radioFiveMentalHealth}
@@ -82,14 +88,13 @@ export default function K6Test({
               active={watch(q.key)}
               isError={!!errors[q.key]}
             />
-          </section>
         ))}
 
-        <section className="flex items-center rounded flex-wrap p-[2px] flex-col gap-6 w-full bg-[#e4e4e4]  justify-between ">
-          <div className="bg-white-light pr-2  shadow-md md:w-1/2 xs:w-full flex items-center  gap-5 justify-start rounded md:pt-[2px] md:mb-6 ">
+        <section className="flex w-full flex-col flex-wrap items-center justify-between gap-6 rounded bg-[#e4e4e4] p-[2px]">
+          <div className="flex items-center justify-start gap-5 rounded bg-white-light pr-2 shadow-md xs:w-full md:mb-6 md:w-1/2 md:pt-[2px]">
             <Label
               containerClassName=""
-              title={text.mentalAssessment}
+              label={text.mentalAssessment}
               required={true}
               isError={!!errors[10435]}
             />
@@ -109,8 +114,8 @@ export default function K6Test({
               >
                 {iconCalc ? <img src={calcIconsvg} /> : "محاسبه"}
               </button>
-              <Label title={watch("10435")} />
-              <div className="flex-1 ">
+              <Label label={watch("10435")} />
+              <div className="flex-1">
                 <CalculateAssessment
                   generalData={generalData}
                   userData={userData}
@@ -123,6 +128,8 @@ export default function K6Test({
 
           {watch("11892") === "10361" ? (
             <div className={styles.message}>
+        <legend className={styles.messageWarning}>{"هشدار"}</legend>
+
               <p>{text.result5MentalHealth}</p>
             </div>
           ) : null}
@@ -130,12 +137,14 @@ export default function K6Test({
           {watch("11892") === "10362" &&
           (watch("10441") === "10361" || watch("10440") === "10361") ? (
             <div className={styles.message}>
+
               <p>{text.result4MentalHealt}</p>
             </div>
           ) : null}
 
           {watch("11892") === "10362" && watch("10441") === "10362" ? (
             <div className={styles.message}>
+
               <p>{text.result3MentalHealt}</p>
             </div>
           ) : null}
@@ -145,6 +154,7 @@ export default function K6Test({
             watch("10437")?.includes("1513768760443")) &&
           pointK6 <= 10 ? (
             <div className={styles.message}>
+              
               <p>{text.result2MentalHealt}</p>
             </div>
           ) : null}
@@ -154,11 +164,13 @@ export default function K6Test({
             pointK6 < 10) ||
           pointK6 == 5 ? (
             <div className={styles.message}>
+
               <p>{text.result1MentalHealt}</p>
             </div>
           ) : null}
           {pointK6 >= 10 ? (
             <div className={classNames(styles.message)}>
+        <legend className={styles.messageWarning}>{"هشدار"}</legend>
               <p>{text.alertMentalAssessment}</p>
             </div>
           ) : null}

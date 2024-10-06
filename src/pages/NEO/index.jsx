@@ -1,34 +1,46 @@
-import React, { useEffect, useState } from "react";
-import styles from "./styles.module.css";
-import { questions } from "./data";
+import React, {
+  useEffect,
+  useState,
+} from 'react';
+
+import classNames from 'classnames';
+import { useForm } from 'react-hook-form';
+
 import {
   Button,
   CountDown,
   Divider,
   FormSteps,
-  Label,
-  Radio,
-} from "@/components/elements";
-import { booleanOptions, FORM_SIZE, matchOptions } from "@/constants/form";
-import classNames from "classnames";
-import { lastPage, onFinishTime } from "./services";
-import { text } from "./text";
-import submitForm from "@/services/submitForm";
-import { NEO_JobId_Get, NEO_JobId_Post } from "@/constants/jobId";
-import fetchData from "@/services/fetchData";
-import { useForm } from "react-hook-form";
-import { KEYS } from "@/constants/keys";
+  RadioOptions,
+} from '@/components/elements';
+import {
+  booleanOptions,
+  FORM_SIZE,
+  matchOptions,
+} from '@/constants/form';
+import {
+  NEO_JobId_Get,
+  NEO_JobId_Post,
+} from '@/constants/jobId';
+import { KEYS } from '@/constants/keys';
+import fetchData from '@/services/fetchData';
+import submitForm from '@/services/submitForm';
+
+import { questions } from './data';
+import { onFinishTime } from './services';
+import styles from './styles.module.css';
+import { text } from './text';
 
 export default function NEO() {
-    const {
-        watch,
-        register,
-        setValue,
-        handleSubmit,
-        formState: { errors },
-      } = useForm({
-        mode: "all",
-      })
+  const {
+    watch,
+    register,
+    setValue,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    mode: "all",
+  })
   const [startIndex, setStartIndex] = useState(
     0
     // lastPage(
@@ -101,39 +113,23 @@ export default function NEO() {
               .map((q, index) => (
                 <div
                   className={classNames(
-                    q.isBoolean ? styles.booleanFormItem : styles.matchFormItem,
+                    styles.gridcontainer,
+                    // q.isBoolean ? styles.booleanFormItem : styles.matchFormItem,
                     oldAnimation ? styles.oldAnimation : "",
                     newAnimation ? styles.newAnimation : ""
                   )}
                   key={q.label}
                 >
-                  <Label
-                    containerClassName={styles.question}
-                    title={q.label}
-                    required={true}
-                    isError={!!errors[q.key]}
-                  />
-                  <Divider
-                    className={`block w-1/2 mx-auto my-3 ${
-                      q.isBoolean ? "md:hidden " : "lg:hidden"
-                    }`}
-                  />
-                  <div
-                    className={classNames(styles.radios, {
-                      [styles.error]: !!errors[q.key],
-                    })}
-                  >
-                    {(q.isBoolean ? booleanOptions : matchOptions)?.map((o) => (
-                      <Radio
-                        checked={o.value === watch(q.key)}
-                        value={o.value}
-                        label={o.label}
-                        key={o.label + q.label}
-                        {...register(q.key, {
-                          required: true,
-                        })}
-                      />
-                    ))}
+                  <div className={q.isBoolean ? "" : 'col-span-full'}>
+                    <RadioOptions
+                      label={q.label}
+                      questionKey={q.key}
+                      labelClassName={"lg:!w-[350px]"}
+                      required={true}
+                      active={watch(q.key)}
+                      register={register}
+                      options={q.isBoolean ? booleanOptions : matchOptions}
+                    />
                   </div>
                 </div>
               ))}
@@ -155,13 +151,13 @@ export default function NEO() {
             />
           )}
         </div>
-        <Button
+        {/* <Button
           className={styles.submit}
           title="ذخیره اطلاعات"
           style="outlined"
           type="submit"
           loading={submitLoading}
-        />
+        /> */}
       </form>
     </>
   );

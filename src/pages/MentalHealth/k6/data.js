@@ -1,4 +1,4 @@
-import { text } from "./text";
+import { text } from './text';
 
 export const questionsK6 = [
     { label: text.k6Q1, key: "10422" },
@@ -8,3 +8,4 @@ export const questionsK6 = [
     { label: text.k6Q5, key: "10427" },
     { label: text.k6Q6, key: "10426" },
   ]
+  

@@ -90,7 +90,7 @@ input:focus {
 /* count down end */
 
 .router-page {
-    @apply grid grid-cols-3 gap-y-8 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-6 w-full h-full px-4 pt-4 lg:pt-6 max-h-full overflow-y-auto pb-10;
+    @apply grid h-full max-h-full w-full grid-cols-3 gap-y-8 overflow-y-auto px-4 pb-10 pt-4 md:grid-cols-4 lg:grid-cols-6 lg:pt-6 xl:grid-cols-6;
 }
 
 .message{
@@ -114,4 +114,25 @@ strong{
 
 .noDataTextStyle{
     color: gray
+}
+
+/* scrollbar */
+*::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+*::-webkit-scrollbar
+{
+	width: 12px;
+	background-color: #F5F5F5;
+}
+
+*::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #c2c2c2;
 }

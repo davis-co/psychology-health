@@ -6,6 +6,7 @@ export const text = {
   mentalDisorder: "ابتلا به اختلالات روان (با تشخیص پزشک) :",
   typeOfMentalDisease:"تعیین نوع بیماری روان",
   historyOfSuicideAttempts: "سابقه اقدام به خودکشی :",
+  historyOfThinkingSuicideAttempts:"دارای سابفه افکار خودکشی",
   currentlyHavingSuicidalThoughts: "دارای افکار خودکشی در حال حاضر :",
   willingnessToTalkWithHealthConsultant: "تمایل به صحبت با مشاور سلامت :",
   guidePopUpSuicidalThoughts:`می توان درباره " احساس سیر شدن از زندگی" ، " آرزوی پایان زندگی " ، " فکر از بین بردن خود " و ... سوال پرسید و اگر پاسخ مثبت بود درباره چگونگی آن پرسید. `,
@@ -13,6 +14,7 @@ export const text = {
     " وجود افکار خودکشی در حال حاضر، جزو اورژانس های روانپزشکی می باشد.در اولین فرصت به متخصص روانپزشک مراجعه نمائید.",
 
   }
+
 export const mentalHealthDisOrder = [
   { label: "افسردگی", value: "1514109071882" },
   { label: "اضطراب", value: "1514108884563" },

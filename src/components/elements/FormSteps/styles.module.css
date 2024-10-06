@@ -4,7 +4,7 @@
 }
 
 .mContainer button {
-    @apply px-0 rounded-none h-full;
+    @apply h-full rounded-none px-0;
     font-size: 8px;
     /* box-shadow: 0 4px 2px black; */
     border: 0;
@@ -16,7 +16,7 @@
 }
 
 .mContainer .prevSteps {
-    @apply text-white flex-1;
+    @apply flex-1 text-white;
     background-color: rgb(73, 121, 107);
 }
 
@@ -36,9 +36,10 @@
 }
 
 .container .stepButton {
-    border-radius: 4px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(15px);
+    @apply rounded bg-gray-light backdrop:blur-lg;
+    /* border-radius: 4px; */
+    /* background: rgba(255, 255, 255, 0.1); */
+    /* backdrop-filter: blur(15px); */
 }
 
 .container .currentStepButton {
@@ -47,7 +48,7 @@
 }
 
 .container span {
-    @apply w-2 h-3;
+    @apply h-3 w-2;
 }
 
 .container .shape {

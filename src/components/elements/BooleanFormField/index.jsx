@@ -1,7 +1,13 @@
-import React, { forwardRef } from "react"
-import styles from "./styles.module.css"
-import { Label, Radio } from "@/components/elements"
-import classNames from "classnames"
+import React from 'react';
+
+import classNames from 'classnames';
+
+import {
+  Label,
+  Radio,
+} from '@/components/elements';
+
+import styles from './styles.module.css';
 
 export default function BooleanFormField({
     className,
@@ -14,7 +20,7 @@ export default function BooleanFormField({
 }) {
     return (
         <label className={classNames(styles.formItem, className)}>
-            <Label title={label} required={required} isError={isError} />
+            <Label label={label} required={required} isError={isError} />
             <div
                 className={classNames(styles.radios, {
                     [styles.error]: isError,

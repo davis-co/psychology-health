@@ -1,6 +1,7 @@
-import { useNavigate } from "react-router-dom"
-import Button from "../Button"
-import styles from "./styles.module.css"
+import { useNavigate } from 'react-router-dom';
+
+import Button from '../Button';
+import styles from './styles.module.css';
 
 export default function PN({ name, back = true }) {
   const navigate = useNavigate()
@@ -14,7 +15,7 @@ export default function PN({ name, back = true }) {
           style="text"
           title="بازگشت"
           onClick={() => navigate(-1)}
-          className="hover:underline cursor-pointer"
+          className="cursor-pointer text-xs hover:text-gray-500 lg:text-md"
         />
       ) : null}
     </div>
