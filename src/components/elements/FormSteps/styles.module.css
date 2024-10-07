@@ -4,14 +4,14 @@
 }
 
 .mContainer button {
-    @apply h-full rounded-none px-0;
+    @apply h-5 rounded-none px-0;
     font-size: 8px;
     /* box-shadow: 0 4px 2px black; */
     border: 0;
 }
 
 .mContainer .currentStep {
-    @apply min-w-fit px-0.5 md:min-w-[240px] text-white h-full;
+    @apply min-w-fit px-0.5 md:min-w-[240px] text-white h-5;
     background-color: rgb(46, 139, 87);
 }
 
@@ -25,6 +25,7 @@
     background: rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(10px);
     flex: 1;
+    
 }
 
 .container {

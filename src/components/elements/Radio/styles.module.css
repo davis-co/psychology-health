@@ -3,7 +3,7 @@
 }
 
 .checkedContainer {
-    @apply opacity-100 bg-white border-green;
+    @apply border-green bg-white opacity-100;
 }
 
 .disabledContainer {
@@ -28,7 +28,7 @@
 }
 
 .label {
-    @apply text-black font-yekan600 text-xs md:text-[11px] select-none;
+    @apply select-none font-yekan600 text-sm text-black md:text-md;
 }
 
 .firstLayer {

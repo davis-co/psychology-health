@@ -70,7 +70,6 @@ export default function SCL90() {
               {q.isPassword ? (
                 <TextField
                 containerClassName="flex-row items-center rounded bg-white-light p-3"
-
                   type="password"
                   label={q.label}
                   required={true}

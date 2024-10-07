@@ -51,10 +51,6 @@ export default function MentalHealth() {
   const [openModal, setOpernModal] = useState(false);
   useEffect(() => {
     fetchData(MH_JobId_Get, KEYS, setValue)
-      // .then(res => console.log(res))
-      // .catch((err) => console.log(err));
-
-    // .finally(() => setFetchLoading(false))
   }, []);
 
   const onSubmit = (data) => {
@@ -79,13 +75,13 @@ export default function MentalHealth() {
   return (
     <>
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+        
+        <main className={classNames("px-5 py-2",styles.container)} id="formContainer">
+
         <section className={styles.titleSection}>
-          <h5 className={styles.title}>{text.title}</h5>
+          {/* <h5 className={styles.title}>{text.title}</h5> */}
           <p className={styles.description}>{text.description}</p>
         </section>
-        <main className={styles.container} id="formContainer">
-
-          
           <div
            className={classNames(
             styles.gridContainer,
@@ -224,15 +220,14 @@ export default function MentalHealth() {
               setPointDomestic={setPointDomestic}
               pointDomestic={pointDomestic}
             />
-        </main>
-
-        <Button
+             <Button
           className={styles.submit}
           title="ذخیره اطلاعات"
           style="outlined"
           type="submit"
           loading={submitLoading}
         />
+        </main>
       </form>
       {openModal
         ? (

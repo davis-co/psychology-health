@@ -1,13 +1,13 @@
 .content {
-  @apply w-full flex flex-col font-semibold;
+  @apply flex w-full flex-col font-semibold;
 }
 
 .content .label {
-  @apply inline-flex text-xs leading-5 text-gray-darkest mt-3;
+  @apply mt-3 inline-flex text-sm leading-5 text-gray-darkest;
 }
 
 .content .innerDivider {
-  @apply w-full flex gap-1;
+  @apply flex w-full gap-1;
 }
 
 .content .innerDivider .pos {
@@ -15,7 +15,7 @@
 }
 
 .content .innerDivider .pos .field {
-  @apply w-full text-sm rounded-lg border-2 bg-white border-gray-light hover:border-ownGray-300 focus:ring-1 focus:ring-gray-light;
+  @apply hover:border-ownGray-300 w-full rounded-lg border-2 border-gray-light bg-white text-sm focus:ring-1 focus:ring-gray-light;
 }
 
 .content .innerDivider .pos .fieldError {
@@ -23,11 +23,11 @@
 }
 
 .content .innerDivider .pos .span {
-  @apply absolute text-sm left-0 top-1/2 translate-x-1/2 -translate-y-1/2;
+  @apply absolute left-0 top-1/2 -translate-y-1/2 translate-x-1/2 text-sm;
 }
 
 .content .innerDivider .button {
-  @apply p-2 bg-gray-lighter rounded-md hover:bg-gray-light;
+  @apply rounded-md bg-gray-lighter p-2 hover:bg-gray-light;
 }
 
 input[type="number"]::-webkit-inner-spin-button,

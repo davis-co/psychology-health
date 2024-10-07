@@ -49,11 +49,11 @@
 }
 
 .label {
- @apply md:text-sm xs:text-xs font-yekan600; 
+ @apply font-yekan600 xs:text-sm md:text-md; 
 }
 
 .firstLayer {
-  @apply flex items-center justify-center md:w-4 md:h-4 xs:w-3 xs:h-3 ;
+  @apply flex items-center justify-center xs:h-3 xs:w-3 md:h-4 md:w-4;
   /* width: 15px;
   height: 15px; */
   border-radius: 4px;

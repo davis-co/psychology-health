@@ -4,7 +4,7 @@
 }
 
 .main {
-    @apply flex flex-col justify-start w-full shadow-primary max-w-[91%] md:max-w-[91%] lg:max-w-[1134px] m-auto h-[90vh] pb-4;
+    @apply flex flex-col justify-start w-full overflow-hidden pt-5 shadow-primary  max-w-full md:max-w-full lg:max-w-[95%] m-auto h-[89vh] pb-10;
     backdrop-filter: blur(3px);
     background-color: linear-gradient(
         180deg,

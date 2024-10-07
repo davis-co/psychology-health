@@ -18,7 +18,7 @@ const DateInput = ({
 }) => {
     return (
         <div className={classNames(styles.container, containerClassName)}>
-            <Label title={label} required={required} isError={isError} />
+            <Label label={label} required={required} isError={isError} />
             <div
                 className={classNames(className, styles.field, {
                     [styles.fieldError]: isError,

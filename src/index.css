@@ -15,7 +15,7 @@
 }
 
 .body {
-    @apply flex flex-col;
+@apply flex flex-col md:px-[5%];
     background: url(./assets/images/net.svg) no-repeat;
     background-position: bottom;
     width: 100%;

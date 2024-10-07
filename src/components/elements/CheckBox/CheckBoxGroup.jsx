@@ -46,7 +46,7 @@ export default function CheckBoxGroup({
                     options.length == 2 ? "!w-[40%] lg:!w-[40%]" : "",
                     styles.label
                 )}
-                title={label}
+                label={label}
                 required={required}
                 isError={isError}
                 

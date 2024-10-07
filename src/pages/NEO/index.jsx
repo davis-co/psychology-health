@@ -35,7 +35,7 @@ export default function NEO() {
   const {
     watch,
     register,
-    setValue,
+    setValue, 
     handleSubmit,
     formState: { errors },
   } = useForm({
@@ -97,7 +97,7 @@ export default function NEO() {
   return (
     <>
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-        <div className={styles.container} id="formContainer">
+        <div className={ classNames(styles.container , "px-7")} id="formContainer">
           <CountDown
             containerClassName={styles.timer}
             onComplete={() => {
@@ -124,7 +124,7 @@ export default function NEO() {
                     <RadioOptions
                       label={q.label}
                       questionKey={q.key}
-                      labelClassName={"lg:!w-[350px]"}
+                      labelClassName={"md:!w-[20%] lg:!w-[35%]"}
                       required={true}
                       active={watch(q.key)}
                       register={register}
