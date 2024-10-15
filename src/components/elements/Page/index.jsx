@@ -3,12 +3,12 @@ import styles from "./styles.module.css"
 // import Navbar from "../Navbar"
 import { ProjectName } from ".."
 
-export default function Page({ children, name }) {
+export default function Page({ children, name, back }) {
     return (
         <div className={styles.page}>
             {/* <Navbar /> */}
             <main className={styles.main}>
-                {name ? <ProjectName name={name} /> : null}
+                {name ? <ProjectName name={name} back={back} /> : null}
                 {children}
             </main>
         </div>

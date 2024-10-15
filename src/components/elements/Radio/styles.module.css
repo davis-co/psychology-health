@@ -28,7 +28,7 @@
 }
 
 .label {
-    @apply select-none font-yekan600 text-sm text-black md:text-md;
+    @apply select-none font-yekan600 text-sm text-black md:text-[13px];
 }
 
 .firstLayer {

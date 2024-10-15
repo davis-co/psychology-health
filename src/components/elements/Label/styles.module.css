@@ -1,5 +1,5 @@
 .label {
-    @apply xs:text-xs md:text-sm text-black font-yekan700 w-fit;
+    @apply xs:text-xs md:text-sm lg:text-[13px] text-black font-yekan700 w-fit;
 }
 
 .required {

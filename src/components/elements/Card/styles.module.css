@@ -1,21 +1,21 @@
 .container {
-    @apply flex gap-2 md:gap-3 w-full items-center p-1 md:bg-white border border-gray-500 font-semibold transition-all rounded-xl hover:border-2 hover:p-[1px] cursor-pointer;
+    @apply flex flex-col items-center gap-2 md:gap-3 w-full max-h-fit cursor-pointer transition-all p-2;
+    position: relative;
 }
 
-
-.cardIcon{
+.cardIcon {
     @apply w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 xl:w-24 xl:h-24 transition-all;
 }
 
-.container h2{
-    @apply text-[10px] lg:text-[13px] text-center;
-    font-family: YekanBakh400;
+.container h2 {
+    @apply text-[10px] lg:text-[15px] text-center;
+    font-family: YekanBakh600;
 }
 
-.container:hover{
+.container:hover {
     @apply shadow-md;
 }
 
-.container:hover .cardIcon{
+.container:hover .cardIcon {
     @apply scale-110;
 }

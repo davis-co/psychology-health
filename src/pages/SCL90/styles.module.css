@@ -1,12 +1,12 @@
 .container {
-    @apply flex w-full flex-col gap-y-6 overflow-x-hidden px-4 py-10 md:flex-row md:flex-wrap md:justify-between;
+    @apply flex w-full flex-col gap-y-4 overflow-x-hidden pt-2 pb-4 md:flex-row md:flex-wrap md:justify-between;
 }
-.form{
-    @apply  overflow-y-auto xs:px-4 xs:py-2 md:px-12 md:py-4;
-  }
-  .submit {
+.form {
+    @apply overflow-y-auto xs:px-4 md:pt-2 !pb-[10vh];
+}
+.submit {
     @apply w-full md:w-auto md:px-16 xs:w-1/2 mt-6 mx-auto bg-white !min-h-10 border-green text-black lg:hover:bg-green lg:hover:border-green lg:hover:text-white;
-  }
+}
 .booleanFormItem input {
     @apply max-h-[30px];
     border-radius: 4px;
@@ -32,10 +32,9 @@
     @apply w-[30%] md:w-[60px] lg:w-[80px] lg:min-h-[28px] flex justify-between;
 }
 
-.gridcontainer{
-    @apply grid w-full grid-cols-1 gap-6  px-[2px] py-[2px] md:grid-cols-2
-  }
-  
+.gridcontainer {
+    @apply grid w-full grid-cols-1 gap-6  px-[2px] py-[2px] md:grid-cols-2;
+}
 
 .newAnimation {
     animation: newAnimate 0.25s 1;
@@ -77,5 +76,4 @@
 
 .submit {
     @apply w-full text-md  md:w-auto md:px-16 xs:w-[200px] mt-6 mx-auto bg-white !min-h-10 border-green text-black lg:hover:bg-green lg:hover:border-green lg:hover:text-white;
-  }
-  
+}

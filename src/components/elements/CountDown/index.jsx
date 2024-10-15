@@ -1,37 +1,33 @@
-import '@leenguyen/react-flip-clock-countdown/dist/index.css';
+import React, { useEffect, useState } from "react"
 
-import React from 'react';
+const CountdownTimer = ({ initialTime = 7200 }) => {
+    const [timeLeft, setTimeLeft] = useState(initialTime)
 
-import classNames from 'classnames';
+    useEffect(() => {
+        if (timeLeft <= 0) return
 
-import FlipClockCountdown from '@leenguyen/react-flip-clock-countdown';
+        const timerId = setInterval(() => {
+            setTimeLeft((prevTime) => prevTime - 1)
+        }, 1000)
 
-import { i18n } from './i18n';
-import styles from './styles.module.css';
+        return () => clearInterval(timerId)
+    }, [timeLeft])
 
-const CountDown = ({ onComplete = () => {}, containerClassName }) => {
+    const formatTime = (seconds) => {
+        const hours = Math.floor(seconds / 3600)
+        const minutes = Math.floor((seconds % 3600) / 60)
+        const secs = seconds % 60
+        return `${String(hours).padStart(2, "0")}:${String(minutes).padStart(
+            2,
+            "0"
+        )}:${String(secs).padStart(2, "0")}`
+    }
+
     return (
-        <div className={classNames(styles.container, containerClassName)}>
-            <span className={styles.title}>{i18n.timeLeft}</span>
-            <FlipClockCountdown
-            theme='light'
-                renderMap={[false, true, true, true]}
-                to={(new Date().getTime() +  2 * 60 * 60 * 1000)}
-                onComplete={() => onComplete()}
-                labels={["", "", "", ""]}
-                digitBlockStyle={{
-                    width: 30,
-                    height: 30,
-                    fontSize: 25,
-                    backgroundColor: "transparent",
-                    color: "black",
-                    boxShadow:"none"
-                }}
-                dividerStyle={{ color: "white", height: 1 }}
-                separatorStyle={{ color: "black", size: "4px" }}
-            />
+        <div className="countdown">
+            <div className="countdown-timer">{formatTime(timeLeft)}</div>
         </div>
     )
 }
 
-export default CountDown
+export default CountdownTimer

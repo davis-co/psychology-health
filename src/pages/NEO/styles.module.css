@@ -1,12 +1,12 @@
 .container {
-    @apply flex flex-col w-full overflow-y-auto gap-y-3 px-4 overflow-x-hidden pb-4 max-h-[80vh] lg:max-h-[75vh];
+    @apply flex flex-col w-full gap-y-3 overflow-y-auto h-full px-4 overflow-x-hidden pb-[10vh];
 }
-.form{
-    @apply  overflow-y-hidden xs:py-2 md:py-2;
-  }
-  .submit {
+.form {
+    @apply overflow-y-hidden xs:py-2 md:py-0;
+}
+.submit {
     @apply w-full md:w-auto md:px-16 xs:w-1/2 mt-6 mx-auto bg-white !min-h-10 border-green text-black lg:hover:bg-green lg:hover:border-green lg:hover:text-white;
-  }
+}
 .timer {
     @apply sticky top-0 z-20 flex w-full justify-end bg-white pb-3;
 }
@@ -94,11 +94,10 @@
 /* .next {
     @apply w-[200px] text-[10px] md:text-[12px] md:w-[200px] mt-8 md:mt-6 mx-auto;
 } */
-.gridcontainer{
-    @apply grid w-full grid-cols-1 gap-6 px-[2px] py-[2px] md:grid-cols-2
-  }
-  
-  .next {
+.gridcontainer {
+    @apply grid w-full grid-cols-1 gap-6 px-[2px] py-[2px] md:grid-cols-2;
+}
+
+.next {
     @apply w-[150px] md:text-md text-xs md:px-16 md:w-[250px] mt-6 mx-auto bg-white !min-h-10 border-green text-black lg:hover:bg-green lg:hover:border-green lg:hover:text-white;
-  }
-  
+}

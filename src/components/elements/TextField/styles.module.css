@@ -7,7 +7,11 @@
 }
 
 .input {
-    @apply w-full lg:py-[5px] bg-transparent lg:text-sm lg:px-2 border-[0.5px] border-solid border-black rounded text-input;
+    @apply w-full lg:py-[5px] bg-transparent lg:text-sm lg:px-2 border-[0.5px] border-solid border-black text-input !rounded;
+}
+
+.input[type="password"] {
+    @apply w-full lg:py-[5px] bg-transparent lg:text-sm lg:px-2 border-[0.5px] border-solid border-black !rounded text-input;
 }
 
 .input:focus,

@@ -1,10 +1,10 @@
 .page {
-    @apply flex flex-col w-full min-h-screen relative bg-[#FAFFFF];
+    @apply flex flex-col w-full h-screen relative bg-[#FAFFFF];
     background: url(../../../assets/images/net.svg) no-repeat bottom;
 }
 
 .main {
-    @apply flex flex-col justify-start w-full overflow-hidden pt-5 shadow-primary  max-w-full md:max-w-full lg:max-w-[95%] m-auto h-[89vh] pb-10;
+    @apply flex flex-col justify-start w-full h-full shadow-primary max-w-full md:max-w-full px-4 overflow-hidden;
     backdrop-filter: blur(3px);
     background-color: linear-gradient(
         180deg,
