@@ -1,88 +1,48 @@
-import { forwardRef, useState } from "react"
-import classNames from "classnames"
-import { GuideIcon } from "@/assets/icons"
-import { Modal } from "@/components/elements"
-import styles from "./styles.module.css"
+import classNames from 'classnames';
 
-const CheckBox = forwardRef(
-  (
-    {
-      label,
-      // labelClassName,
-      fieldClassName,
-      options,
-      guideContent,
-      educationalContent,
-      ...props
-    },
-    ref
-  ) => {
-    const [isGuideOpen, setIsGuideOpen] = useState(false)
-    const [isEducationalContentOpen, setIsEducationalContentOpen] =
-      useState(false)
+import styles from './styles.module.css';
 
-    return (
-      <div className={styles.content}>
-        <div className={styles.questionContent}>
-          <label
-            // className={classNames(styles.label, labelClassName)}
-            htmlFor={props.id}
-          >
-            {label}
-          </label>
-          {!!guideContent && (
-            <div className={styles.guideContent}>
-              <button
-                type="button"
-                onClick={() => setIsGuideOpen(true)}
-                className={styles.guideContentButton}
-              >
-                <img src={GuideIcon} alt="guideIcon" />
-              </button>
-              <Modal
-                className=""
-                isOpen={isGuideOpen}
-                onClose={() => setIsGuideOpen(false)}
-              >
-                <div>{guideContent}</div>
-              </Modal>
-            </div>
-          )}
-        </div>
-        <div className={styles.checkBoxContent}>
-          {options.map((option, index) => (
-            <label className={styles.checkBoxLabel} key={index}>
-              <input
-                className={classNames(styles.checkBoxIcon, fieldClassName)}
-                type="checkbox"
-                value={option.value}
-                {...props}
-                ref={ref}
-              />
-              <span className={styles.checkBoxOption}>{option.label}</span>
-            </label>
-          ))}
-        </div>
-        {!!educationalContent && (
-          <div>
-            <button
-              type="button"
-              onClick={() => setIsEducationalContentOpen(true)}
-            >
-              ArchiveIcon
-            </button>
-            <Modal
-              className=""
-              isOpen={isEducationalContentOpen}
-              onClose={() => setIsEducationalContentOpen(false)}
-            >
-              <div>{educationalContent}</div>
-            </Modal>
-          </div>
+const CheckBox = ({
+    name,
+    value,
+    label,
+    checked,
+    onChange,
+    disabled,
+    className,
+}) => (
+    <label
+        className={classNames(
+            className,
+            styles.container,
+            checked ? styles.checkedContainer : null,
+            disabled ? styles.disabledContainer : null
         )}
-      </div>
-    )
-  }
+    >
+        <span className={styles.label}>{label}</span>
+        <div
+            className={classNames(
+                styles.secondLayer,
+                checked ? styles.secondLayerChecked : ""
+            )}
+        >
+            <div
+                className={classNames(
+                    styles.firstLayer,
+                    checked ? styles.firstLayerChecked : ""
+                )}
+            >
+                <input
+                    className={styles.input}
+                    type="checkbox"
+                    value={value}
+                    name={name}
+                    onChange={onChange}
+                    checked={checked}
+                />
+            </div>
+        </div>
+    </label>
 )
 
 CheckBox.displayName = "CheckBox"

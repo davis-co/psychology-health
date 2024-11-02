@@ -1,8 +1,10 @@
-import classNames from "classnames"
-import React, { useEffect } from "react"
-import styles from "./styles.module.css"
-import Button from "../Button"
-import { stepToWord } from "./data"
+import React from 'react';
+
+import classNames from 'classnames';
+
+import Button from '../Button';
+import { stepToWord } from './data';
+import styles from './styles.module.css';
 
 export default function FormSteps({
     currentStep = 2,
@@ -10,7 +12,7 @@ export default function FormSteps({
 }) {
     return (
         <>
-            <div className={classNames(styles.mContainer, "lg:hidden")}>
+            <div className={classNames(styles.mContainer, "flex lg:hidden")}>
                 {steps.map((step) => (
                     <Button
                         className={

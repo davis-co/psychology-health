@@ -1,76 +1,118 @@
-import { forwardRef } from 'react';
+import { useState } from 'react';
 
 import classNames from 'classnames';
+import { BiError } from 'react-icons/bi';
+import { BsPencilSquare } from 'react-icons/bs';
 
-import { EditIcon } from '@/assets/icons';
+import { i18n } from '@/constants/i18n';
 
-import styles from '../DateInput/styles.module.css';
 import Label from '../Label';
+import styles from './styles.module.scss';
 
-const TextField = forwardRef(
-    (
-        {
-            containerClassName,
-            required,
-            className,
-            label,
-            isError = false,
-            icon,
-            ...props
-        },
-        ref
-    ) => {
-        const disabled = props.disabled
-        return (
-            <div className={classNames(styles.container, containerClassName)}>
-                {label ? (
-                    <Label
-                        label={label}
-                        required={required}
-                        isError={isError}
+const TextField = ({
+    containerClassName,
+    className,
+    label,
+    icon,
+    userGuide,
+    archive,
+    labelClassName,
+    questionKey,
+    required,
+    register,
+    watch,
+    errors,
+    pattern,
+    ...props
+}) => {
+    const [isFocused, setIsFocused] = useState(false)
+    const disabled = props.disabled
+    const isError = !!errors[questionKey]
+    const inputMode = props?.type == "number" ? "numeric" : ""
+    return (
+        <div
+            className={classNames(
+                isError ? "field-error" : "",
+                styles.container,
+                containerClassName
+            )}
+        >
+            {label ? (
+                <Label
+                    className={labelClassName}
+                    userGuide={userGuide}
+                    archive={archive ? questionKey : false}
+                    label={label}
+                    required={required}
+                />
+            ) : null}
+            <div
+                className={classNames(
+                    isFocused
+                        ? "border-green !bg-white"
+                        : "hover:border-green border-black",
+                    className,
+                    "group",
+                    styles.field,
+                    disabled ? styles.disabled : null
+                )}
+            >
+                {props.rows > 1 ? (
+                    <textarea
+                        className={styles.input}
+                        {...register(questionKey, {
+                            required: required
+                                ? i18n("This is required.")
+                                : false,
+                            pattern: pattern,
+                        })}
+                        {...props}
+                        value={watch(questionKey) || ""}
+                        onFocus={() => setIsFocused(true)}
+                        onBlur={() => setIsFocused(false)}
                     />
-                ) : null}
-                <div
-                    className={classNames(
-                        className,
-                        styles.field,
-                        disabled ? styles.disabled : null,
-                        {
-                            [styles.fieldError]: isError,
-                        }
-                    )}
-                >
-                    {props.rows > 1 ? (
-                        <textarea
+                ) : (
+                    <>
+                        <input
                             className={styles.input}
+                            {...register(questionKey, {
+                                required: required
+                                    ? i18n("This is required.")
+                                    : false,
+                                pattern: pattern,
+                            })}
+                            value={watch(questionKey) || ""}
+                            inputMode={inputMode}
                             {...props}
-                            ref={ref}
+                            onFocus={() => setIsFocused(true)}
+                            onBlur={() => setIsFocused(false)}
                         />
-                    ) : (
-                        <>
-                            <input
-                                className={styles.input}
-                                {...props}
-                                ref={ref}
-                            />
-                        </>
-                    )}
-                    {props.rows > 1 ? (
-                        icon ? (
-                            <img className={styles.icon} src={icon} />
-                        ) : null
-                    ) : (
-                        <img
-                            className={styles.icon}
-                            src={icon ? icon : EditIcon}
-                        />
-                    )}
-                </div>
+                    </>
+                )}
+                {props.rows > 1 ? (
+                    icon ? (
+                        <img className={styles.icon} src={icon} />
+                    ) : null
+                ) : icon ? (
+                    icon
+                ) : (
+                    <BsPencilSquare
+                        className={classNames(
+                            styles.icon,
+                            isFocused ? "text-green" : "text-gray-500",
+                            "group-hover:text-green"
+                        )}
+                    />
+                )}
             </div>
-        )
-    }
-)
-
-TextField.displayName = "TextField"
+            {isError ? (
+                <span className="text-error">
+                    <BiError className="text-xs lg:text-base" />
+                    {errors[questionKey]?.message}
+                </span>
+            ) : null}
+        </div>
+    )
+}
 
 export default TextField

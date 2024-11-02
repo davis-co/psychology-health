@@ -3,5 +3,5 @@
 }
 
 .text {
-    @apply text-sm leading-6 lg:text-[15px] md:leading-8 text-black font-yekan400 text-justify;
+    @apply text-sm leading-6 lg:text-[15px] md:leading-8 text-black font-400 text-justify;
 }

@@ -2,7 +2,12 @@ export const booleanOptions = [
     { label: "بلی", value: "10361" },
     { label: "خیر", value: "10362" },
 ]
-
+export const tableSizes = [
+    { value: 5, label: "5" },
+    { value: 10, label: "10" },
+    { value: 20, label: "20" },
+    { value: 30, label: "30" },
+]
 export const matchOptions = [
     { label: "کاملا موافقم", value: "1542705872225" },
     { label: "موافقم", value: "1542705885437" },

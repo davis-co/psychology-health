@@ -1,35 +1,40 @@
-import React, { useState } from "react"
+import React, {
+  useEffect,
+  useState,
+} from 'react';
 
-import { calcIconsvg } from "@/assets/icons"
-import alertIcon from "@/assets/icons/alert-solid.svg"
-import PDF from "@/assets/icons/PDF.svg"
-import pdfDoc from "@/assets/multimedia/documents/violenceDoc.pdf"
+import PDF from '@/assets/icons/PDF.svg';
+import pdfDoc from '@/assets/multimedia/documents/violenceDoc.pdf';
 import {
-    Button,
-    Label,
-    Modal,
-    ProgressChart,
-    RadioOptions,
-} from "@/components/elements"
+  Label,
+  Modal,
+  ProgressChart,
+  RadioOptions,
+} from '@/components/elements';
+import FieldSet from '@/components/elements/FieldSet';
+import { debounce } from '@/utils/helpers';
 
-import { yesNoQuestion } from "../i18n"
-import CalculateAssessment from "../MultiProgress"
-import { questionsDomesticViolence } from "./data"
-import styles from "./styles.module.css"
-import { radioFiveMentalHealth, text } from "./text"
+import { yesNoQuestion } from '../i18n';
+import { questionsDomesticViolence } from './data';
+import styles from './styles.module.css';
+import {
+  radioFiveMentalHealth,
+  text,
+} from './text';
 
 export default function DomesticViolence({
     errors,
     watch,
     register,
     setValue,
-    setPointDomestic,
-    pointDomestic,
+    // setPointDomestic,
+    // pointDomestic,
 }) {
     const watchedValues = watch(["10443", "10444", "10445", "10446"])
 
     const [iconCalc, setIconCalc] = useState(false)
     const [pdfContent, setPdfContent] = useState(false)
+    const [pointDomestic, setPointDomestic] = useState(0)
 
     const scoreMap = {
         10428: 4,
@@ -39,7 +44,7 @@ export default function DomesticViolence({
         10431: 0,
     }
 
-    const calcTotalScore = () => {
+    const calcTotalScore = debounce(() => {
         const totalScore = questionsDomesticViolence.reduce(
             (total, question, index) => {
                 const value = watchedValues[index]
@@ -51,7 +56,11 @@ export default function DomesticViolence({
         setPointDomestic(totalScore)
         setValue("10552", totalScore)
         setIconCalc(true)
-    }
+    },300)
+
+    useEffect(() => {
+        calcTotalScore();
+    }, [watchedValues]);
 
     const generalData = [
         { name: "level1", value: { min: 0, max: 5 }, color: "#86efac" },
@@ -65,10 +74,8 @@ export default function DomesticViolence({
     }
     return (
         <>
-            <fieldset className={styles.listOfQuestions}>
-                <legend className="mr-4 px-2 text-[#3D0C02] lg:text-[18px] font-yekan700">
-                    {text.domesticViolenceTest}
-                </legend>
+            <FieldSet title={text.domesticViolenceTest}>
+            <div className={styles.listOfQuestions}>
                 <p className={styles.description}>
                     {text.domesticViolenceDescription}
                 </p>
@@ -78,15 +85,17 @@ export default function DomesticViolence({
                             label={q.label}
                             questionKey={q.key}
                             required={true}
+                            containerClassName="input-card w-full"
                             options={radioFiveMentalHealth}
                             register={register}
                             active={watch(q.key)}
                             isError={!!errors[q.key]}
-                            labelClassName={"lg:w-[220px]"}
+                            labelClassName={"lg:!w-[300px]"}
+
                         />
                     </div>
                 ))}
-            </fieldset>
+           
             <section className={styles.gridcontainer}>
                 <div className="flex items-center justify-between rounded bg-zinc-50 p-2 shadow-md xs:w-full">
                     <Label
@@ -95,32 +104,13 @@ export default function DomesticViolence({
                         required={true}
                     />
                     <div className="flex flex-1 items-center justify-center gap-2">
-                        {pointDomestic > 10 ? (
-                            <Button
-                                type="button"
-                                style="text"
-                                icon={
-                                    <img
-                                        src={alertIcon}
-                                        width={16}
-                                        height={16}
-                                    />
-                                }
-                            />
-                        ) : null}
-                        <button
-                            className={styles.calBtn}
-                            type="button"
-                            onClick={calcTotalScore}
-                        >
-                            {iconCalc ? <img src={calcIconsvg} /> : "محاسبه"}
-                        </button>
+
+
                         <Label label={userData.value} />
                         <div className="flex-1">
                             <ProgressChart
                                 generalData={generalData}
                                 userData={userData.value}
-                                // valuesLength={20}
                             />
                         </div>
                     </div>
@@ -129,6 +119,7 @@ export default function DomesticViolence({
                     label={text.willingnessReceiveSpecializedServices}
                     options={yesNoQuestion}
                     questionKey={"10667"}
+                    containerClassName={'input-card'}
                     active={watch("10667")}
                     labelClassName={"lg:w-[250px]"}
                     register={register}
@@ -147,7 +138,7 @@ export default function DomesticViolence({
                     ) : null}
                 </div>
             </section>
-            <section className="flex items-center justify-center">
+            <section className="col-span-full flex items-center justify-center">
                 <div className="m-auto flex w-full items-center justify-between rounded bg-zinc-50 p-2 shadow-md md:w-2/5">
                     <Label
                         containerClassName="text-[11px]"
@@ -168,9 +159,12 @@ export default function DomesticViolence({
                     </div>
                 </div>
             </section>
-            {pdfContent ? (
-                <Modal onClose={() => setPdfContent(false)}>
-                    <section className="mb-6 mt-4 h-[474px] bg-slate-700 text-white">
+
+                <Modal 
+                isOpen={pdfContent}
+                containerClassName="h-full w-full"
+                onClose={() => setPdfContent(false)}>
+                    <section className="mb-6 mt-4 h-full bg-slate-700 text-white">
                         <object
                             data={pdfDoc}
                             type="application/pdf"
@@ -179,7 +173,9 @@ export default function DomesticViolence({
                         ></object>
                     </section>
                 </Modal>
-            ) : null}
+
+            </div>
+            </FieldSet>
         </>
     )
 }

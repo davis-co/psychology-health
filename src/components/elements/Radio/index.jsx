@@ -1,6 +1,8 @@
-import React, { forwardRef } from "react"
-import styles from "./styles.module.css"
-import classNames from "classnames"
+import { forwardRef } from 'react';
+
+import classNames from 'classnames';
+
+import styles from './styles.module.css';
 
 const Radio = forwardRef(({ className, label, ...props }, ref) => {
     return (

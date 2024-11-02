@@ -1,20 +1,13 @@
 .label {
-    @apply xs:text-xs md:text-sm lg:text-[13px] text-black font-yekan700 w-fit;
-}
-
-.required {
-    @apply text-red relative bottom-1;
+    @apply flex items-center font-700 text-tiny leading-4 text-black md:leading-5 lg:text-sm lg:leading-6;
+    .required {
+        @apply text-red lg:text-lg mr-[4px];
+    }
+    .guideIcon {
+        @apply w-[9px] h-[9px] lg:h-[16px] lg:w-[16px] lg:p-[1px];
+    }
 }
 
 .labelError {
-    @apply text-red;
-}
-
-.guideIcon {
-    @apply w-[9px] h-[9px] lg:h-[16px] lg:w-[16px] lg:p-[3px];
-}
-
-.guideButton {
-    @apply shadow-none border-none inline p-0 relative top-1;
-    position: relative;
+    /* color: red !important; */
 }

@@ -1,10 +1,12 @@
-import React from "react"
+import React from 'react';
 
-import { Card, Page } from "@/components/elements"
+import {
+  Card,
+  Page,
+} from '@/components/elements';
 
-import { links } from "./data"
-import { i18n } from "./i18n"
-import styles from "./styles.module.css"
+import { links } from './data';
+import { i18n } from './i18n';
 
 export default function Home({ setPage }) {
     const userData = localStorage.getItem("userData") || {}
@@ -20,10 +22,6 @@ export default function Home({ setPage }) {
                 <p className="message text-red-600">{i18n.forbidden}</p>
             )}
         </Page>
-        // <div className={styles.container}>
-        //     {pages.map((page) => (
-        //         <Card page={page} setPage={setPage} key={page.name} />
-        //     ))}
-        // </div>
+
     )
 }

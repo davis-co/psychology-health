@@ -20,7 +20,7 @@ import {
 import { debounce } from '@/utils/helpers';
 
 import Button from '../Button';
-import CheckBox from '../CheckBox/new';
+import CheckBox from '../CheckBox';
 import styles from './styles.module.css';
 
 export default function Select({

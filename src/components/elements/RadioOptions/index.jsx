@@ -1,131 +1,19 @@
-// import {
-//   useEffect,
-//   useState,
-// } from 'react';
-
-// import classNames from 'classnames';
-
-// import {
-//   Divider,
-//   Label,
-//   Radio,
-// } from '@/components/elements';
-
-// import styles from './styles.module.css';
-
-// export default function RadioOptions({
-//     className,
-//     register,
-//     options,
-//     active,
-//     divider,
-//     isError,
-//     label,
-//     questionKey,
-//     labelClassName,
-//     required,
-//     wrap = false,
-// }) {
-//     const [device, setDevice] = useState("mobile")
-//     const checkDevice = () => {
-//         const width = window.innerWidth
-//         if (width < 620) {
-//             setDevice("mobile")
-//         } else if (width >= 620 && width < 1024) {
-//             setDevice("tablet")
-//         } else {
-//             setDevice("desktop")
-//         }
-//     }
-//     useEffect(() => {
-//         checkDevice()
-//         window.addEventListener("resize", () => {
-//             checkDevice()
-//         })
-//     }, [])
-
-//     const labelClasses = labelClassName
-//     ? labelClassName
-//     : options.length == 2
-//     ? "!w-[40%] lg:!w-[60%]"
-//     : "lg:!max-w-fit lg:!min-w-fit"
-
-//     return (
-//         <div
-//             className={classNames(
-//                 "form-item",
-//                 className,
-//                 styles.container,
-//                 wrap || device !== "desktop" ? "" : "!flex-nowrap"
-//             )}
-//         >
-//             <Label
-//                 className={labelClasses}
-//                 title={label}
-//                 required={required}
-//                 isError={isError}
-                
-//             />
-//             {divider ? (
-//                 <Divider className={`mx-auto my-3 block w-1/2 lg:hidden`} />
-//             ) : null}
-//             {wrap || device !== "desktop" ? (
-//                 options?.map((o) => (
-//                     <Radio
-//                         className={styles.mobileRadio}
-//                         checked={active === o.value}
-//                         value={o.value}
-//                         label={o.label}
-//                         key={o.label}
-//                         {...register(questionKey, {
-//                             required: required,
-//                         })}
-//                     />
-//                 ))
-//             ) : (
-//                 <div
-//                     className={classNames(
-//                         options.length == 2
-//                             ? "lg:max-w-fit !gap-6 lg:!gap-6"
-//                             : "",
-//                         styles.options,
-//                         "hidden lg:flex"
-//                     )}
-//                 >
-//                     {options?.map((o) => (
-//                         <Radio
-//                             checked={active === o.value}
-//                             value={o.value}
-//                             label={o.label}
-//                             key={o.label}
-//                             {...register(questionKey, {
-//                                 required: true,
-//                             })}
-//                         />
-//                     ))}
-//                 </div>
-//             )}
-//         </div>
-//     )
-// }
-
-import {
-  useEffect,
-  useState,
-} from 'react';
-
 import classNames from 'classnames';
+import { BiError } from 'react-icons/bi';
+import { IoIosInformationCircle } from 'react-icons/io';
 
 import {
   Divider,
   Label,
   Radio,
 } from '@/components/elements';
+import { i18n } from '@/constants/i18n';
+import useDevice from '@/hooks/useDevice';
 
 import styles from './styles.module.css';
 
 export default function RadioOptions({
-    className,
+    containerClassName,
     register,
     options,
     active,
@@ -136,89 +24,90 @@ export default function RadioOptions({
     userGuide,
     questionKey,
     wrap = false,
-    required,
     labelClassName,
+    optionsContainer,
+    radioClassName,
+    required,
+    educationalContent,
 }) {
-    const [device, setDevice] = useState("mobile")
-    const checkDevice = () => {
-        const width = window.innerWidth
-        if (width < 620) {
-            setDevice("mobile")
-        } else if (width >= 620 && width < 1024) {
-            setDevice("tablet")
-        } else {
-            setDevice("desktop")
-        }
-    }
-    useEffect(() => {
-        checkDevice()
-        window.addEventListener("resize", () => {
-            checkDevice()
-        })
-    }, [])
+    const [device] = useDevice()
     const labelClasses = labelClassName
         ? labelClassName
-        : options.length == 2
-        ? "!w-[40%] lg:!w-[50%]"
-        : "lg:!max-w-fit lg:!min-w-fit"
-
+        : classNames(
+              options.length == 2 ? "!w-[40%] lg:!w-[40%]" : "",
+              styles.label
+          )
     return (
         <div
             className={classNames(
-                "form-item",
-                className,
+                containerClassName,
                 styles.container,
-                wrap || device !== "desktop" ? "" : "!flex-nowrap"
+                wrap || device !== "desktop" ? "" : "!flex-nowrap",
+                isError ? "field-error" : "",
+                educationalContent?.show ? "!pl-6 md:!pl-7 lg:!pl-8" : ""
             )}
         >
             <Label
-                className={classNames(labelClasses, styles.label)}
+                className={classNames(labelClasses, divider ? "!inline" : "")}
                 userGuide={userGuide}
                 label={label}
                 required={required}
-                isError={isError}
             />
             {divider ? (
-                <Divider className={`mx-auto my-3 block w-1/2 lg:hidden`} />
+                <Divider className={`mx-auto my-2 block w-full`} />
             ) : null}
-            {wrap || device !== "desktop" ? (
+            {!divider && (wrap || device !== "desktop") ? (
                 options?.map((o) => (
                     <Radio
-                        className={styles.mobileRadio}
+                        className={classNames(
+                            radioClassName,
+                            styles.mobileRadio
+                        )}
                         checked={active === o.value}
                         value={o.value}
                         label={o.label}
                         key={o.label}
                         onClick={onClick}
                         {...register(questionKey, {
-                            required: required,
+                            required,
                         })}
                     />
                 ))
             ) : (
                 <div
                     className={classNames(
-                        options.length == 2
-                            ? "lg:max-w-fit !gap-6 lg:!gap-6"
-                            : "",
-                        styles.options,
-                        "hidden lg:flex"
+                        optionsContainer,
+                        options.length == 2 ? "lg:max-w-fit" : "",
+                        styles.options
                     )}
                 >
                     {options?.map((o) => (
                         <Radio
                             checked={active === o.value}
                             value={o.value}
+                            className={radioClassName}
                             label={o.label}
                             key={o.label}
                             onClick={onClick}
                             {...register(questionKey, {
-                                required: true,
+                                required,
                             })}
                         />
                     ))}
                 </div>
             )}
+            {educationalContent?.show ? (
+                <IoIosInformationCircle
+                    className="educational-content-icon"
+                    onClick={() => educationalContent.action()}
+                />
+            ) : null}
+            {isError && required ? (
+                <span className="text-error">
+                    <BiError className="text-xs lg:text-base" />
+                    {i18n("This is required.")}
+                </span>
+            ) : null}
         </div>
     )
 }

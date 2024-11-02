@@ -1,5 +1,5 @@
 .container {
-    @apply inline-flex justify-between items-center gap-3 lg:gap-6 rounded-sm bg-white-light lg:rounded px-[6px] py-0.5 lg:py-1 border-[0.25px] border-solid border-black cursor-pointer opacity-60 hover:bg-transparent hover:opacity-100;
+    @apply inline-flex justify-between items-center gap-3 lg:gap-6 rounded-sm bg-white-light lg:rounded px-1.5 py-0.5 lg:py-1 border-[0.25px] border-solid border-black cursor-pointer opacity-60 hover:bg-white hover:opacity-100;
 }
 
 .checkedContainer {
@@ -18,17 +18,13 @@
     outline: none !important;
 }
 
-.input:focus {
-    @apply !ring-0 !bg-green !text-green;
-}
-
 .input:checked {
-    @apply !bg-green !text-green;
+    @apply !ring-green !bg-green !text-green;
     background-image: none !important;
 }
 
 .label {
-    @apply select-none font-yekan600 text-sm text-black md:text-[13px];
+    @apply text-black font-400 lg:font-600 text-2xs lg:text-[13px] select-none;
 }
 
 .firstLayer {
@@ -39,7 +35,7 @@
 
 .firstLayerChecked {
     @apply bg-green bg-opacity-50;
-    box-shadow: 0px 0px 6px rgba(2, 137, 76, 0.6) !important;
+    box-shadow: 0px 0px 6px #02894c !important;
 }
 
 .secondLayer {

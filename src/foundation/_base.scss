@@ -1,0 +1,111 @@
+// animations
+.flip-bottom {
+    animation: flipBottom 0.25s 1;
+}
+
+@keyframes flipBottom {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(0%);
+    }
+}
+
+.flip-left {
+    animation-name: flipLeft 0.25s 1;
+}
+
+@keyframes flipLeft {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
+}
+
+.input-card {
+    @apply flex flex-row items-center !bg-white-lighter rounded py-2 px-2 shadow-box;
+}
+
+// text
+.text-description {
+    @apply font-400 text-tiny md:text-xs md:leading-6 lg:text-sm lg:leading-7;
+}
+
+.text-title {
+    @apply font-600 text-tiny md:text-xs md:leading-6 lg:text-sm lg:leading-7;
+}
+
+.text-message-description {
+    @apply font-400 lg:text-lg;
+}
+
+.text-message-title {
+    @apply font-700 lg:text-lg;
+}
+
+.text-error {
+    @apply font-400 text-tiny lg:text-xs text-red-error flex items-center gap-1 animate-bounce absolute right-0 -bottom-6 transform;
+}
+
+// submit
+.submit {
+    @apply w-full max-w-[18rem] md:w-[220px] mt-[2vh] lg:mt-[5vh] text-xs h-8 lg:text-sm lg:h-10 font-400 mx-auto hover:bg-green hover:text-white hover:border-green transition-all cursor-pointer;
+}
+
+.add {
+    @apply text-tiny shadow-primary py-1 lg:py-1.5 w-20 lg:w-24 mr-auto cursor-pointer;
+}
+
+// form
+.form {
+    @apply flex flex-col flex-1 gap-6 pb-[10vh] lg:w-full lg:max-w-[1440px] mx-auto pt-8 px-4;
+}
+
+// scrollbar
+/* scrollbar */
+
+*::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    background-color: #f5f5f5;
+}
+
+*::-webkit-scrollbar {
+    @apply w-1.5 lg:w-3;
+}
+
+*::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #c2c2c2;
+}
+
+// error
+.field-error {
+
+    margin-bottom: 8px !important;
+    border: 1px !important;
+    border-style: solid !important;
+    border-color: #960018 !important;
+}
+
+// remove number arrows
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+// icon
+.educational-content-icon {
+    @apply absolute left-1 top-1/2 -translate-y-1/2 lg:min-w-[22px] lg:min-h-[22px] text-gray-600 hover:text-red-600 cursor-pointer transition-all;
+}

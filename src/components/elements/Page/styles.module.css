@@ -1,10 +1,14 @@
 .page {
-    @apply flex flex-col w-full h-screen relative bg-[#FAFFFF];
+    /* @apply flex flex-col w-full h-screen relative bg-[#FAFFFF]; */
+    @apply relative flex h-screen w-full flex-col bg-white-light px-0 py-4;
+
     background: url(../../../assets/images/net.svg) no-repeat bottom;
 }
 
 .main {
-    @apply flex flex-col justify-start w-full h-full shadow-primary max-w-full md:max-w-full px-4 overflow-hidden;
+    /* @apply flex h-full w-full max-w-full flex-col justify-start overflow-hidden px-4 shadow-primary md:max-w-full; */
+    @apply mx-auto flex w-full flex-1 flex-col justify-start overflow-y-auto shadow-primary backdrop-blur-sm md:max-w-full;
+
     backdrop-filter: blur(3px);
     background-color: linear-gradient(
         180deg,

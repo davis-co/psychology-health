@@ -1,25 +1,35 @@
-import React, { useEffect, useState } from "react"
+import React, {
+  useEffect,
+  useState,
+} from 'react';
 
-import classNames from "classnames"
-import { useForm } from "react-hook-form"
+import classNames from 'classnames';
+import { useForm } from 'react-hook-form';
 
 import {
-    Button,
-    CountDown,
-    Divider,
-    FormSteps,
-    RadioOptions,
-} from "@/components/elements"
-import { booleanOptions, FORM_SIZE, matchOptions } from "@/constants/form"
-import { NEO_JobId_Get, NEO_JobId_Post } from "@/constants/jobId"
-import { KEYS } from "@/constants/keys"
-import fetchData from "@/services/fetchData"
-import submitForm from "@/services/submitForm"
+  Button,
+  CountDown,
+  Divider,
+  FormSteps,
+  RadioOptions,
+} from '@/components/elements';
+import {
+  booleanOptions,
+  FORM_SIZE,
+  matchOptions,
+} from '@/constants/form';
+import {
+  NEO_JobId_Get,
+  NEO_JobId_Post,
+} from '@/constants/jobId';
+import { KEYS } from '@/constants/keys';
+import fetchData from '@/services/fetchData';
+import submitForm from '@/services/submitForm';
 
-import { questions } from "./data"
-import { onFinishTime } from "./services"
-import styles from "./styles.module.css"
-import { text } from "./text"
+import { questions } from './data';
+import { onFinishTime } from './services';
+import styles from './styles.module.css';
+import { text } from './text';
 
 export default function NEO() {
     const {
@@ -31,18 +41,13 @@ export default function NEO() {
     } = useForm({
         mode: "all",
     })
-    const [startIndex, setStartIndex] = useState(
-        0
-        // lastPage(
-        //     questions.map((q) => q.key),
-        //     watch
-        // )
-    )
+    const [fetchLoading, setFetchLoading] = useState(false);
+    const [startIndex, setStartIndex] = useState(0)
     const [oldAnimation, setOldAnimation] = useState(false)
     const [newAnimation, setNewAnimation] = useState(false)
     const [submitLoading, setSubmitLoading] = useState(false)
 
-    const goToNext = () => {
+    const goToNext = (data) => {
         if (
             questions
                 .slice(startIndex, startIndex + FORM_SIZE)
@@ -61,15 +66,17 @@ export default function NEO() {
         }
     }
     useEffect(() => {
-        fetchData(NEO_JobId_Get, KEYS, setValue).catch((err) =>
-            console.log(err)
-        )
+        // setFetchLoading(true);s
+        // fetchData(NEO_JobId_Get, NEO_KEYS, setValue)
         // .finally(() => setFetchLoading(false))
     }, [])
 
     const onSubmit = (data) => {
         console.log(data)
-        setSubmitLoading(true)
+        if(questions.length - startIndex != FORM_SIZE){
+            goToNext()
+        }else{
+            setSubmitLoading(true)
         submitForm(NEO_JobId_Post, data, () =>
             fetchData(NEO_JobId_Get, KEYS, setValue)
         )
@@ -84,6 +91,8 @@ export default function NEO() {
                     setSubmitLoading(false)
                 }, 1001)
             })
+        }
+        
     }
 
     return (
@@ -120,12 +129,14 @@ export default function NEO() {
                                         }
                                     >
                                         <RadioOptions
+                                            containerClassName="input-card animate-flipLeft"
                                             label={q.label}
                                             questionKey={q.key}
                                             labelClassName={
                                                 "md:!w-[20%] lg:!w-[35%]"
                                             }
-                                            required={true}
+                                            required
+                                            isError={!!errors[q.key]}
                                             active={watch(q.key)}
                                             register={register}
                                             options={
@@ -138,22 +149,14 @@ export default function NEO() {
                                 </div>
                             ))}
                     </div>
-                    {questions.length - startIndex != FORM_SIZE ? (
+                   
                         <Button
                             className={styles.next}
-                            title={text.next}
+                            title={questions.length - startIndex != FORM_SIZE ? text.next : text.submit}
                             style="outlined"
-                            onClick={() => goToNext()}
+                            type='submit'
                         />
-                    ) : (
-                        <Button
-                            className={styles.next}
-                            title={text.submit}
-                            style="outlined"
-                            loading={submitLoading}
-                            type="submit"
-                        />
-                    )}
+                    
                 </div>
                 {/* <Button
           className={styles.submit}

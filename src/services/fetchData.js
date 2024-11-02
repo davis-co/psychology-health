@@ -1,4 +1,4 @@
-import { smartRequest } from "."
+import { smartRequest } from './';
 
 export default async function fetchData(
     jobId = "",

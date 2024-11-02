@@ -1,6 +1,8 @@
-import { Spinner } from "@/components/elements"
-import classNames from "classnames"
-import styles from "./styles.module.css"
+import classNames from 'classnames';
+
+import { Spinner } from '@/components/elements';
+
+import styles from './styles.module.css';
 
 const Button = ({
     title,
@@ -36,8 +38,9 @@ const Button = ({
                 <Spinner color={loadingColor[style]} size={18} />
             ) : (
                 <>
-                    {icon}
+                    
                     {title}
+                    {icon}
                 </>
             )}
         </button>

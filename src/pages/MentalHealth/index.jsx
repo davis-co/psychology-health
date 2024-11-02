@@ -1,28 +1,36 @@
-import React, { useEffect, useState } from "react"
+import React, {
+  useEffect,
+  useState,
+} from 'react';
 
-import classNames from "classnames"
-import { useForm } from "react-hook-form"
-import { toast } from "react-toastify"
+import classNames from 'classnames';
+import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 
 import {
-    Button,
-    CheckBox,
-    Divider,
-    Label,
-    Modal,
-    TextField,
-} from "@/components/elements"
-import RadioOptions from "@/components/elements/RadioOptions"
-import { MH_JobId_Get, MH_JobId_Post } from "@/constants/jobId"
-import { KEYS } from "@/constants/keys"
-import fetchData from "@/services/fetchData"
-import submitForm from "@/services/submitForm"
+  Button,
+  Modal,
+  TextField,
+} from '@/components/elements';
+import CheckBoxGroup from '@/components/elements/CheckBoxGroup';
+import RadioOptions from '@/components/elements/RadioOptions';
+import {
+  MH_JobId_Get,
+  MH_JobId_Post,
+} from '@/constants/jobId';
+import { KEYS } from '@/constants/keys';
+import fetchData from '@/services/fetchData';
+import submitForm from '@/services/submitForm';
 
-import DomesticViolence from "./domesticViolence"
-import { mentalHealthDisOrder, text, yesNoQuestion } from "./i18n"
-import K6Test from "./k6"
-import styles from "./styles.module.css"
-import TextGuide from "./TextGuide"
+import DomesticViolence from './domesticViolence';
+import {
+  mentalHealthDisOrder,
+  text,
+  yesNoQuestion,
+} from './i18n';
+import K6Test from './k6';
+import styles from './styles.module.css';
+import TextGuide from './TextGuide';
 
 export default function MentalHealth() {
     const {
@@ -34,11 +42,15 @@ export default function MentalHealth() {
     } = useForm({
         mode: "all",
     })
-
-    const [pointK6, setPointK6] = useState(0)
-    const [pointDomestic, setPointDomestic] = useState(0)
+    useEffect(() => {
+        register("10437", {
+            required: true,
+        })
+       
+    }, [register])
+   
     const [submitLoading, setSubmitLoading] = useState(false)
-    const [openModal, setOpernModal] = useState(false)
+    const [openModal, setOpenModal] = useState(false)
     useEffect(() => {
         fetchData(MH_JobId_Get, KEYS, setValue)
     }, [])
@@ -64,94 +76,64 @@ export default function MentalHealth() {
     // console.log(watch("10437"))
     return (
         <>
-            <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+            <form className={"form"} onSubmit={handleSubmit(onSubmit)}>
                 <main
-                    className={classNames("px-5 py-2", styles.container)}
+                    className={classNames(" py-2", styles.container)}
                     id="formContainer"
                 >
                     <section className={styles.titleSection}>
-                        {/* <h5 className={styles.title}>{text.title}</h5> */}
                         <p className={styles.description}>{text.description}</p>
                     </section>
                     <div
                         className={classNames(
                             styles.gridContainer,
-                            "pt-0.5 transition-all mb-3",
+                            "pt-1 transition-all mb-3",
                             watch("10437")?.includes("1514109071882") ||
-                                watch("10437")?.includes("1514109106067")
-                                ? "bg-gray-d6 rounded-t px-1 pb-5 mb-0"
+                                watch("10437")?.includes("1514109106067") ||
+                                watch("10437")?.includes("10652")
+                                ? "bg-gray-e7 rounded-t px-1 pb-5 mb-0"
                                 : ""
                         )}
                     >
-                        <section className={styles.chekboxPart}>
-                            <div className="flex-auto">
-                                <Label
-                                    className={styles.question}
-                                    label={text.mentalDisorder}
-                                    required={true}
-                                    isError={!!errors[10437]}
-                                />
-                            </div>
+                        <CheckBoxGroup
+                            questionKey="10437"
+                            labelClassName={"min-w-fit"}
+                            containerClassName="input-card col-span-full"
+                            label={text.mentalDisorder}
+                            options={mentalHealthDisOrder}
+                            errors={errors}
+                            watch={watch}
+                            setValue={setValue}
+                            required
+                            wrap
+                        />
 
-                            {mentalHealthDisOrder?.map((o, index) => (
-                                <div
-                                    key={o.index}
-                                    className={classNames(
-                                        styles.radios,
-                                        "flex-auto"
-                                    )}
-                                >
-                                    <CheckBox
-                                        value={o.value}
-                                        label={o.label}
-                                        key={o.value}
-                                        checked={watch("10437")?.includes(
-                                            o.value
-                                        )}
-                                        onChange={(e) => {
-                                            const values = watch("10437") || []
-                                            if (e.target.checked) {
-                                                setValue("10437", [
-                                                    ...values,
-                                                    o.value,
-                                                ])
-                                            } else {
-                                                setValue(
-                                                    "10437",
-                                                    values.filter(
-                                                        (val) => val !== o.value
-                                                    )
-                                                )
-                                            }
-                                        }}
-                                    />
-                                </div>
-                            ))}
-                        </section>
                         {watch("10437")?.includes("10652") ? (
                             <TextField
-                                containerClassName="flex-row items-center rounded bg-white-light p-3"
+                                containerClassName="input-card !flex-row items-center rounded p-3"
                                 className={"xs:w-[70%] md:w-[85%]"}
+                                labelClassName="w-[170px]"
                                 label={text.typeOfMentalDisease + ":"}
-                                placeholder={text.typeOfMentalDisease}
-                                isError={!!errors[10438]}
-                                {...register("10438", { required: true })}
+                                errors={errors}
+                                questionKey="10438"
+                                register={register}
                                 value={watch("10438")}
+                                watch={watch}
                                 required
                             />
                         ) : null}
 
                         {watch("10437")?.includes("1514109071882") ||
-                        watch("10437")?.includes("1514109106067") ? (
-                            // console.log(text.historyOfSuicideAttempts),
-
+                            watch("10437")?.includes("1514109106067") ? (
                             <RadioOptions
+                                containerClassName="input-card animate-flipLeft"
                                 label={text.historyOfSuicideAttempts}
                                 options={yesNoQuestion}
                                 active={watch("10441")}
                                 questionKey={"10441"}
                                 register={register}
                                 wrap={true}
+                                isError={!!errors[10441]}
                                 className={styles.questionBox}
                                 labelClassName={"lg:w-[220px]"}
                             />
@@ -160,19 +142,26 @@ export default function MentalHealth() {
                     <div
                         className={classNames(
                             styles.gridContainer,
-                            "pt-0.5 transition-all mb-3  px-1",
+                            "pt-2 transition-all mb-3  px-1",
                             watch("11892") === "10361"
-                                ? "bg-gray-d6 rounded-t pb-5 mb-0"
+                                ? "bg-gray-e7 rounded-t pb-5 mb-0"
                                 : ""
                         )}
                     >
                         <RadioOptions
+                            containerClassName="input-card"
                             label={text.currentlyHavingSuicidalThoughts}
                             options={yesNoQuestion}
                             active={watch("11892")}
                             questionKey={"11892"}
                             register={register}
                             wrap={true}
+                            // required\
+                            isError={!!errors[11892]}
+
+                        required={true}
+
+                            errors={errors}
                             labelClassName={"lg:w-[220px]"}
                         />
 
@@ -186,11 +175,13 @@ export default function MentalHealth() {
                                 questionKey={"12504"}
                                 register={register}
                                 wrap={true}
+                                containerClassName="input-card"
                                 labelClassName={"lg:w-[220px]"}
                             />
                         ) : null}
                         {watch("11892") === "10361" ? (
                             <RadioOptions
+                            containerClassName="input-card"
                                 label={text.historyOfThinkingSuicideAttempts}
                                 options={yesNoQuestion}
                                 active={watch("10440")}
@@ -202,14 +193,12 @@ export default function MentalHealth() {
                         ) : null}
                     </div>
 
-                    <Divider className="mx-auto my-3 block w-1/2" />
                     <K6Test
                         errors={errors}
                         watch={watch}
                         register={register}
                         setValue={setValue}
-                        pointK6={pointK6}
-                        setPointK6={setPointK6}
+                        
                     />
 
                     <DomesticViolence
@@ -217,8 +206,7 @@ export default function MentalHealth() {
                         watch={watch}
                         register={register}
                         setValue={setValue}
-                        setPointDomestic={setPointDomestic}
-                        pointDomestic={pointDomestic}
+                        
                     />
                     <Button
                         className={styles.submit}
@@ -229,7 +217,13 @@ export default function MentalHealth() {
                     />
                 </main>
             </form>
-            {openModal ? (
+            <Modal
+                    isOpen={openModal}
+                    onClose={() => setOpenModal(null)}
+                >
+                     <TextGuide text={text.alertSuicidalThoughts} />
+                </Modal>
+            {/* {openModal ? (
                 <Modal
                     onClose={() => {
                         setOpernModal(false)
@@ -237,7 +231,7 @@ export default function MentalHealth() {
                 >
                     <TextGuide text={text.alertSuicidalThoughts} />
                 </Modal>
-            ) : null}
+            ) : null} */}
         </>
     )
 }

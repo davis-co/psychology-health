@@ -1,5 +1,5 @@
 .button {
-    @apply flex items-center justify-center gap-0.5 border-[0.5px] border-solid  text-base rounded leading-3 lg:leading-8 font-yekan600 transition-all; /*shadow-formItemLarge*/
+    @apply flex items-center justify-center gap-0.5 border-[0.5px] border-solid  text-base rounded leading-3 lg:leading-8 font-600 transition-all; /*shadow-formItemLarge*/
 }
 
 .button:disabled {
@@ -7,7 +7,7 @@
 }
 
 .variant {
-    @apply bg-green border-green text-white;
+    @apply border-green bg-green text-white;
 }
 
 .text {
@@ -15,7 +15,7 @@
 }
 
 .outlined {
-    @apply bg-white-light text-black border-black;
+    @apply border-black bg-white-light text-black;
 }
 
 .disabled {
