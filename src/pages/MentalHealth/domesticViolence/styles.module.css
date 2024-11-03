@@ -33,8 +33,6 @@
     @apply grid w-full grid-cols-1 gap-y-8 rounded md:grid-cols-2 md:justify-between;
 }
 
-
-
 .booleanFormItem .radios {
     @apply flex xs:gap-2 lg:gap-10;
 }

@@ -26,6 +26,7 @@ import submitForm from '@/services/submitForm';
 
 import { questions } from './data';
 import styles from './styles.module.css';
+import { text } from './text';
 
 export default function SCL90() {
     const {
@@ -68,6 +69,8 @@ export default function SCL90() {
         <>
             <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
                 <div className={styles.container}>
+                <p className={styles.intro}>{text.description}</p>
+
                     {questions.map((q, index) => (
                         <div className={styles.gridcontainer} key={q.label}>
                             {q.isPassword ? (

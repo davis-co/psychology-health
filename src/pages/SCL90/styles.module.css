@@ -1,5 +1,5 @@
 .container {
-    @apply flex w-full flex-col gap-y-4 overflow-x-hidden pt-2 pb-4 md:flex-row md:flex-wrap md:justify-between;
+    @apply flex w-[1440px] flex-col gap-y-4 overflow-x-hidden pt-2 pb-4 md:flex-row md:flex-wrap md:justify-between m-auto; 
 }
 .form {
     @apply overflow-y-auto xs:px-4 md:pt-2 !pb-[10vh];
