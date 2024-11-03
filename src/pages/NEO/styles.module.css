@@ -1,5 +1,5 @@
 .container {
-    @apply flex flex-col w-full gap-y-3 overflow-y-auto h-full px-4 overflow-x-hidden pb-[10vh];
+    @apply flex flex-col w-full  overflow-y-auto h-full px-4 overflow-x-hidden pb-[10vh];
 }
 .form {
     @apply overflow-y-hidden xs:py-2 md:py-0;
@@ -12,7 +12,7 @@
 }
 
 .intro {
-    @apply text-[9px] lg:text-[14px] text-justify text-black;
+    @apply mb-4 text-justify text-sm text-black lg:text-md;
 }
 
 .matchFormItem .question {

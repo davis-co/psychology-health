@@ -1,16 +1,31 @@
-import React, { useEffect, useState } from "react"
+import React, {
+  useEffect,
+  useState,
+} from 'react';
 
-import { useForm } from "react-hook-form"
+import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
-import { Button, RadioOptions, TextField } from "@/components/elements"
-import { measureOptions } from "@/constants/form"
-import { SCL_JobId_Get, SCL_JobId_Post } from "@/constants/jobId"
-import { KEYS } from "@/constants/keys"
-import fetchData from "@/services/fetchData"
-import submitForm from "@/services/submitForm"
+import {
+  Button,
+  RadioOptions,
+  TextField,
+} from '@/components/elements';
+import {
+  measureOptions,
+  successMessage,
+} from '@/constants/form';
+import {
+  SCL_JobId_Get,
+  SCL_JobId_Post,
+} from '@/constants/jobId';
+import { KEYS } from '@/constants/keys';
+import fetchData from '@/services/fetchData';
+import submitForm from '@/services/submitForm';
 
-import { questions } from "./data"
-import styles from "./styles.module.css"
+import { questions } from './data';
+import styles from './styles.module.css';
 
 export default function SCL90() {
     const {
@@ -24,22 +39,21 @@ export default function SCL90() {
     })
 
     const [submitLoading, setSubmitLoading] = useState(false)
+    const navigate =useNavigate() 
 
     useEffect(() => {
-        fetchData(SCL_JobId_Get, KEYS, setValue).catch((err) =>
-            console.log(err)
-        )
+        fetchData(SCL_JobId_Get, KEYS, setValue)
         // .finally(() => setFetchLoading(false))
     }, [])
 
     const onSubmit = (data) => {
-        console.log(data)
         setSubmitLoading(true)
         submitForm(SCL_JobId_Post, data, () =>
             fetchData(SCL_JobId_Get, KEYS, setValue)
         )
             .then(() => {
                 toast.success(successMessage)
+                navigate(-1)
             })
             .catch((err) => {
                 console.log(err)
@@ -57,21 +71,28 @@ export default function SCL90() {
                     {questions.map((q, index) => (
                         <div className={styles.gridcontainer} key={q.label}>
                             {q.isPassword ? (
+                                
                                 <TextField
-                                    containerClassName="flex-row items-center rounded bg-white-light p-3"
-                                    className={"lg:w-[60%] !rounded-md"}
+                                    containerClassName="input-card !flex-row items-center rounded p-3"
+                                    className="!rounded-md lg:w-[60%]"
                                     type="password"
                                     label={q.label}
-                                    required={true}
-                                    isError={!!errors[q.key]}
-                                    {...register(q.key)}
+                                    required
+                                    questionKey={q.key}
+                                    errors={errors}
+                                    register={register}
                                     value={watch(q.key)}
+                                    watch={watch}
                                 />
                             ) : (
                                 <div className="col-span-full">
                                     <RadioOptions
-                                        labelClassName={"lg:!w-[350px]"}
+                                     labelClassName={
+                                        "md:!w-[50%] lg:!w-[50%]"
+                                    }
+                                        // labelClassName={"lg:!w-[350px]"}
                                         label={q.label}
+                                        containerClassName="input-card"
                                         options={measureOptions}
                                         questionKey={q.key}
                                         active={watch(q.key)}

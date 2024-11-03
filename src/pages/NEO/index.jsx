@@ -1,22 +1,21 @@
-import React, {
-  useEffect,
-  useState,
-} from 'react';
+import React, { useState } from 'react';
 
 import classNames from 'classnames';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import {
   Button,
-  CountDown,
-  Divider,
   FormSteps,
   RadioOptions,
 } from '@/components/elements';
+import CountdownTimer from '@/components/elements/CountDown';
 import {
   booleanOptions,
   FORM_SIZE,
   matchOptions,
+  successMessage,
 } from '@/constants/form';
 import {
   NEO_JobId_Get,
@@ -46,7 +45,8 @@ export default function NEO() {
     const [oldAnimation, setOldAnimation] = useState(false)
     const [newAnimation, setNewAnimation] = useState(false)
     const [submitLoading, setSubmitLoading] = useState(false)
-
+    const navigate =useNavigate() 
+    const initialTime = 7200;
     const goToNext = (data) => {
         if (
             questions
@@ -65,14 +65,9 @@ export default function NEO() {
             }, 250)
         }
     }
-    useEffect(() => {
-        // setFetchLoading(true);s
-        // fetchData(NEO_JobId_Get, NEO_KEYS, setValue)
-        // .finally(() => setFetchLoading(false))
-    }, [])
+
 
     const onSubmit = (data) => {
-        console.log(data)
         if(questions.length - startIndex != FORM_SIZE){
             goToNext()
         }else{
@@ -82,6 +77,8 @@ export default function NEO() {
         )
             .then(() => {
                 toast.success(successMessage)
+                navigate(-1)
+                
             })
             .catch((err) => {
                 console.log(err)
@@ -98,16 +95,13 @@ export default function NEO() {
     return (
         <>
             <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-                <div
-                    className={classNames(styles.container, "px-7")}
-                    id="formContainer"
-                >
-                    <CountDown
+                <div className={classNames(styles.container, "px-7")} id="formContainer">
+                     <CountdownTimer
+                        initialTime={initialTime} 
                         onComplete={() => {
-                            onFinishTime()
+                            onFinishTime();
                         }}
                     />
-                    <Divider className="my-1 lg:my-1" />
                     <p className={styles.intro}>{text.description}</p>
                     <FormSteps currentStep={startIndex / FORM_SIZE + 1} />
                     <div className={styles.questions}>
@@ -133,7 +127,7 @@ export default function NEO() {
                                             label={q.label}
                                             questionKey={q.key}
                                             labelClassName={
-                                                "md:!w-[20%] lg:!w-[35%]"
+                                                "md:!w-[30%] lg:!w-[45%]"
                                             }
                                             required
                                             isError={!!errors[q.key]}

@@ -68,7 +68,11 @@ export default {
               box: "0px 2px 4px rgba(0, 0, 0, 0.15)",
           },
       },
+      
   },
   // eslint-disable-next-line no-undef
-  plugins: [require("@tailwindcss/forms")],
+  plugins: [
+    require("@tailwindcss/forms"),
+    require('daisyui')
+],
 }
