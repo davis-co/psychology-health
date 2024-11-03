@@ -121,7 +121,7 @@ export default function DomesticViolence({
                     questionKey={"10667"}
                     containerClassName={'input-card'}
                     active={watch("10667")}
-                    labelClassName={"lg:w-[250px]"}
+                    labelClassName={"lg:w-[50%]"}
                     register={register}
                 />
                 <div className="col-span-full">
@@ -148,7 +148,7 @@ export default function DomesticViolence({
                     />
                     <div className="flex cursor-pointer items-center justify-between gap-6 rounded border border-zinc-500 p-1">
                         <span
-                            className="text-xs md:text-md"
+                            className="text-xs md:text-base"
                             onClick={() => setPdfContent(true)}
                         >
                             محتوای متنی

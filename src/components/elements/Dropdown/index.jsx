@@ -1,6 +1,7 @@
-import classNames from "classnames"
-import { useState } from "react"
-import { IoChevronDownOutline } from "react-icons/io5"
+import { useState } from 'react';
+
+import classNames from 'classnames';
+import { IoChevronDownOutline } from 'react-icons/io5';
 
 export default function Dropdown({ label, value, options, onChange }) {
     const [isOpen, setIsOpen] = useState(false)
@@ -10,12 +11,12 @@ export default function Dropdown({ label, value, options, onChange }) {
             onClick={() => setIsOpen(!isOpen)}
         >
             <div className="flex items-center gap-1">
-                <span className="text-tiny lg:text-xs">{label}</span>
-                <span className="text-tiny lg:text-xs">{value}</span>
+                <span className="text-2xs lg:text-xs">{label}</span>
+                <span className="text-2xs lg:text-xs">{value}</span>
             </div>
             <IoChevronDownOutline
                 className={classNames(
-                    "transition-all text-tiny lg:text-sm",
+                    "transition-all text-2xs lg:text-sm",
                     isOpen ? "rotate-180" : ""
                 )}
             />

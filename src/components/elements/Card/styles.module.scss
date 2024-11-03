@@ -1,0 +1,9 @@
+.container {
+    @apply flex cursor-pointer flex-col items-center gap-2 bg-white-lighter px-4 py-3 shadow-box transition-all hover:scale-110 md:gap-3;
+    h2 {
+        @apply text-center font-400 text-2xs lg:text-sm;
+    }
+    .cardIcon {
+        @apply h-12 w-12 transition-all md:h-16 md:w-16 lg:h-20 lg:w-20 xl:h-24 xl:w-24;
+    }
+}

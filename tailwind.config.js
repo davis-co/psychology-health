@@ -56,17 +56,36 @@ export default {
               },
           },
           fontSize: {
-              "2xs": "0.5rem", // 8px
-              tiny: "0.625rem", // 10px
-              sm:"12px",
-              md:"14px",
-              lg:"16px"
+              "3xs":"0.5rem", //8px
+              "2xs": "0.65rem", //10px
+              xs: "0.75rem", //12px
+              sm:"0.875rem", //14px
+              base:"16px",
+              lg: "1.125rem",//18px
           },
           boxShadow: {
               primary: "0px 3px 8px 0px rgb(0 0 0 / 8%)",
               secondary: "0px 0px 4px 0px rgba(0, 64, 26, 0.2)",
               box: "0px 2px 4px rgba(0, 0, 0, 0.15)",
           },
+          keyframes: {
+            wiggle: {
+                "0%, 100%": { transform: "rotate(-3deg)" },
+                "50%": { transform: "rotate(3deg)" },
+            },
+            flipLeft: {
+                "0%": { transform: "translateX(-100%)" },
+                "100%": { transform: "translateY(0%)" },
+            },
+            flipBottom :{
+                "0%": { transform: "translateY(-100%)"},
+                "100%": {transform:" translateX(0%)"}
+            }
+        },
+        animation: {
+            flipLeft: "flipLeft 0.5s ",
+            flipBottom: "flipBottom 0.5s"
+        },
       },
       
   },

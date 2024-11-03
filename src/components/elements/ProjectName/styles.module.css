@@ -1,6 +1,6 @@
 /* done */
 .container {
-    @apply sticky top-0 z-30 w-full;
+    @apply sticky top-0 z-30 w-full bg-white py-2;
 }
 
 .rightLine {

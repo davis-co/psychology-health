@@ -6,14 +6,14 @@
             .tr {
                 @apply shadow-sm;
                 .th {
-                    @apply bg-white-lighter shadow-md font-600 text-tiny leading-6 lg:text-sm lg:leading-8 text-center rounded-md;
+                    @apply bg-white-lighter shadow-md font-600 text-2xs leading-6 lg:text-sm lg:leading-8 text-center rounded-md;
                 }
             }
         }
         .tbody {
             .tr {
                 .td {
-                    @apply transition-all rounded-md shadow-md text-tiny leading-7 lg:text-sm font-400 lg:leading-8 bg-white group-hover:bg-white-light text-center px-2;
+                    @apply transition-all rounded-md shadow-md text-2xs leading-7 lg:text-sm font-400 lg:leading-8 bg-white group-hover:bg-white-light text-center px-2;
                 }
             }
         }
@@ -23,7 +23,7 @@
         .default-options {
             @apply flex !gap-1 px-1.5;
             .next {
-                @apply text-tiny lg:text-xs border-none lg:!p-2 min-w-8 min-h-8 text-center rounded shadow-sm hover:scale-110 transition-all bg-white;
+                @apply text-2xs lg:text-xs border-none lg:!p-2 min-w-8 min-h-8 text-center rounded shadow-sm hover:scale-110 transition-all bg-white;
             }
             .current-page {
                 @apply text-sm min-w-8 min-h-8 flex justify-center items-center rounded bg-white;

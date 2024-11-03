@@ -75,5 +75,5 @@
 }
 
 .submit {
-    @apply w-full text-md  md:w-auto md:px-16 xs:w-[200px] mt-6 mx-auto bg-white !min-h-10 border-green text-black lg:hover:bg-green lg:hover:border-green lg:hover:text-white;
+    @apply w-full text-base  md:w-auto md:px-16 xs:w-[200px] mt-6 mx-auto bg-white !min-h-10 border-green text-black lg:hover:bg-green lg:hover:border-green lg:hover:text-white;
 }

@@ -24,6 +24,9 @@
         transform: translateX(0%);
     }
 }
+.router-page {
+    @apply grid grid-cols-3 gap-y-8 gap-x-6 lg:gap-x-10 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 w-full  px-4 pt-4 lg:pt-8 max-h-full overflow-y-auto pb-[10vh] lg:max-w-[1440px] mx-auto;
+}
 
 .input-card {
     @apply flex flex-row items-center !bg-white-lighter rounded py-2 px-2 shadow-box;
@@ -31,11 +34,11 @@
 
 // text
 .text-description {
-    @apply font-400 text-tiny md:text-xs md:leading-6 lg:text-sm lg:leading-7;
+    @apply font-400 text-2xs md:text-xs md:leading-6 lg:text-sm lg:leading-7;
 }
 
 .text-title {
-    @apply font-600 text-tiny md:text-xs md:leading-6 lg:text-sm lg:leading-7;
+    @apply font-600 text-2xs md:text-xs md:leading-6 lg:text-sm lg:leading-7;
 }
 
 .text-message-description {
@@ -47,7 +50,7 @@
 }
 
 .text-error {
-    @apply font-400 text-tiny lg:text-xs text-red-error flex items-center gap-1 animate-bounce absolute right-0 -bottom-6 transform;
+    @apply font-400 text-2xs lg:text-xs text-red-error flex items-center gap-1 animate-bounce absolute right-0 -bottom-6 transform;
 }
 
 // submit
@@ -56,7 +59,7 @@
 }
 
 .add {
-    @apply text-tiny shadow-primary py-1 lg:py-1.5 w-20 lg:w-24 mr-auto cursor-pointer;
+    @apply text-2xs shadow-primary py-1 lg:py-1.5 w-20 lg:w-24 mr-auto cursor-pointer;
 }
 
 // form

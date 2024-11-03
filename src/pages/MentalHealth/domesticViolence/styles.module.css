@@ -1,15 +1,9 @@
-/* .container {
-  @apply my-4 mx-16
-} */
-.title {
-    @apply mb-2 font-700 xs:hidden md:block md:text-md;
-    color: #3d0c02;
-}
 
 .description {
-    @apply col-span-full mr-2 mt-2 text-right font-600 xs:text-sm md:text-md;
-    line-height: 18.6px;
-}
+    @apply text-right font-600 text-2xs leading-4 md:text-2xs md:leading-5 lg:text-sm lg:leading-7;
+   
+  }
+
 
 /* #F7F7F7 */
 .mentalDisorder {
@@ -19,17 +13,15 @@
     @apply md:text-sm xs:text-xs bg-transparent border border-gray-400 text-gray-500 w-[38px] h-[20px] rounded;
 }
 .message {
-    color: #000;
-    font-family: YekanBakh400;
-
-
-    background-color: #e4e4e4;
-    width: 100%;
-    border: 8px solid #f7f7f7;
-    border-radius: 4px;
+    @apply relative w-full rounded border-4 border-white-light text-black; 
 }
 .message p {
-    @apply flex items-center justify-center overflow-hidden rounded px-2 py-5 text-right font-400 leading-7 xs:text-xs md:text-sm lg:text-md;
+    @apply flex items-center justify-center overflow-hidden rounded px-2 py-2 text-right font-400 text-3xs leading-3 md:py-5 md:text-sm md:leading-7 lg:text-base;
+    box-shadow: 0px 1px 2px 0px #00000026 inset;
+  
+}
+.message p {
+    @apply flex items-center justify-center overflow-hidden rounded px-2 py-5 text-right font-400 leading-7 xs:text-xs md:text-sm lg:text-base;
     box-shadow: 0px 1px 2px 0px #00000026 inset;
     line-height: 1.5rem;
 }
@@ -37,24 +29,11 @@
 .container {
     @apply flex w-full flex-col gap-y-6 overflow-x-hidden px-4 py-10 md:flex-row md:flex-wrap md:justify-between;
 }
-.questionPart {
-    @apply flex w-full flex-col gap-y-6 overflow-x-hidden bg-zinc-200 px-1 py-1 md:flex-row md:flex-wrap md:justify-between;
-}
 .listOfQuestions {
     @apply grid w-full grid-cols-1 gap-y-8 rounded md:grid-cols-2 md:justify-between;
 }
-.twoPartQuestion {
-    @apply flex justify-between w-full md:gap-16 xs:gap-4 bg-[#e4e4e4] p-[2px] xs:flex-col md:flex-row;
-}
-.onePartQuestion {
-    @apply md:grid md:grid-cols-2 md:gap-16 md:w-full bg-gray-e7 p-[2px];
-}
-.question {
-    @apply pl-5 font-700 leading-4 xs:text-xs md:text-sm;
-}
-.booleanFormItem {
-    @apply flex items-center justify-between rounded bg-white-light py-2 pl-4 pr-2 xs:w-full;
-}
+
+
 
 .booleanFormItem .radios {
     @apply flex xs:gap-2 lg:gap-10;

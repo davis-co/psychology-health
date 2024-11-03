@@ -76,14 +76,14 @@ export default function K6Test({
 
     return (
 
-        <FieldSet title={text.k6Test}>
+        <FieldSet title={text.k6Test} className='!p-2 md:p-5'>
             <div className={styles.listOfQuestions}>
                 <p className={styles.description}>{text.k6Description}</p>
                 {questionsK6.map((q) => (
                     <RadioOptions
                         key={q.key}
                         containerClassName="input-card w-full"
-                        className="item-center flex-auto p-1 font-700 text-[10px] leading-4 text-black xs:justify-between"
+                        className="item-center flex-auto p-1 font-700 text-3xs leading-4 text-black xs:justify-between md:text-2xs"
                         label={q.label}
                         labelClassName={"lg:!w-[300px]"}
                         questionKey={q.key}
@@ -95,10 +95,9 @@ export default function K6Test({
                     />
                 ))}
 
-                <section className="flex w-full flex-col flex-wrap items-center justify-between gap-2 rounded bg-[#e4e4e4] p-[2px]">
+                <section className={styles.resultBox}>
                     <div className="flex items-center justify-start gap-5 rounded bg-white-light pr-2 shadow-md xs:w-full md:mb-6 md:w-1/2 md:pt-[2px]">
                         <Label
-                            containerClassName=""
                             label={text.mentalAssessment}
                             required={true}
                             isError={!!errors[10435]}

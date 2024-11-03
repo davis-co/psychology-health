@@ -12,7 +12,7 @@
 }
 
 .intro {
-    @apply mb-0 text-justify text-sm text-black lg:text-md;
+    @apply mb-0 text-justify text-sm text-black lg:text-base;
 }
 
 .matchFormItem .question {
@@ -99,5 +99,5 @@
 }
 
 .next {
-    @apply w-[150px] md:text-md text-xs md:px-16 md:w-[250px] mt-6 mx-auto bg-white !min-h-10 border-green text-black lg:hover:bg-green lg:hover:border-green lg:hover:text-white;
+    @apply w-[150px] md:text-base text-xs md:px-16 md:w-[250px] mt-6 mx-auto bg-white !min-h-10 border-green text-black lg:hover:bg-green lg:hover:border-green lg:hover:text-white;
 }

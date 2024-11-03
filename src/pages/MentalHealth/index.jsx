@@ -46,9 +46,9 @@ export default function MentalHealth() {
         register("10437", {
             required: true,
         })
-       
+
     }, [register])
-   
+
     const [submitLoading, setSubmitLoading] = useState(false)
     const [openModal, setOpenModal] = useState(false)
     useEffect(() => {
@@ -75,21 +75,19 @@ export default function MentalHealth() {
     return (
         <>
             <form className={"form"} onSubmit={handleSubmit(onSubmit)}>
-                <main
-                    className={classNames(" py-2", styles.container)}
-                    id="formContainer"
-                >
+                <main className={classNames(" py-2", styles.container)}id="formContainer">
+
                     <section className={styles.titleSection}>
                         <p className={styles.description}>{text.description}</p>
                     </section>
+
                     <div
                         className={classNames(
                             styles.gridContainer,
-                            "pt-1 transition-all mb-3",
                             watch("10437")?.includes("1514109071882") ||
                                 watch("10437")?.includes("1514109106067") ||
                                 watch("10437")?.includes("10652")
-                                ? "bg-gray-e7 rounded-t px-1 pb-5 mb-0"
+                                ? "bg-gray-e7 rounded-t px-1 pb-3 md:pb-5 mb-0"
                                 : ""
                         )}
                     >
@@ -157,7 +155,7 @@ export default function MentalHealth() {
                             // required\
                             isError={!!errors[11892]}
 
-                        required={true}
+                            required={true}
 
                             errors={errors}
                             labelClassName={"lg:w-[220px]"}
@@ -179,7 +177,7 @@ export default function MentalHealth() {
                         ) : null}
                         {watch("11892") === "10361" ? (
                             <RadioOptions
-                            containerClassName="input-card"
+                                containerClassName="input-card"
                                 label={text.historyOfThinkingSuicideAttempts}
                                 options={yesNoQuestion}
                                 active={watch("10440")}
@@ -196,7 +194,7 @@ export default function MentalHealth() {
                         watch={watch}
                         register={register}
                         setValue={setValue}
-                        
+
                     />
 
                     <DomesticViolence
@@ -204,7 +202,7 @@ export default function MentalHealth() {
                         watch={watch}
                         register={register}
                         setValue={setValue}
-                        
+
                     />
                     <Button
                         className={styles.submit}
@@ -216,20 +214,12 @@ export default function MentalHealth() {
                 </main>
             </form>
             <Modal
-                    isOpen={openModal}
-                    onClose={() => setOpenModal(null)}
-                >
-                     <TextGuide text={text.alertSuicidalThoughts} />
-                </Modal>
-            {/* {openModal ? (
-                <Modal
-                    onClose={() => {
-                        setOpernModal(false)
-                    }}
-                >
-                    <TextGuide text={text.alertSuicidalThoughts} />
-                </Modal>
-            ) : null} */}
+                isOpen={openModal}
+                onClose={() => setOpenModal(null)}
+            >
+                <TextGuide text={text.alertSuicidalThoughts} />
+            </Modal>
+
         </>
     )
 }

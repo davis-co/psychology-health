@@ -6,7 +6,7 @@
             @apply bg-white text-black;
         }
         .input {
-            @apply w-full pl-8 pr-2 lg:py-1 text-2xs lg:text-sm border-none bg-white-light  text-black p-0 placeholder:text-tiny lg:placeholder:text-xs;
+            @apply w-full pl-8 pr-2 lg:py-1 text-2xs lg:text-sm border-none bg-white-light  text-black p-0 placeholder:text-2xs lg:placeholder:text-xs;
             &:focus,
             &:hover {
                 @apply outline-0 bg-white border-black text-black ring-0;
