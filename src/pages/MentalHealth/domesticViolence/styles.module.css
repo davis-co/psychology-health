@@ -20,17 +20,12 @@
     box-shadow: 0px 1px 2px 0px #00000026 inset;
   
 }
-.message p {
-    @apply flex items-center justify-center overflow-hidden rounded px-2 py-5 text-right font-400 leading-7 xs:text-xs md:text-sm lg:text-base;
-    box-shadow: 0px 1px 2px 0px #00000026 inset;
-    line-height: 1.5rem;
-}
 
 .container {
     @apply flex w-full flex-col gap-y-6 overflow-x-hidden px-4 py-10 md:flex-row md:flex-wrap md:justify-between;
 }
 .listOfQuestions {
-    @apply grid w-full grid-cols-1 gap-y-8 rounded md:grid-cols-2 md:justify-between;
+    @apply grid w-full grid-cols-1 gap-y-5 rounded md:grid-cols-2 md:justify-between md:gap-y-8;
 }
 
 .booleanFormItem .radios {

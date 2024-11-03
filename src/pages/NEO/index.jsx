@@ -100,7 +100,7 @@ export default function NEO() {
                         onFinishTime();
                     }}
                 />
-                <p className={styles.intro}>{text.description}</p>
+                <p className={styles.description}>{text.description}</p>
                 <FormSteps currentStep={startIndex / FORM_SIZE + 1} />
                 <div className={styles.questions}>
                     {questions

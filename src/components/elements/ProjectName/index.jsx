@@ -17,7 +17,7 @@ export default function PN({ name, back = true }) {
             <Button
               style="text"
               title="بازگشت"
-              className={"!z-20 gap-1 bg-white !px-0"}
+              className={"!z-20 gap-1 bg-white !px-0 !text-2xs md:!text-base"}
               onClick={() => navigate(-1)}
               icon={<FaAngleLeft />}
             />

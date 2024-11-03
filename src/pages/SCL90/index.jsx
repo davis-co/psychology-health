@@ -69,7 +69,7 @@ export default function SCL90() {
         <>
             <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
                 <div className={styles.container}>
-                <p className={styles.intro}>{text.description}</p>
+                <p className={styles.description}>{text.description}</p>
 
                     {questions.map((q, index) => (
                         <div className={styles.gridcontainer} key={q.label}>
@@ -91,7 +91,7 @@ export default function SCL90() {
                                 <div className="col-span-full">
                                     <RadioOptions
                                      labelClassName={
-                                        "md:!w-[50%] lg:!w-[50%]"
+                                        "md:!w-[50%] lg:!w-[50%] !text-2xs md:!text-sm"
                                     }
                                         // labelClassName={"lg:!w-[350px]"}
                                         label={q.label}

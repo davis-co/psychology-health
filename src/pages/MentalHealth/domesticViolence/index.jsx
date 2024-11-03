@@ -3,7 +3,8 @@ import React, {
   useState,
 } from 'react';
 
-import PDF from '@/assets/icons/PDF.svg';
+import { BsFiletypePdf } from 'react-icons/bs';
+
 import pdfDoc from '@/assets/multimedia/documents/violenceDoc.pdf';
 import {
   Label,
@@ -146,15 +147,16 @@ export default function DomesticViolence({
                         isError={!!errors[10435]}
                         labelClassName={"lg:w-[200px]"}
                     />
-                    <div className="flex cursor-pointer items-center justify-between gap-6 rounded border border-zinc-500 p-1">
+                    <div className="flex cursor-pointer items-center justify-center gap-3 rounded border border-zinc-500 p-1">
                         <span
-                            className="text-xs md:text-base"
+                            className="text-3xs md:text-sm"
                             onClick={() => setPdfContent(true)}
                         >
                             محتوای متنی
                         </span>
                         <span>
-                            <img src={PDF} />
+                        <BsFiletypePdf className="text-base md:text-lg" />
+                            {/* <img src={PDF} className='w-2' /> */}
                         </span>
                     </div>
                 </div>

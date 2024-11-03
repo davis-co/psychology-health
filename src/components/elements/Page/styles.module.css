@@ -8,7 +8,7 @@
 
 .main {
     /* @apply flex h-full w-full max-w-full flex-col justify-start overflow-hidden px-4 shadow-primary md:max-w-full; */
-    @apply mx-auto flex w-full flex-1 flex-col justify-start overflow-y-auto px-4 md:max-w-full;
+    @apply mx-auto flex w-full flex-1 flex-col justify-start overflow-y-auto px-1 md:max-w-full md:px-4;
 
     /* backdrop-filter: blur(3px); */
     /* background-color: linear-gradient(
