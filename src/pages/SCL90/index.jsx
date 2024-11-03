@@ -67,7 +67,7 @@ export default function SCL90() {
     }
     return (
         <>
-            <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+            <form className="form" onSubmit={handleSubmit(onSubmit)}>
                 <div className={styles.container}>
                 <p className={styles.description}>{text.description}</p>
 
