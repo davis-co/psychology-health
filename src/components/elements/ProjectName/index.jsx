@@ -9,7 +9,7 @@ export default function PN({ name, back = true }) {
   return (
     <div className={styles.container}>
       <div className="relative z-10 w-full">
-        <div className="z-30 mx-auto flex items-center gap-1 lg:max-w-[1054px]">
+        <div className="z-30 mx-auto flex items-center gap-1 lg:max-w-[1440px]">
           <span className={styles.rightLine}></span>
           <h1 className={styles.name}>{name}</h1>
           <span className={styles.leftLine}></span>
@@ -17,7 +17,7 @@ export default function PN({ name, back = true }) {
             <Button
               style="text"
               title="بازگشت"
-              className={"z-10 gap-1 bg-white px-1"}
+              className={"!z-30 gap-1 bg-white !px-0"}
               onClick={() => navigate(-1)}
               icon={<FaAngleLeft />}
             />

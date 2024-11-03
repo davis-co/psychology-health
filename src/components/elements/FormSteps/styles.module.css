@@ -1,5 +1,5 @@
 .mContainer {
-    @apply w-full  min-h-[40px] overflow-hidden sticky py-2 top-[46px] z-20 bg-white mb-5;
+    @apply w-full  min-h-[40px] overflow-hidden sticky py-2 top-[46px] z-20 bg-white mb-2;
     border-radius: 4px;
 }
 
@@ -28,7 +28,7 @@
 }
 
 .container {
-    @apply w-full items-center bg-white z-20 sticky py-1 top-[46px] mb-5;
+    @apply w-full items-center bg-white z-20 sticky py-1 top-[46px] mb-2;
 }
 
 .container button {

@@ -56,7 +56,6 @@ export default function MentalHealth() {
     }, [])
 
     const onSubmit = (data) => {
-        console.log(data)
         setSubmitLoading(true)
         submitForm(MH_JobId_Post, data, () =>
             fetchData(MH_JobId_Get, KEYS, setValue)
@@ -73,7 +72,6 @@ export default function MentalHealth() {
                 }, 1001)
             })
     }
-    // console.log(watch("10437"))
     return (
         <>
             <form className={"form"} onSubmit={handleSubmit(onSubmit)}>

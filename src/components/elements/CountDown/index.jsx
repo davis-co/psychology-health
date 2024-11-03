@@ -31,8 +31,8 @@ const CountdownTimer = ({ initialTime , onComplete }) => {
       const { days, hours, minutes, secs } = formatTime(timeLeft);
   
       return (
-          <div dir='ltr' className="sticky top-0 z-50 mt-8 grid auto-cols-max grid-flow-col gap-2 bg-white py-2 text-center">
-              
+        <div className='sticky top-0 z-20 flex w-full bg-white py-2'>
+            <div dir='ltr' className="grid auto-cols-max grid-flow-col gap-2 text-right">      
               <div className="flex flex-col">
                   <span className="font-mono countdown lg:text-3xl">
                       <span style={{ "--value": hours }}></span> :
@@ -49,6 +49,8 @@ const CountdownTimer = ({ initialTime , onComplete }) => {
                   </span>
               </div>
           </div>
+        </div>
+          
       );
   };
   

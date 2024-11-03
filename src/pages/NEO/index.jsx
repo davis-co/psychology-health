@@ -45,7 +45,7 @@ export default function NEO() {
     const [oldAnimation, setOldAnimation] = useState(false)
     const [newAnimation, setNewAnimation] = useState(false)
     const [submitLoading, setSubmitLoading] = useState(false)
-    const navigate =useNavigate() 
+    const navigate = useNavigate()
     const initialTime = 7200;
     const goToNext = (data) => {
         if (
@@ -68,98 +68,88 @@ export default function NEO() {
 
 
     const onSubmit = (data) => {
-        if(questions.length - startIndex != FORM_SIZE){
+        if (questions.length - startIndex != FORM_SIZE) {
             goToNext()
-        }else{
+        } else {
             setSubmitLoading(true)
-        submitForm(NEO_JobId_Post, data, () =>
-            fetchData(NEO_JobId_Get, KEYS, setValue)
-        )
-            .then(() => {
-                toast.success(successMessage)
-                navigate(-1)
-                
-            })
-            .catch((err) => {
-                console.log(err)
-            })
-            .finally(() => {
-                setTimeout(() => {
-                    setSubmitLoading(false)
-                }, 1001)
-            })
+            submitForm(NEO_JobId_Post, data, () =>
+                fetchData(NEO_JobId_Get, KEYS, setValue)
+            )
+                .then(() => {
+                    toast.success(successMessage)
+                    navigate(-1)
+
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+                .finally(() => {
+                    setTimeout(() => {
+                        setSubmitLoading(false)
+                    }, 1001)
+                })
         }
-        
+
     }
 
     return (
-        <>
-            <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-                <div className={classNames(styles.container, "px-7")} id="formContainer">
-                     <CountdownTimer
-                        initialTime={initialTime} 
-                        onComplete={() => {
-                            onFinishTime();
-                        }}
-                    />
-                    <p className={styles.intro}>{text.description}</p>
-                    <FormSteps currentStep={startIndex / FORM_SIZE + 1} />
-                    <div className={styles.questions}>
-                        {questions
-                            .slice(startIndex, startIndex + FORM_SIZE)
-                            .map((q, index) => (
+        <form className={'form'} onSubmit={handleSubmit(onSubmit)} id="formContainer">
+                <CountdownTimer
+                    initialTime={initialTime}
+                    onComplete={() => {
+                        onFinishTime();
+                    }}
+                />
+                <p className={styles.intro}>{text.description}</p>
+                <FormSteps currentStep={startIndex / FORM_SIZE + 1} />
+                <div className={styles.questions}>
+                    {questions
+                        .slice(startIndex, startIndex + FORM_SIZE)
+                        .map((q, index) => (
+                            <div
+                                className={classNames(
+                                    styles.gridcontainer,
+                                    // q.isBoolean ? styles.booleanFormItem : styles.matchFormItem,
+                                    oldAnimation ? styles.oldAnimation : "",
+                                    newAnimation ? styles.newAnimation : ""
+                                )}
+                                key={q.label}
+                            >
                                 <div
-                                    className={classNames(
-                                        styles.gridcontainer,
-                                        // q.isBoolean ? styles.booleanFormItem : styles.matchFormItem,
-                                        oldAnimation ? styles.oldAnimation : "",
-                                        newAnimation ? styles.newAnimation : ""
-                                    )}
-                                    key={q.label}
+                                    className={
+                                        q.isBoolean ? "" : "col-span-full"
+                                    }
                                 >
-                                    <div
-                                        className={
-                                            q.isBoolean ? "" : "col-span-full"
+                                    <RadioOptions
+                                        containerClassName="input-card animate-flipLeft"
+                                        label={q.label}
+                                        questionKey={q.key}
+                                        labelClassName={
+                                            "md:!w-[30%] lg:!w-[45%]"
                                         }
-                                    >
-                                        <RadioOptions
-                                            containerClassName="input-card animate-flipLeft"
-                                            label={q.label}
-                                            questionKey={q.key}
-                                            labelClassName={
-                                                "md:!w-[30%] lg:!w-[45%]"
-                                            }
-                                            required
-                                            isError={!!errors[q.key]}
-                                            active={watch(q.key)}
-                                            register={register}
-                                            options={
-                                                q.isBoolean
-                                                    ? booleanOptions
-                                                    : matchOptions
-                                            }
-                                        />
-                                    </div>
+                                        required
+                                        isError={!!errors[q.key]}
+                                        active={watch(q.key)}
+                                        register={register}
+                                        options={
+                                            q.isBoolean
+                                                ? booleanOptions
+                                                : matchOptions
+                                        }
+                                    />
                                 </div>
-                            ))}
-                    </div>
-                   
-                        <Button
-                            className={styles.next}
-                            title={questions.length - startIndex != FORM_SIZE ? text.next : text.submit}
-                            style="outlined"
-                            type='submit'
-                        />
-                    
+                            </div>
+                        ))}
                 </div>
-                {/* <Button
-          className={styles.submit}
-          title="ذخیره اطلاعات"
-          style="outlined"
-          type="submit"
-          loading={submitLoading}
-        /> */}
-            </form>
-        </>
+
+                <Button
+                    className={styles.next}
+                    title={questions.length - startIndex != FORM_SIZE ? text.next : text.submit}
+                    style="outlined"
+                    type='submit'
+                />
+
+        </form>
+
     )
 }
