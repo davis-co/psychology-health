@@ -1,13 +1,13 @@
-import { useState } from 'react';
+import { useState } from "react"
 
-import classNames from 'classnames';
-import { FaRegQuestionCircle } from 'react-icons/fa';
-import { LiaArchiveSolid } from 'react-icons/lia';
+import classNames from "classnames"
+import { FaRegQuestionCircle } from "react-icons/fa"
+import { LiaArchiveSolid } from "react-icons/lia"
 
-import ArchiveTable from '@/components/layouts/ArchiveTable';
+// import ArchiveTable from "@/components/layouts/ArchiveTable"
 
-import Modal from '../Modal';
-import styles from './styles.module.css';
+import Modal from "../Modal"
+import styles from "./styles.module.css"
 
 export default function Label({
     label,
@@ -30,14 +30,14 @@ export default function Label({
                     color
                 />
             ) : null}
-            {archive ? (
+            {/* {archive ? (
                 <LiaArchiveSolid
                     className="mx-0.5 inline min-h-[15px] min-w-[15px] cursor-pointer text-black transition-all hover:text-green md:min-h-[18px] md:min-w-[18px] lg:min-h-[22px] lg:min-w-[22px]"
                     onClick={() => setOpenArchive(true)}
                     strokeWidth={0.4}
                     title="آرشیو"
                 />
-            ) : null}
+            ) : null} */}
             <Modal
                 isOpen={openUserGuide || openArchives}
                 onClose={() => {

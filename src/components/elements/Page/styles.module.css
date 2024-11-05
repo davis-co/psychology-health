@@ -1,13 +1,10 @@
 .page {
     /* @apply flex flex-col w-full h-screen relative bg-[#FAFFFF]; */
     @apply relative flex h-screen w-full flex-col bg-white-light px-0;
-
     background: url(../../../assets/images/net.svg) no-repeat bottom;
     background-size: contain;
 }
 
 .main {
     @apply mx-auto flex w-full flex-1 flex-col justify-start overflow-y-auto px-1 md:max-w-full md:px-4;
-
-
 }

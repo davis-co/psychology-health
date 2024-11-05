@@ -1,32 +1,19 @@
-import React, {
-  useEffect,
-  useState,
-} from 'react';
+import React, { useEffect, useState } from "react"
 
-import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { useForm } from "react-hook-form"
+import { useNavigate } from "react-router-dom"
+import { toast } from "react-toastify"
 
-import {
-  Button,
-  RadioOptions,
-  TextField,
-} from '@/components/elements';
-import {
-  measureOptions,
-  successMessage,
-} from '@/constants/form';
-import {
-  SCL_JobId_Get,
-  SCL_JobId_Post,
-} from '@/constants/jobId';
-import { KEYS } from '@/constants/keys';
-import fetchData from '@/services/fetchData';
-import submitForm from '@/services/submitForm';
+import { Button, RadioOptions, TextField } from "@/components/elements"
+import { measureOptions, successMessage } from "@/constants/form"
+import { SCL_JobId_Get, SCL_JobId_Post } from "@/constants/jobId"
+import { KEYS } from "@/constants/keys"
+import fetchData from "@/services/fetchData"
+import submitForm from "@/services/submitForm"
 
-import { questions } from './data';
-import styles from './styles.module.css';
-import { text } from './text';
+import { questions } from "./data"
+import styles from "./styles.module.css"
+import { text } from "./text"
 
 export default function SCL90() {
     const {
@@ -40,7 +27,7 @@ export default function SCL90() {
     })
 
     const [submitLoading, setSubmitLoading] = useState(false)
-    const navigate =useNavigate() 
+    const navigate = useNavigate()
 
     useEffect(() => {
         fetchData(SCL_JobId_Get, KEYS, setValue)
@@ -69,12 +56,10 @@ export default function SCL90() {
         <>
             <form className="form" onSubmit={handleSubmit(onSubmit)}>
                 <div className={styles.container}>
-                <p className={styles.description}>{text.description}</p>
-
+                    <p className={styles.description}>{text.description}</p>
                     {questions.map((q, index) => (
                         <div className={styles.gridcontainer} key={q.label}>
                             {q.isPassword ? (
-                                
                                 <TextField
                                     containerClassName="input-card !flex-row items-center rounded p-3"
                                     className="!rounded-md lg:w-[60%]"
@@ -90,9 +75,9 @@ export default function SCL90() {
                             ) : (
                                 <div className="col-span-full">
                                     <RadioOptions
-                                     labelClassName={
-                                        "md:!w-[50%] lg:!w-[50%] !text-2xs md:!text-sm"
-                                    }
+                                        labelClassName={
+                                            "md:!w-[50%] lg:!w-[50%] !text-2xs md:!text-sm"
+                                        }
                                         // labelClassName={"lg:!w-[350px]"}
                                         label={q.label}
                                         containerClassName="input-card"
