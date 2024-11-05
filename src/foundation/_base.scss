@@ -55,7 +55,7 @@
 
 // submit
 .submit {
-    @apply w-full max-w-[18rem] md:w-[250px] mt-[2vh] lg:mt-[5vh] text-xs h-8 lg:text-sm lg:h-10 font-400 mx-auto hover:bg-green hover:text-white hover:border-green transition-all cursor-pointer;
+    @apply w-1/2 max-w-[18rem] md:w-[250px] mt-[2vh] lg:mt-[5vh] !text-xs h-8 lg:text-sm lg:h-10 font-400 mx-auto hover:bg-green hover:text-white hover:border-green transition-all cursor-pointer;
 }
 
 .add {
