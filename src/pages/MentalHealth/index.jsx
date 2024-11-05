@@ -14,6 +14,7 @@ import {
 } from '@/components/elements';
 import CheckBoxGroup from '@/components/elements/CheckBoxGroup';
 import RadioOptions from '@/components/elements/RadioOptions';
+import { mentalHealthDisOrder } from '@/constants/i18n';
 import {
   MH_JobId_Get,
   MH_JobId_Post,
@@ -24,7 +25,6 @@ import submitForm from '@/services/submitForm';
 
 import DomesticViolence from './domesticViolence';
 import {
-  mentalHealthDisOrder,
   text,
   yesNoQuestion,
 } from './i18n';
@@ -39,10 +39,10 @@ export default function MentalHealth() {
 
     useEffect(() => {
         register("10437", { required: true });
-        register("10438"); 
-        register("10441"); 
-        register("12504"); 
-        register("10440"); 
+        register("10438");
+        register("10441");
+        register("12504");
+        register("10440");
     }, [register]);
 
     useEffect(() => {
@@ -62,23 +62,23 @@ export default function MentalHealth() {
     };
 
     useEffect(() => {
-       
+
         if (!watch("10437")?.includes("10652")) {
-            setValue("10438", ""); 
+            setValue("10438", "");
         }
         if (!watch("10437")?.includes("1514109071882") && !watch("10437")?.includes("1514109106067")) {
-            setValue("10441", ""); 
+            setValue("10441", "");
         }
-        
+
     }, [watch("10437"), setValue]);
 
     useEffect(() => {
-         
+
         if (watch("11892") !== "10361") {
-            setValue("12504", ""); 
-            setValue("10440", ""); 
+            setValue("12504", "");
+            setValue("10440", "");
         }
-       
+
     }, [watch("11892"), setValue]);
 
     return (
@@ -92,8 +92,8 @@ export default function MentalHealth() {
                     <div className={classNames(
                         styles.gridContainer,
                         watch("10437")?.includes("1514109071882") ||
-                        watch("10437")?.includes("1514109106067") ||
-                        watch("10437")?.includes("10652") ? "bg-gray-e7 rounded-t px-1 pb-3 md:pb-5 mb-0" : ""
+                            watch("10437")?.includes("1514109106067") ||
+                            watch("10437")?.includes("10652") ? "bg-gray-e7 rounded-t px-1 pb-3 md:pb-5 mb-0" : ""
                     )}>
                         <CheckBoxGroup
                             questionKey="10437"
@@ -108,7 +108,7 @@ export default function MentalHealth() {
                             wrap
                         />
 
-                        {watch("10437")?.includes("10652")? (
+                        {watch("10437")?.includes("10652") ? (
                             <TextField
                                 containerClassName="input-card !flex-row items-center rounded p-3"
                                 className={"xs:w-[70%] md:w-[85%]"}
@@ -117,11 +117,10 @@ export default function MentalHealth() {
                                 errors={errors}
                                 questionKey="10438"
                                 register={register}
-                                value={watch("10438")}
                                 required
                                 watch={watch}
                             />
-                        ):null}
+                        ) : null}
 
                         {(watch("10437")?.includes("1514109071882") || watch("10437")?.includes("1514109106067")) ? (
                             <RadioOptions
@@ -133,13 +132,13 @@ export default function MentalHealth() {
                                 register={register}
                                 wrap={true}
                                 isError={!!errors[10441]}
-                                className={styles.questionBox}
-                                labelClassName={"lg:w-[220px]"}
+                                labelClassName="lg:ml-auto lg:max-w-[220px]"
+                                radioClassName="lg:max-w-[100px]"
                             />
-                        ):null}
+                        ) : null}
                     </div>
 
-                    <div className={classNames(styles.gridContainer, "pt-2 transition-all mb-3 px-1", watch("11892") === "10361" ? "bg-gray-e7 rounded-t pb-5 mb-0" : "")}>
+                    <div className={classNames(styles.gridContainer, watch("11892") === "10361" ? "bg-gray-e7 rounded-t pb-5 mb-0" : "")}>
                         <RadioOptions
                             containerClassName="input-card"
                             label={text.currentlyHavingSuicidalThoughts}
@@ -151,7 +150,8 @@ export default function MentalHealth() {
                             isError={!!errors[11892]}
                             required={true}
                             errors={errors}
-                            labelClassName={"lg:w-[220px]"}
+                            labelClassName="lg:ml-auto lg:max-w-[220px]"
+                            radioClassName="lg:max-w-[100px]"
                         />
 
                         {watch("11892") === "10361" ? (
@@ -164,7 +164,8 @@ export default function MentalHealth() {
                                     register={register}
                                     wrap={true}
                                     containerClassName="input-card"
-                                    labelClassName={"lg:w-[220px]"}
+                                    labelClassName="lg:ml-auto lg:max-w-[220px]"
+                                    radioClassName="lg:max-w-[100px]"
                                 />
                                 <RadioOptions
                                     containerClassName="input-card"
@@ -174,16 +175,17 @@ export default function MentalHealth() {
                                     questionKey={"10440"}
                                     register={register}
                                     wrap={true}
-                                    labelClassName={"lg:w-[220px]"}
+                                    labelClassName="lg:ml-auto lg:max-w-[220px]"
+                                    radioClassName="lg:max-w-[100px]"
                                 />
                             </>
-                        ):null}
+                        ) : null}
                     </div>
 
                     <K6Test errors={errors} watch={watch} register={register} setValue={setValue} />
                     <DomesticViolence errors={errors} watch={watch} register={register} setValue={setValue} />
 
-                    <Button className={styles.submit} title="ذخیره اطلاعات" style="outlined" type="submit" loading={submitLoading} />
+                    <Button className="submit" title="ذخیره اطلاعات" style="outlined" type="submit" loading={submitLoading} />
                 </main>
             </form>
             <Modal isOpen={openModal} onClose={() => setOpenModal(null)}>

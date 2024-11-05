@@ -1,19 +1,36 @@
-import React, { useEffect, useState } from "react"
+import React, {
+  useEffect,
+  useState,
+} from 'react';
 
-import { useForm } from "react-hook-form"
-import { useNavigate } from "react-router-dom"
-import { toast } from "react-toastify"
+import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
-import { Button, RadioOptions, TextField } from "@/components/elements"
-import { measureOptions, successMessage } from "@/constants/form"
-import { SCL_JobId_Get, SCL_JobId_Post } from "@/constants/jobId"
-import { KEYS } from "@/constants/keys"
-import fetchData from "@/services/fetchData"
-import submitForm from "@/services/submitForm"
+import {
+  Button,
+  RadioOptions,
+  TextField,
+} from '@/components/elements';
+import {
+  measureOptions,
+  successMessage,
+} from '@/constants/form';
+import {
+  SCL_JobId_Get,
+  SCL_JobId_Post,
+} from '@/constants/jobId';
+import {
+  KEYS,
+  SCL90_KEYS,
+} from '@/constants/keys';
+import useDevice from '@/hooks/useDevice';
+import fetchData from '@/services/fetchData';
+import submitForm from '@/services/submitForm';
 
-import { questions } from "./data"
-import styles from "./styles.module.css"
-import { text } from "./text"
+import { questions } from './data';
+import styles from './styles.module.css';
+import { text } from './text';
 
 export default function SCL90() {
     const {
@@ -28,9 +45,10 @@ export default function SCL90() {
 
     const [submitLoading, setSubmitLoading] = useState(false)
     const navigate = useNavigate()
+    const [device] = useDevice()
 
     useEffect(() => {
-        fetchData(SCL_JobId_Get, KEYS, setValue)
+        fetchData(SCL_JobId_Get, SCL90_KEYS, setValue)
         // .finally(() => setFetchLoading(false))
     }, [])
 
@@ -75,12 +93,15 @@ export default function SCL90() {
                             ) : (
                                 <div className="col-span-full">
                                     <RadioOptions
+                                        containerClassName="input-card animate-flipLeft !flex-col !gap-1 md:!flex-row"
                                         labelClassName={
-                                            "md:!w-[50%] lg:!w-[50%] !text-2xs md:!text-sm"
+                                            "text-center md:text-right md:!w-[30%] lg:!w-[35%] xl:!w-[40%] sm:ml-5"
                                         }
-                                        // labelClassName={"lg:!w-[350px]"}
+                                        optionsContainer="flex-wrap justify-center"
+                                        radioClassName="!mr-0 !max-w-[33%] flex-1"
                                         label={q.label}
-                                        containerClassName="input-card"
+                                        divider={device=="mobile"}
+
                                         options={measureOptions}
                                         questionKey={q.key}
                                         active={watch(q.key)}
@@ -93,7 +114,7 @@ export default function SCL90() {
                     ))}
                 </div>
                 <Button
-                    className={styles.submit}
+                    className="submit"
                     title="ذخیره اطلاعات"
                     style="outlined"
                     type="submit"

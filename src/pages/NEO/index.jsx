@@ -22,6 +22,7 @@ import {
   NEO_JobId_Post,
 } from '@/constants/jobId';
 import { KEYS } from '@/constants/keys';
+import useDevice from '@/hooks/useDevice';
 import fetchData from '@/services/fetchData';
 import submitForm from '@/services/submitForm';
 
@@ -46,6 +47,7 @@ export default function NEO() {
     const [newAnimation, setNewAnimation] = useState(false)
     const [submitLoading, setSubmitLoading] = useState(false)
     const navigate = useNavigate()
+    const [device] = useDevice()
     const initialTime = 7200;
     const goToNext = (data) => {
         if (
@@ -121,13 +123,14 @@ export default function NEO() {
                                     }
                                 >
                                     <RadioOptions
-                                        containerClassName="input-card animate-flipLeft"
+                                        containerClassName="input-card animate-flipLeft !flex-col !gap-1 md:!flex-row"
                                         label={q.label}
                                         questionKey={q.key}
-                                        labelClassName={
-                                            "md:!w-[30%] lg:!w-[45%]"
-                                        }
+                                        labelClassName={"text-center sm:ml-5 md:!w-[30%] md:text-right lg:!w-[35%] xl:!w-[40%]"}
+                                        optionsContainer="flex-wrap justify-center"
+                                        radioClassName="!mr-0 !max-w-[33%] flex-1"
                                         required
+                                        divider={device=="mobile"}
                                         isError={!!errors[q.key]}
                                         active={watch(q.key)}
                                         register={register}
@@ -143,7 +146,7 @@ export default function NEO() {
                 </div>
 
                 <Button
-                    className={styles.next}
+                    className="submit"
                     title={questions.length - startIndex != FORM_SIZE ? text.next : text.submit}
                     style="outlined"
                     type='submit'

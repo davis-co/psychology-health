@@ -87,6 +87,9 @@ export default {
             flipBottom: "flipBottom 0.5s"
         },
       },
+      daisyui: {
+        themes: false,
+      },
       
   },
   // eslint-disable-next-line no-undef

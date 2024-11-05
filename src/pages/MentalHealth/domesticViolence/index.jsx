@@ -13,6 +13,7 @@ import {
   RadioOptions,
 } from '@/components/elements';
 import FieldSet from '@/components/elements/FieldSet';
+import useDevice from '@/hooks/useDevice';
 import { debounce } from '@/utils/helpers';
 
 import { yesNoQuestion } from '../i18n';
@@ -36,6 +37,9 @@ export default function DomesticViolence({
     const [iconCalc, setIconCalc] = useState(false)
     const [pdfContent, setPdfContent] = useState(false)
     const [pointDomestic, setPointDomestic] = useState(0)
+    const [downloadBtn, setDownloadBtn] = useState(true)
+    const [device] = useDevice()
+
 
     const scoreMap = {
         10428: 4,
@@ -63,6 +67,22 @@ export default function DomesticViolence({
         calcTotalScore();
     }, [watchedValues]);
 
+      const downloadBtnHandle = () => {
+        const pdfUrl = pdfDoc
+        const link = document.createElement("a")
+        link.href = pdfUrl
+        link.download = "document.pdf" // specify the filename
+        document.body.appendChild(link)
+        link.click()
+        document.body.removeChild(link)
+      }
+      const handelContentPdf=()=>{
+        if(device!=="desktop"){
+          downloadBtnHandle()
+        }else{
+            setPdfContent(true)
+        }
+      }
     const generalData = [
         { name: "level1", value: { min: 0, max: 5 }, color: "#86efac" },
         { name: "level2", value: { min: 5.1, max: 10 }, color: "#16a34a" },
@@ -86,7 +106,7 @@ export default function DomesticViolence({
                             label={q.label}
                             questionKey={q.key}
                             required={true}
-                            containerClassName="input-card w-full"
+                            containerClassName="input-card"
                             options={radioFiveMentalHealth}
                             register={register}
                             active={watch(q.key)}
@@ -107,7 +127,7 @@ export default function DomesticViolence({
                     <div className="flex flex-1 items-center justify-center gap-2">
 
 
-                        <Label label={userData.value} />
+                        {/* <Label label={userData.value} /> */}
                         <div className="flex-1">
                             <ProgressChart
                                 generalData={generalData}
@@ -150,7 +170,7 @@ export default function DomesticViolence({
                     <div className="flex cursor-pointer items-center justify-center gap-3 rounded border border-zinc-500 p-1">
                         <span
                             className="text-3xs md:text-sm"
-                            onClick={() => setPdfContent(true)}
+                            onClick={handelContentPdf }
                         >
                             محتوای متنی
                         </span>
@@ -167,12 +187,12 @@ export default function DomesticViolence({
                 containerClassName="h-full w-full"
                 onClose={() => setPdfContent(false)}>
                     <section className="mb-6 mt-4 h-full bg-slate-700 text-white">
-                        <object
-                            data={pdfDoc}
+                    <iframe
+                            src={"https://nse2.salamatehr.ir/LFFO/?fid=11930&0.646200249523935"}
                             type="application/pdf"
                             width="100%"
                             height="100%"
-                        ></object>
+                        ></iframe>
                     </section>
                 </Modal>
 

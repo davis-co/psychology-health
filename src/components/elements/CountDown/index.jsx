@@ -31,7 +31,7 @@ const CountdownTimer = ({ initialTime , onComplete }) => {
       const { days, hours, minutes, secs } = formatTime(timeLeft);
   
       return (
-        <div className='sticky top-3 z-30 flex w-full lg:top-3'>
+        <div className='sticky top-3 z-30 flex w-fit lg:top-3'>
             <div dir='ltr' className="grid auto-cols-max grid-flow-col gap-2 text-right">      
               <div className="flex flex-col">
                   <span className="font-mono countdown lg:text-3xl">

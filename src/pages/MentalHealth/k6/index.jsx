@@ -76,9 +76,9 @@ export default function K6Test({
 
     return (
 
-        <FieldSet title={text.k6Test} className='!p-2 md:p-5'>
+        <FieldSet title={text.k6Test} >
             <div className={styles.listOfQuestions}>
-                <p className={styles.description}>{text.k6Description}</p>
+                <p className={"text-description"}>{text.k6Description}</p>
                 {questionsK6.map((q) => (
                     <RadioOptions
                         key={q.key}
@@ -103,7 +103,6 @@ export default function K6Test({
                             isError={!!errors[10435]}
                         />
                         <div className="relative flex flex-1 items-center justify-center gap-2 p-2">
-                            <Label label={watch("10435") || ""} />
                             <div className="flex-1">
                                 <ProgressChart
                                     generalData={generalData}
