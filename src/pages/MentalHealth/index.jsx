@@ -111,7 +111,7 @@ export default function MentalHealth() {
                         {watch("10437")?.includes("10652") ? (
                             <TextField
                                 containerClassName="input-card !flex-row items-center rounded p-3"
-                                className={"xs:w-[70%] md:w-[85%]"}
+                                className={" w-[70%] md:w-[85%]"}
                                 labelClassName="w-[170px]"
                                 label={text.typeOfMentalDisease + ":"}
                                 errors={errors}

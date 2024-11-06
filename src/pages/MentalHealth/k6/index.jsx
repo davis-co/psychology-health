@@ -83,7 +83,7 @@ export default function K6Test({
                     <RadioOptions
                         key={q.key}
                         containerClassName="input-card w-full"
-                        className="item-center flex-auto p-1 font-700 text-3xs leading-4 text-black xs:justify-between md:text-2xs"
+                        className="item-center flex-auto p-1 font-700 text-3xs leading-4 text-black  justify-between md:text-2xs"
                         label={q.label}
                         labelClassName={"lg:!w-[300px]"}
                         questionKey={q.key}
