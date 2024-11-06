@@ -7,7 +7,7 @@ export default {
       },
       extend: {
           screens: {
-                "320px", // Extra Small devices
+              xs: "320px", // Extra Small devices
               sm: "480px", // Small devices
               md: "768px", // Medium devices
               lg: "1024px", // Large devices
@@ -58,7 +58,7 @@ export default {
           fontSize: {
               "3xs":"0.5rem", //8px
               "2xs": "0.65rem", //10px
-                "0.75rem", //12px
+              xs: "0.75rem", //12px
               sm:"0.875rem", //14px
               base:"16px",
               lg: "1.125rem",//18px
