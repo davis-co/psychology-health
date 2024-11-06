@@ -96,7 +96,7 @@ export default function K6Test({
                 ))}
 
                 <section className={styles.resultBox}>
-                    <div className="flex items-center justify-start gap-5 rounded bg-white-light pr-2 shadow-md xs:w-full md:mb-6 md:w-1/2 md:pt-[2px]">
+                    <div className="flex w-full items-center justify-start gap-5 rounded bg-white-light pr-2 shadow-md md:mb-6 md:w-1/2 md:pt-[2px]">
                         <Label
                             label={text.mentalAssessment}
                             required={true}
