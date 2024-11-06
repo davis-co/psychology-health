@@ -79,11 +79,13 @@ export default function SCL90() {
                         <div className={styles.gridcontainer} key={q.label}>
                             {q.isPassword ? (
                                 <TextField
-                                    containerClassName="input-card !flex-row items-center rounded p-3"
+                                    containerClassName="input-card !flex-col items-center rounded p-3 md:!flex-row"
                                     className="!rounded-md lg:w-[60%]"
                                     type="password"
                                     label={q.label}
                                     required
+                                    divider={device=="mobile"}
+
                                     questionKey={q.key}
                                     errors={errors}
                                     register={register}

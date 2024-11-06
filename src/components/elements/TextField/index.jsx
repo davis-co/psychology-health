@@ -6,6 +6,7 @@ import { BsPencilSquare } from 'react-icons/bs';
 
 import { i18n } from '@/constants/i18n';
 
+import Divider from '../Divider';
 import Label from '../Label';
 import styles from './styles.module.scss';
 
@@ -16,6 +17,7 @@ const TextField = ({
     icon,
     userGuide,
     archive,
+    divider,
     labelClassName,
     questionKey,
     required,
@@ -46,6 +48,8 @@ const TextField = ({
                     required={required}
                 />
             ) : null}
+                {divider? <Divider/> : null}
+
             <div
                 className={classNames(
                     isFocused
