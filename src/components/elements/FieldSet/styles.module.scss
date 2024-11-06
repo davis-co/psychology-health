@@ -1,6 +1,6 @@
 // done
 .fieldset {
-    @apply rounded-lg px-4 py-4 lg:px-8 lg:py-6;
+    @apply rounded-lg px-1 sm:px-4 py-4 lg:px-8 lg:py-6;
     border: 0.5px solid transparent;
     background: linear-gradient(white, white) padding-box,
         linear-gradient(180deg, #727272, white) border-box;
