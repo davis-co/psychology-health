@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import classNames from 'classnames';
 import { useForm } from 'react-hook-form';
@@ -21,7 +21,7 @@ import {
   NEO_JobId_Get,
   NEO_JobId_Post,
 } from '@/constants/jobId';
-import { KEYS } from '@/constants/keys';
+import { KEYS, NEO_KEYS } from '@/constants/keys';
 import useDevice from '@/hooks/useDevice';
 import fetchData from '@/services/fetchData';
 import submitForm from '@/services/submitForm';
@@ -49,6 +49,12 @@ export default function NEO() {
     const navigate = useNavigate()
     const [device] = useDevice()
     const initialTime = 7200;
+
+      useEffect(() => {
+            fetchData(NEO_JobId_Get, NEO_KEYS, setValue)
+            // .finally(() => setFetchLoading(false))
+        }, [])
+    
     const goToNext = (data) => {
         if (
             questions
@@ -123,9 +129,9 @@ export default function NEO() {
                                     }
                                 >
                                     <RadioOptions
-                                        containerClassName="input-card animate-flipLeft !flex-col !gap-1 md:!flex-row"
                                         label={q.label}
                                         questionKey={q.key}
+                                        containerClassName="input-card animate-flipLeft !flex-col !gap-1 md:!flex-row"
                                         labelClassName={"text-center sm:ml-5 md:!w-[30%] md:text-right lg:!w-[35%] xl:!w-[40%]"}
                                         optionsContainer="flex-wrap justify-center"
                                         radioClassName="!mr-0 !max-w-[33%] flex-1"

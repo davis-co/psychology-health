@@ -1,5 +1,5 @@
 .container {
-    @apply flex flex-col w-[1440px]  overflow-y-auto h-full px-4 overflow-x-hidden pb-[10vh];
+    @apply flex flex-col   overflow-y-auto h-full px-4 overflow-x-hidden pb-[10vh];
 }
 .form {
     @apply overflow-y-hidden  py-2 md:py-0;

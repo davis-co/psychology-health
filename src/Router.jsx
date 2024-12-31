@@ -15,7 +15,7 @@ function AppRouter() {
   // const fetchDetails = useDetailsStore((state) => state.fetchDetails)
 
   useEffect(() => {
-    checkToken("development", (val) => setIsAuthorized(val))
+    checkToken("production", (val) => setIsAuthorized(val))
     return () => {
       window.removeEventListener("message", (e) =>
         handlePostMessage(e, (val) => setIsAuthorized(val))

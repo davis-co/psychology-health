@@ -106,12 +106,16 @@ export default function DomesticViolence({
                             label={q.label}
                             questionKey={q.key}
                             required={true}
-                            containerClassName="input-card"
+                            
                             options={radioFiveMentalHealth}
                             register={register}
                             active={watch(q.key)}
                             isError={!!errors[q.key]}
-                            labelClassName={"lg:!w-[300px]"}
+                            divider={device == "mobile"}
+                            containerClassName="input-card animate-flipLeft !flex-col !gap-1 md:!flex-row"
+                            labelClassName={"text-center sm:ml-5 md:!w-[30%] md:text-right lg:!w-[35%] xl:!w-[40%]"}
+                            optionsContainer="flex-wrap justify-center"
+                            radioClassName="!mr-0 !max-w-[33%] flex-1"
 
                         />
                     </div>
@@ -140,10 +144,13 @@ export default function DomesticViolence({
                     label={text.willingnessReceiveSpecializedServices}
                     options={yesNoQuestion}
                     questionKey={"10667"}
-                    containerClassName={'input-card'}
                     active={watch("10667")}
-                    labelClassName={"lg:w-[50%]"}
                     register={register}
+                    divider={device == "mobile"}
+                    containerClassName="input-card animate-flipLeft !flex-col md:!flex-row"
+                    optionsContainer={"!flex w-full !justify-between"}
+                    labelClassName="lg:ml-auto lg:max-w-[220px]"
+                    radioClassName="lg:max-w-[100px] max-w-[20%]"
                 />
                 <div className="col-span-full">
                     {pointDomestic > 4 && pointDomestic <= 10 ? (
