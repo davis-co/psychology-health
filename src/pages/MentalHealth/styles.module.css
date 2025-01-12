@@ -1,17 +1,15 @@
-
-.titleSection{
+.titleSection {
   @apply mb-1 font-700 text-base;
 }
 
 .description {
-  @apply  px-2 text-justify font-400 text-2xs leading-4 md:font-600 md:text-xs md:leading-5 lg:text-sm lg:leading-7;
- 
+  @apply px-2 text-justify font-400 text-2xs leading-4 md:font-600 md:text-xs md:leading-5 lg:text-sm lg:leading-7;
 }
 .container {
   @apply grid w-full gap-y-3 overflow-x-hidden md:justify-between lg:gap-y-6;
 }
-.chekboxPart{ 
-  @apply col-span-full rounded flex items-center py-3 px-2 justify-between flex-wrap gap-2 bg-white-light 
+.chekboxPart {
+  @apply col-span-full rounded flex items-center py-3 px-2 justify-between flex-wrap gap-2;
 }
 
 .gridContainer {

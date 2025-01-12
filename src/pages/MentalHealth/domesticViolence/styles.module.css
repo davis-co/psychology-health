@@ -1,36 +1,32 @@
-
 .description {
-    @apply text-right font-600 text-2xs leading-4 md:text-2xs md:leading-5 lg:text-sm lg:leading-7;
-   
-  }
-
+  @apply text-right font-600 text-2xs leading-4 md:text-2xs md:leading-5 lg:text-sm lg:leading-7;
+}
 
 /* #F7F7F7 */
 .mentalDisorder {
-    background-color: #e4e4e4;
+  background-color: #e4e4e4;
 }
 .calBtn {
-    @apply md:text-sm  text-xs bg-transparent border border-gray-400 text-gray-500 w-[38px] h-[20px] rounded;
+  @apply md:text-sm  text-xs bg-transparent border border-gray-400 text-gray-500 w-[38px] h-[20px] rounded;
 }
 .message {
-    @apply relative w-full rounded border-4 border-white-light text-black; 
+  @apply relative w-full rounded border-4 text-black;
 }
 .message p {
-    @apply flex items-center justify-center overflow-hidden rounded px-2 py-2 text-right font-400 text-3xs leading-3 md:py-5 md:text-sm md:leading-7 lg:text-base;
-    box-shadow: 0px 1px 2px 0px #00000026 inset;
-  
+  @apply flex items-center justify-center overflow-hidden rounded px-2 py-2 text-right font-400 text-3xs leading-3 md:py-5 md:text-sm md:leading-7 lg:text-base;
+  box-shadow: 0px 1px 2px 0px #00000026 inset;
 }
 
 .container {
-    @apply flex w-full flex-col gap-y-6 overflow-x-hidden px-4 py-10 md:flex-row md:flex-wrap md:justify-between;
+  @apply flex w-full flex-col gap-y-6 overflow-x-hidden px-4 py-10 md:flex-row md:flex-wrap md:justify-between;
 }
 .listOfQuestions {
-    @apply grid w-full grid-cols-1 gap-y-5 rounded md:grid-cols-2 md:justify-between md:gap-y-8;
+  @apply grid w-full grid-cols-1 gap-y-5 rounded;
 }
 
 .booleanFormItem .radios {
-    @apply flex  gap-2 lg:gap-10;
+  @apply flex  gap-2 lg:gap-10;
 }
 .gridcontainer {
-    @apply col-span-full grid w-full grid-cols-1 gap-6 rounded bg-gray-e7 p-1 md:grid-cols-2;
+  @apply col-span-full grid w-full grid-cols-1 gap-6 rounded bg-gray-e7 p-1 md:grid-cols-2;
 }

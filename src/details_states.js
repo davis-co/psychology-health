@@ -1,34 +1,34 @@
-import { create } from "zustand"
-import { MFD_And_MFS_JobId_Get } from "./constants/jobId"
-import { smartRequest } from "./services"
-import { toast } from "react-toastify"
+import { create } from "zustand";
+import { MFD_And_MFS_JobId_Get } from "./constants/jobId";
+import { request } from "./services";
+import { toast } from "react-toastify";
 
 const detailsStore = (set, get) => ({
-    details: {},
-    fetchLoading: false,
-    fetchDetails: async () => {
+  details: {},
+  fetchLoading: false,
+  fetchDetails: async () => {
+    set(() => ({
+      fetchLoading: true,
+    }));
+    await request({ jobId: MFD_And_MFS_JobId_Get })
+      .then((res) => {
+        if (!res.error) {
+          set(() => ({
+            details: res.data,
+          }));
+        } else {
+          toast.error("خطای دریافت اطلاعات");
+        }
+      })
+      .catch((err) => console.log(err))
+      .finally(() =>
         set(() => ({
-            fetchLoading: true,
+          fetchLoading: false,
         }))
-        await smartRequest(MFD_And_MFS_JobId_Get)
-            .then((res) => {
-                if (!res.error) {
-                    set(() => ({
-                        details: res.data,
-                    }))
-                } else {
-                    toast.error("خطای دریافت اطلاعات")
-                }
-            })
-            .catch((err) => console.log(err))
-            .finally(() =>
-                set(() => ({
-                    fetchLoading: false,
-                }))
-            )
-    },
-})
+      );
+  },
+});
 
-const useDetailsStore = create(detailsStore)
+const useDetailsStore = create(detailsStore);
 
-export default useDetailsStore
+export default useDetailsStore;

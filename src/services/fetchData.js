@@ -1,12 +1,12 @@
-import { smartRequest } from './';
+import { request } from "./";
 
 export default async function fetchData(
-    jobId = "",
-    keys = [],
-    setValue = () => {}
+  jobId = "",
+  keys = [],
+  setValue = () => {}
 ) {
-    const response = await smartRequest(jobId)
-    const data = response.data
-    keys.forEach((key) => setValue(String(key), data[String(key)]))
-    return
+  const response = await request({ jobId: jobId });
+  const data = response.data;
+  keys.forEach((key) => setValue(String(key), data[String(key)]));
+  return;
 }

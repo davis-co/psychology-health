@@ -1,87 +1,88 @@
-import React, { useEffect, useState } from "react"
-
-import classNames from "classnames"
-import { useForm } from "react-hook-form"
-import { toast } from "react-toastify"
-
-import { Button, Modal, TextField } from "@/components/elements"
-import CheckBoxGroup from "@/components/elements/CheckBoxGroup"
-import RadioOptions from "@/components/elements/RadioOptions"
-import { mentalHealthDisOrder } from "@/constants/i18n"
-import { MH_JobId_Get, MH_JobId_Post } from "@/constants/jobId"
-import { KEYS } from "@/constants/keys"
-import fetchData from "@/services/fetchData"
-import submitForm from "@/services/submitForm"
-
-import DomesticViolence from "./domesticViolence"
-import { text, yesNoQuestion } from "./i18n"
-import K6Test from "./k6"
-import styles from "./styles.module.css"
-import TextGuide from "./TextGuide"
-import useDevice from "@/hooks/useDevice"
+import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import classNames from "classnames";
+import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
+import {
+  Button,
+  Modal,
+  TextField,
+  CheckBoxGroup,
+  RadioOptions,
+  Page,
+} from "react-elements-davis";
+import { mentalHealthDisOrder } from "@/constants/i18n";
+import { MH_JobId_Get, MH_JobId_Post } from "@/constants/jobId";
+import { KEYS } from "@/constants/keys";
+import fetchData from "@/services/fetchData";
+import submitForm from "@/services/submitForm";
+import DomesticViolence from "./domesticViolence";
+import { text, yesNoQuestion } from "./i18n";
+import K6Test from "./k6";
+import styles from "./styles.module.css";
+import TextGuide from "./TextGuide";
+import useDevice from "@/hooks/useDevice";
 
 export default function MentalHealth() {
-  const [device] = useDevice()
+  const [device] = useDevice();
+  const navigate = useNavigate();
   const {
     watch,
     register,
     setValue,
     handleSubmit,
-    formState: { errors },
-  } = useForm({ mode: "all" })
-  const [submitLoading, setSubmitLoading] = useState(false)
-  const [openModal, setOpenModal] = useState(false)
+    formState: { errors, isSubmitting },
+  } = useForm({ mode: "all" });
+  const [openModal, setOpenModal] = useState(false);
 
   useEffect(() => {
-    register("10437", { required: true })
-    register("10438")
-    register("10441")
-    register("12504")
-    register("10440")
-  }, [register])
+    register("10437", { required: true });
+    register("10438");
+    register("10441");
+    register("12504");
+    register("10440");
+  }, [register]);
 
   useEffect(() => {
-    fetchData(MH_JobId_Get, KEYS, setValue)
-  }, [])
+    fetchData(MH_JobId_Get, KEYS, setValue);
+  }, []);
 
   const onSubmit = async (data) => {
-    setSubmitLoading(true)
     try {
+      console.log(data);
       await submitForm(MH_JobId_Post, data, () =>
         fetchData(MH_JobId_Get, KEYS, setValue)
-      )
-      toast.success("اطلاعات با موفقیت ذخیره شد.")
+      );
+      toast.success("اطلاعات با موفقیت ذخیره شد.");
     } catch (err) {
-      console.error(err)
-    } finally {
-      setTimeout(() => setSubmitLoading(false), 1001)
+      console.error(err);
     }
-  }
+  };
 
   useEffect(() => {
     if (!watch("10437")?.includes("10652")) {
-      setValue("10438", "")
+      setValue("10438", "");
     }
     if (
       !watch("10437")?.includes("1514109071882") &&
       !watch("10437")?.includes("1514109106067")
     ) {
-      setValue("10441", "")
+      setValue("10441", "");
     }
-  }, [watch("10437"), setValue])
+  }, [watch("10437"), setValue]);
 
   useEffect(() => {
     if (watch("11892") !== "10361") {
-      setValue("12504", "")
-      setValue("10440", "")
+      setValue("12504", "");
+      setValue("10440", "");
     }
-  }, [watch("11892"), setValue])
+  }, [watch("11892"), setValue]);
 
   return (
-    <>
+    <Page navigate={navigate} back>
       <form className={"form"} onSubmit={handleSubmit(onSubmit)}>
         <main
-          className={classNames("py-2", styles.container)}
+          className={classNames("py-2 ", styles.container)}
           id="formContainer"
         >
           <section className={styles.titleSection}>
@@ -90,7 +91,7 @@ export default function MentalHealth() {
 
           <div
             className={classNames(
-              styles.gridContainer,
+              "grid md:grid-cols-2 lg:grid-cols-3 gap-x-[5vw] gap-y-4 lg:gap-y-6",
               watch("10437")?.includes("1514109071882") ||
                 watch("10437")?.includes("1514109106067") ||
                 watch("10437")?.includes("10652")
@@ -99,13 +100,14 @@ export default function MentalHealth() {
             )}
           >
             <CheckBoxGroup
-              questionKey="10437"
-              labelClassName={"min-w-fit"}
-              containerClassName="input-card col-span-full"
+              questionKey={"10437"}
+              containerClassName="col-span-full gap-1"
               label={text.mentalDisorder}
+              checkBoxClassName="md:!min-w-[20%] !min-w-[48%]"
               options={mentalHealthDisOrder}
               errors={errors}
               watch={watch}
+              register={register}
               setValue={setValue}
               required
               wrap
@@ -113,15 +115,15 @@ export default function MentalHealth() {
 
             {watch("10437")?.includes("10652") ? (
               <TextField
-                containerClassName="input-card !flex-row items-center rounded p-3"
-                className={" w-[70%] md:w-[85%]"}
-                labelClassName="w-[170px]"
+                labelClassName="lg:!text-[11px] xl:!text-sm"
+                containerClassName="gap-1"
                 label={text.typeOfMentalDisease + ":"}
                 errors={errors}
                 questionKey="10438"
                 register={register}
                 required
                 watch={watch}
+                //divider={device == "mobile"}
               />
             ) : null}
 
@@ -134,20 +136,21 @@ export default function MentalHealth() {
                 questionKey={"10441"}
                 register={register}
                 wrap={true}
-                divider={device == "mobile"}
+                //divider={device == "mobile"}
+                errors={errors}
                 isError={!!errors[10441]}
-                containerClassName="input-card animate-flipLeft !flex-col md:!flex-row"
-                optionsContainer={"!flex w-full !justify-between"}
-                labelClassName="lg:ml-auto lg:max-w-[220px]"
-                radioClassName="lg:max-w-[100px] max-w-[20%]"
+                optionsContainer={"radioOptions-boolean-optionsContainer"}
+                radioClassName="radioOptions-boolean-radio"
+                labelClassName="lg:!text-[11px] xl:!text-sm"
+                containerClassName="gap-1"
               />
             ) : null}
           </div>
 
           <div
             className={classNames(
-              styles.gridContainer,
-              watch("11892") === "10361" ? "bg-gray-e7 rounded-t pb-5 mb-0" : ""
+              "grid md:grid-cols-2 lg:grid-cols-3 gap-x-[5vw] gap-y-4 lg:gap-y-6",
+              watch("11892") === "10361" ? "bg-gray-e7 rounded-t py-2 mb-0" : ""
             )}
           >
             <RadioOptions
@@ -160,11 +163,11 @@ export default function MentalHealth() {
               isError={!!errors[11892]}
               required={true}
               errors={errors}
-              divider={device == "mobile"}
-              containerClassName="input-card animate-flipLeft !flex-col md:!flex-row"
-              optionsContainer={"!flex w-full !justify-between"}
-              labelClassName="lg:ml-auto lg:max-w-[220px]"
-              radioClassName="lg:max-w-[100px] max-w-[20%]"
+              //divider={device == "mobile"}
+              optionsContainer={"radioOptions-boolean-optionsContainer"}
+              radioClassName="radioOptions-boolean-radio"
+              labelClassName="lg:!text-[11px] xl:!text-sm"
+              containerClassName="gap-1"
             />
 
             {watch("11892") === "10361" ? (
@@ -176,25 +179,26 @@ export default function MentalHealth() {
                   questionKey={"12504"}
                   register={register}
                   wrap={true}
-                  divider={device == "mobile"}
-                  containerClassName="input-card animate-flipLeft !flex-col md:!flex-row"
-                  optionsContainer={"!flex w-full !justify-between"}
-                  labelClassName="lg:ml-auto lg:max-w-[220px]"
-                  radioClassName="lg:max-w-[100px] max-w-[20%]"
+                  errors={errors}
+                  //divider={device == "mobile"}
+                  optionsContainer={"radioOptions-boolean-optionsContainer"}
+                  radioClassName="radioOptions-boolean-radio"
+                  labelClassName="lg:!text-[11px] xl:!text-sm"
+                  containerClassName="gap-1"
                 />
                 <RadioOptions
-                 
                   label={text.historyOfThinkingSuicideAttempts}
                   options={yesNoQuestion}
                   active={watch("10440")}
                   questionKey={"10440"}
                   register={register}
                   wrap={true}
-                  divider={device == "mobile"}
-                  containerClassName="input-card animate-flipLeft !flex-col md:!flex-row"
-                  optionsContainer={"!flex w-full !justify-between"}
-                  labelClassName="lg:ml-auto lg:max-w-[220px]"
-                  radioClassName="lg:max-w-[100px] max-w-[20%]"
+                  errors={errors}
+                  //divider={device == "mobile"}
+                  optionsContainer={"radioOptions-boolean-optionsContainer"}
+                  radioClassName="radioOptions-boolean-radio"
+                  labelClassName="lg:!text-[11px] xl:!text-sm"
+                  containerClassName="gap-1"
                 />
               </>
             ) : null}
@@ -213,18 +217,20 @@ export default function MentalHealth() {
             setValue={setValue}
           />
 
-          <Button
-            className="submit"
-            title="ذخیره اطلاعات"
-            style="outlined"
-            type="submit"
-            loading={submitLoading}
-          />
+          <div className="flex justify-center">
+            <Button
+              variant="outlined"
+              type="submit"
+              className="submit"
+              loading={isSubmitting}
+              title="ذخیره اطلاعات"
+            />
+          </div>
         </main>
       </form>
       <Modal isOpen={openModal} onClose={() => setOpenModal(null)}>
         <TextGuide text={text.alertSuicidalThoughts} />
       </Modal>
-    </>
-  )
+    </Page>
+  );
 }

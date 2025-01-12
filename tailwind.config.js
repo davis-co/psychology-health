@@ -2,99 +2,89 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
+    fontFamily: {
+      IranSans: ["IranSans"],
+    },
+    extend: {
+      screens: {
+        xs: "303px", // Extra Small devices
+        sm: "420px",
+        md: "672px", // Medium devices
+        lg: "953px", // Large devices
+        xl: "1368px", // XLarge
+      },
       fontFamily: {
-          IranSans: ["IranSans"],
+        300: ["IranSans300", "sans-serif"],
+        400: ["IranSans400", "sans-serif"],
+        500: ["IranSans500", "sans-serif"],
+        600: ["IranSans600", "sans-serif"],
+        700: ["IranSans700", "sans-serif"],
+        800: ["IranSans800", "sans-serif"],
       },
-      extend: {
-          screens: {
-              xs: "320px", // Extra Small devices
-              sm: "480px", // Small devices
-              md: "768px", // Medium devices
-              lg: "1024px", // Large devices
-              xl: "1280px", // Extra Large devices
-          },
-          fontFamily: {
-              300: ["IranSans300", "sans-serif"],
-              400: ["IranSans400", "sans-serif"],
-              600: ["IranSans600", "sans-serif"],
-              700: ["IranSans700", "sans-serif"],
-          },
-          colors: {
-              purple: {
-                  DEFAULT: "#644DF6",
-                  dark: "#4E38D4",
-                  darker: "#3A27B2",
-              },
-              green: {
-                  light: "#009E19",
-                  DEFAULT: "#02894C",
-              },
-              red: {
-                  light: "#FF1F01",
-                  DEFAULT: "#960018",
-                  error: "#960018",
-              },
-              gray: {
-                  lightest: "#F2F2F2",
-                  lighter: "#E6E6E6",
-                  e4: "#E4E4E4",
-                  d6: "#d6d6d6",
-                  light: "#EBEBEB",
-                  DEFAULT: "#C9C3C3",
-                  dark: "#8C8C8C",
-                  darker: "#737373",
-                  darkest: "#252525",
-                  e7: "#e7e7e7",
-                  e9: "#e9e9e9",
-                  de: "#dedede", // button disabled bg
-                  "7e": "#7e7e7e", // button title color on disabled mode
-              },
-              white: {
-                  DEFAULT: "#ffffff",
-                  light: "#f7f7f7",
-                  lighter: "#faffff",
-              },
-          },
-          fontSize: {
-              "3xs":"0.5rem", //8px
-              "2xs": "0.65rem", //10px
-              xs: "0.75rem", //12px
-              sm:"0.875rem", //14px
-              base:"16px",
-              lg: "1.125rem",//18px
-          },
-          boxShadow: {
-              primary: "0px 3px 8px 0px rgb(0 0 0 / 8%)",
-              secondary: "0px 0px 4px 0px rgba(0, 64, 26, 0.2)",
-              box: "0px 2px 4px rgba(0, 0, 0, 0.15)",
-          },
-          keyframes: {
-            wiggle: {
-                "0%, 100%": { transform: "rotate(-3deg)" },
-                "50%": { transform: "rotate(3deg)" },
-            },
-            flipLeft: {
-                "0%": { transform: "translateX(-100%)" },
-                "100%": { transform: "translateY(0%)" },
-            },
-            flipBottom :{
-                "0%": { transform: "translateY(-100%)"},
-                "100%": {transform:" translateX(0%)"}
-            }
+      colors: {
+        formItem1: "#EEFEFF",
+        formItem2: "#C7F0FF",
+        formItem3: "#6dd7ff",
+        formItemInput: "",
+        success: "#02894C",
+        error: "#960018",
+        purple: {
+          DEFAULT: "#644DF6",
+          dark: "#4E38D4",
+          darker: "#3A27B2",
         },
-        animation: {
-            flipLeft: "flipLeft 0.5s ",
-            flipBottom: "flipBottom 0.5s"
+        red: {
+          DEFAULT: "#960018",
+        },
+        gray: {
+          DEFAULT: "#C9C3C3",
+          lightest: "#F2F2F2",
+          e4: "#E4E4E4",
+          light: "#EBEBEB",
+          e7: "#e7e7e7",
+          ee: "#EEFEFF",
+        },
+        white: {
+          DEFAULT: "#ffffff",
         },
       },
-      daisyui: {
-        themes: false,
+      fontSize: {
+        "3xs": "0.5rem", //8px
+        "2xs": "0.65rem", //10px
       },
-      
+      boxShadow: {
+        primary: "0px 3px 8px 0px rgb(0 0 0 / 8%)",
+        secondary: "0px 0px 4px 0px rgba(0, 64, 26, 0.2)",
+        formItem: "0px 2px 4px rgba(0, 0, 0, 0.15)",
+      },
+      keyframes: {
+        wiggle: {
+          "0%, 100%": { transform: "rotate(-3deg)" },
+          "50%": { transform: "rotate(3deg)" },
+        },
+        flipLeft: {
+          "0%": { transform: "translateX(-100%)" },
+          "100%": { transform: "translateX(0%)" },
+        },
+        flipBottom: {
+          "0%": { transform: "translateY(-100%)" },
+          "100%": { transform: " translateY(0%)" },
+        },
+        flipTop: {
+          "0%": { transform: "translateY(100%)" },
+          "100%": { transform: " translateY(0%)" },
+        },
+        flipRight: {
+          "0%": { transform: "translateX(100%)" },
+          "100%": { transform: "translateX(0%)" },
+        },
+      },
+      animation: {
+        flipLeft: "flipLeft 0.5s ",
+        flipBottom: "flipBottom 0.5s",
+        flipTop: "flipTop 0.5s",
+        flipRight: "flipRight 0.5s",
+      },
+    },
   },
-  // eslint-disable-next-line no-undef
-  plugins: [
-    require("@tailwindcss/forms"),
-    require('daisyui')
-],
-}
+};

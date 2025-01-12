@@ -1,66 +1,75 @@
 .mContainer {
-    @apply w-full  min-h-[40px] overflow-hidden sticky py-2 top-[31px] z-20 bg-white mb-2;
-    border-radius: 4px;
+  @apply w-full  min-h-[40px] overflow-hidden sticky py-2 top-[24px] z-20 bg-white mb-2;
+  border-radius: 4px;
 }
 
 .mContainer button {
-    @apply h-5 rounded-none px-0;
-    font-size: 8px;
-    /* box-shadow: 0 4px 2px black; */
-    border: 0;
+  @apply h-5 rounded-none px-0;
+  font-size: 8px;
+  /* box-shadow: 0 4px 2px black; */
+  border: 0;
 }
 
 .mContainer .currentStep {
-    @apply min-w-fit px-0.5 md:min-w-[240px] text-white h-5;
-    background-color: rgb(46, 139, 87);
+  @apply min-w-fit px-0.5 md:min-w-[240px] text-white h-5;
+  background-color: rgb(46, 139, 87);
 }
 
 .mContainer .prevSteps {
-    @apply flex-1 text-white;
-    background-color: rgb(73, 121, 107);
+  @apply flex-1 text-white;
+  background-color: rgb(73, 121, 107);
 }
 
 .mContainer .step {
-    border-radius: 2px;
-    background: rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(10px);
-    flex: 1;
+  border-radius: 2px;
+  background: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  flex: 1;
 }
 
 .container {
-    @apply w-full items-center bg-white z-20 sticky py-1 top-[46px] mb-2;
+  @apply w-full items-center bg-white z-20 sticky py-5 !pt-[10px] top-[24px] mb-2;
 }
 
 .container button {
-    @apply px-0 py-2 rounded-md border-none flex-1 lg:text-[10px] xl:text-xs;
+  @apply font-bold text-nowrap px-0 py-2 rounded-md border-none flex-1 lg:text-[10px] xl:text-xs text-center justify-center items-center;
 }
 
 .container .stepButton {
-    @apply rounded bg-gray-light backdrop:blur-lg;
-    /* border-radius: 4px; */
-    /* background: rgba(255, 255, 255, 0.1); */
-    /* backdrop-filter: blur(15px); */
+  @apply rounded bg-gray-light backdrop:blur-lg;
+  /* border-radius: 4px; */
+  /* background: rgba(255, 255, 255, 0.1); */
+  /* backdrop-filter: blur(15px); */
 }
 
 .container .currentStepButton {
-    background-color: rgb(46, 139, 87);
-    color: white;
+  background-color: rgb(46, 139, 87);
+  color: white;
+  @apply text-nowrap ;
 }
 
-.container span {
-    @apply h-3 w-2;
-}
+/* .container span {
+  @apply h-3 w-2;
+} */
 
 .container .shape {
-    @apply bg-[#8A8A8A];
+  @apply bg-[#8A8A8A] h-2 w-2;
 }
 
-.container .prevShape,
+.container .prevShape {
+  background-color: rgb(73, 121, 107);
+  color: white;
+  @apply text-nowrap h-2 w-2;
+}
+
+
 .container .prevStepButton {
-    background-color: rgb(73, 121, 107);
-    color: white;
+  background-color: rgb(73, 121, 107);
+  color: white;
+  @apply text-nowrap;
 }
 
 .container .currentShape {
-    background: #00a693;
+  background: #00a693 ;
+  @apply h-2 w-2;
 }
