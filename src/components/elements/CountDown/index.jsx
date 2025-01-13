@@ -29,7 +29,7 @@ const CountdownTimer = ({ initialTime, onComplete }) => {
   const { days, hours, minutes, secs } = formatTime(timeLeft);
 
   return (
-    <div className="sticky top-0 z-30 flex lg:top-0 w-full !bg-white pr-1">
+    <div className="sticky z-30 flex top-0 w-full !bg-white pr-1">
       <div
         dir="ltr"
         className="grid auto-cols-max grid-flow-col gap-2 text-right"

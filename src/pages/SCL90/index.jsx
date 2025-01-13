@@ -58,21 +58,20 @@ export default function SCL90() {
               <>
                 {q.isPassword ? (
                   <TextField
-                    containerClassName="gap-1"
                     type="password"
                     label={q.label}
                     required
-                    divider={device == "mobile"}
                     questionKey={q.key}
                     errors={errors}
                     register={register}
                     value={watch(q.key)}
                     watch={watch}
+                    divider={"center"}
                   />
                 ) : (
                   <RadioOptions
+                    labelClassName="!text-center"
                     label={q.label}
-                    divider={device == "mobile"}
                     options={measureOptions}
                     questionKey={q.key}
                     active={watch(q.key)}
@@ -80,9 +79,9 @@ export default function SCL90() {
                     required
                     errors={errors}
                     //optionsContainer="!grid !grid-cols-3 !justify-center items-center"
-                    radioClassName="lg:!min-w-[48%] !min-w-[30%]"
-                    containerClassName="gap-1"
-                    labelMore
+                    radioClassName=" !min-w-[48%] md:!min-w-[30%] lg:!min-w-[48%] xl:!min-w-[30%] !gap-0"
+                    labelMore={window.innerWidth < 1368}
+                    divider={"center"}
                   />
                 )}
               </>

@@ -2,7 +2,7 @@
     @apply flex flex-col   overflow-y-auto h-full px-4 overflow-x-hidden pb-[10vh];
 }
 .form {
-    @apply overflow-y-hidden  py-2 md:py-0;
+    @apply overflow-y-hidden  py-0 md:py-0;
 }
 
 .timer {
@@ -97,6 +97,6 @@
 }
 
 .description {
-    @apply  px-2 text-justify font-400 text-2xs leading-4 md:font-600 md:text-xs md:leading-5 lg:text-sm lg:leading-7;
+    @apply px-2 text-justify font-400 text-2xs leading-4 md:font-600 md:text-xs md:leading-5 lg:text-sm lg:leading-7;
    
   }

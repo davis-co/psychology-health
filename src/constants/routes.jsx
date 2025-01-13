@@ -9,6 +9,8 @@ const Home = lazy(() => import("@/pages/Home/index"));
 const MentalHealth = lazy(() => import("@/pages/MentalHealth/index"));
 const NEO = lazy(() => import("@/pages/NEO/index"));
 const SCL90 = lazy(() => import("@/pages/SCL90/index"));
+const Mcmi3 = lazy(() => import("@/pages/Mcmi3"));
+const EQ = lazy(() => import("@/pages/EQ"));
 const userData = localStorage.getItem("userData") || {};
 
 export const static_routes =
@@ -38,6 +40,14 @@ export const static_routes =
             {
               path: "scl90",
               element: <SCL90 />,
+            },
+            {
+              path: "mcmi3",
+              element: <Mcmi3 />,
+            },
+            {
+              path: "eq",
+              element: <EQ />,
             },
             {
               path: "/Unathorized",

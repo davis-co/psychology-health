@@ -63,7 +63,7 @@ export default function K6Test({ errors, watch, register, setValue }) {
   return (
     <FieldSet title={text.k6Test}>
       <div className={styles.listOfQuestions}>
-        <p className={"text-description"}>{text.k6Description}</p>
+        <p className={styles.description}>{text.k6Description}</p>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-[5vw] gap-y-4 lg:gap-y-6">
           {questionsK6.map((q) => (
             <RadioOptions
@@ -75,9 +75,8 @@ export default function K6Test({ errors, watch, register, setValue }) {
               register={register}
               active={watch(q.key)}
               isError={!!errors[q.key]}
-              divider={device == "mobile"}
-              radioClassName="lg:!min-w-[48%] !min-w-[30%]"
-              containerClassName="gap-1"
+              divider={"center"}
+              radioClassName=" !min-w-[48%] md:!min-w-[30%] lg:!min-w-[48%] xl:!min-w-[30%] !gap-0"
             />
           ))}
         </div>

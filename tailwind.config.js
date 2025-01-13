@@ -5,14 +5,14 @@ export default {
     fontFamily: {
       IranSans: ["IranSans"],
     },
+    screens: {
+      xs: "303px", // Extra Small devices
+      sm: "420px",
+      md: "672px", // Medium devices
+      lg: "952px", // Large devices
+      xl: "1368px", // XLarge
+    },
     extend: {
-      screens: {
-        xs: "303px", // Extra Small devices
-        sm: "420px",
-        md: "672px", // Medium devices
-        lg: "953px", // Large devices
-        xl: "1368px", // XLarge
-      },
       fontFamily: {
         300: ["IranSans300", "sans-serif"],
         400: ["IranSans400", "sans-serif"],

@@ -169,7 +169,7 @@ export default function MentalHealth() {
               optionsContainer={"radioOptions-boolean-optionsContainer"}
               radioClassName="radioOptions-boolean-radio"
               labelClassName="lg:!text-[11px] xl:!text-sm"
-              containerClassName="gap-1"
+              divider={"center"}
             />
 
             {watch("11892") === "10361" ? (
@@ -186,7 +186,7 @@ export default function MentalHealth() {
                   optionsContainer={"radioOptions-boolean-optionsContainer"}
                   radioClassName="radioOptions-boolean-radio"
                   labelClassName="lg:!text-[11px] xl:!text-sm"
-                  containerClassName="gap-1"
+                  divider={"center"}
                 />
                 <RadioOptions
                   label={text.historyOfThinkingSuicideAttempts}
@@ -197,10 +197,10 @@ export default function MentalHealth() {
                   wrap={true}
                   errors={errors}
                   //divider={device == "mobile"}
+                  divider={"center"}
                   optionsContainer={"radioOptions-boolean-optionsContainer"}
                   radioClassName="radioOptions-boolean-radio"
                   labelClassName="lg:!text-[11px] xl:!text-sm"
-                  containerClassName="gap-1"
                 />
               </>
             ) : null}

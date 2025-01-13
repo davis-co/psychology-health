@@ -18,4 +18,14 @@ export const links = [
     link: "scl90",
     image: SCL90Image,
   },
+  {
+    title: "MCMI3",
+    link: "/mcmi3",
+    image: "",
+  },
+  {
+    title: "EQ",
+    link: "/eq",
+    image: "",
+  },
 ];

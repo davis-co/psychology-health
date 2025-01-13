@@ -1,5 +1,5 @@
 .mContainer {
-  @apply w-full  min-h-[40px] overflow-hidden sticky py-2 top-[24px] z-20 bg-white mb-2;
+  @apply w-full overflow-hidden sticky !top-[24px] z-20 bg-white;
   border-radius: 4px;
 }
 
@@ -11,7 +11,7 @@
 }
 
 .mContainer .currentStep {
-  @apply min-w-fit px-0.5 md:min-w-[240px] text-white h-5;
+  @apply min-w-fit px-0.5 md:min-w-[120px] text-white h-5;
   background-color: rgb(46, 139, 87);
 }
 
@@ -28,7 +28,7 @@
 }
 
 .container {
-  @apply w-full items-center bg-white z-20 sticky py-5 !pt-[10px] top-[24px] mb-2;
+  @apply w-full items-center bg-white z-20 sticky top-[36px];
 }
 
 .container button {

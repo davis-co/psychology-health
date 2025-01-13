@@ -1,5 +1,5 @@
 .description {
-  @apply text-right font-600 text-2xs leading-4 md:text-2xs md:leading-5 lg:text-sm lg:leading-7;
+  @apply text-right font-600 text-2xs leading-4 md:text-xs md:leading-5 lg:text-sm lg:leading-7;
 }
 
 /* #F7F7F7 */
@@ -25,7 +25,7 @@
 }
 
 .listOfQuestions {
-  @apply flex w-full flex-wrap gap-y-5 rounded px-1 py-1 md:justify-between md:gap-y-8;
+  @apply grid w-full grid-cols-1 gap-y-5 rounded;
 }
 .resultBox {
   @apply flex w-full flex-col flex-wrap items-center justify-between gap-4 rounded bg-[#e4e4e4] p-[2px] md:gap-2;

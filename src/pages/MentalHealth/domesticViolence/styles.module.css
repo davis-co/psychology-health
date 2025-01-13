@@ -1,5 +1,5 @@
 .description {
-  @apply text-right font-600 text-2xs leading-4 md:text-2xs md:leading-5 lg:text-sm lg:leading-7;
+  @apply text-right font-600 text-2xs leading-4 md:text-xs md:leading-5 lg:text-sm lg:leading-7;
 }
 
 /* #F7F7F7 */

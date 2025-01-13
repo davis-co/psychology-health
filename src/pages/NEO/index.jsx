@@ -83,7 +83,7 @@ export default function NEO() {
   return (
     <Page navigate={navigate} back>
       <form
-        className={"form"}
+        className={"form !gap-2"}
         onSubmit={handleSubmit(onSubmit)}
         id="formContainer"
       >
@@ -95,7 +95,7 @@ export default function NEO() {
         />
         <p className={styles.description}>{text.description}</p>
         <FormSteps currentStep={startIndex / FORM_SIZE + 1} />
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-[5vw] gap-y-4 lg:gap-y-6 z-10">
+        <div className="mt-5 grid md:grid-cols-2 lg:grid-cols-3 gap-x-[5vw] gap-y-4 lg:gap-y-6 z-10">
           {questions
             .slice(startIndex, startIndex + FORM_SIZE)
             .map((q, index) => (
@@ -112,15 +112,14 @@ export default function NEO() {
                   <RadioOptions
                     label={q.label}
                     questionKey={q.key}
-                    radioClassName="lg:!min-w-[48%] !min-w-[30%]"
-                    containerClassName="gap-1"
+                    radioClassName=" !min-w-[48%] md:!min-w-[30%] lg:!min-w-[48%] xl:!min-w-[30%] !gap-0"
                     required
-                    divider={device == "mobile"}
+                    divider={"center"}
                     errors={errors}
                     active={watch(q.key)}
                     register={register}
                     options={q.isBoolean ? booleanOptions : matchOptions}
-                    labelMore
+                    labelMore={window.innerWidth < 1368}
                   />
                 </div>
               </div>
