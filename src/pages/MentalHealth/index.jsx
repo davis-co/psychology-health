@@ -95,7 +95,7 @@ export default function MentalHealth() {
               watch("10437")?.includes("1514109071882") ||
                 watch("10437")?.includes("1514109106067") ||
                 watch("10437")?.includes("10652")
-                ? "bg-gray-e7 rounded-t px-1 pb-3 md:pb-5 mb-0"
+                ? "bg-formItem2 rounded-t px-1 pb-3 md:pb-5 mb-0"
                 : ""
             )}
           >
@@ -150,7 +150,9 @@ export default function MentalHealth() {
           <div
             className={classNames(
               "grid md:grid-cols-2 lg:grid-cols-3 gap-x-[5vw] gap-y-4 lg:gap-y-6",
-              watch("11892") === "10361" ? "bg-gray-e7 rounded-t py-2 mb-0" : ""
+              watch("11892") === "10361"
+                ? "bg-formItem2 rounded-t py-2 mb-0"
+                : ""
             )}
           >
             <RadioOptions
