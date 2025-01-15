@@ -64,7 +64,7 @@ const EQ = () => {
               register={register}
               radioClassName=" !min-w-[48%] md:!min-w-[30%] lg:!min-w-[48%] xl:!min-w-[30%] !gap-0"
               errors={errors}
-              labelMore={window.innerWidth < 1368}
+              labelMore={window.innerWidth >= 672}
             />
           ))}
         </div>

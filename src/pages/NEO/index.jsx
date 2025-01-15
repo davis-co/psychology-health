@@ -119,7 +119,7 @@ export default function NEO() {
                     active={watch(q.key)}
                     register={register}
                     options={q.isBoolean ? booleanOptions : matchOptions}
-                    labelMore={window.innerWidth < 1368}
+                    labelMore={window.innerWidth >= 672}
                   />
                 </div>
               </div>

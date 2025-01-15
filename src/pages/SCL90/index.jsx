@@ -51,42 +51,23 @@ export default function SCL90() {
   return (
     <Page navigate={navigate} back>
       <form className="form" onSubmit={handleSubmit(onSubmit)}>
-        <div className={styles.container}>
-          <p className={styles.description}>{text.description}</p>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-[5vw] gap-y-4 lg:gap-y-6">
-            {questions.map((q, index) => (
-              <>
-                {q.isPassword ? (
-                  <TextField
-                    type="password"
-                    label={q.label}
-                    required
-                    questionKey={q.key}
-                    errors={errors}
-                    register={register}
-                    value={watch(q.key)}
-                    watch={watch}
-                    divider={"center"}
-                  />
-                ) : (
-                  <RadioOptions
-                    labelClassName="!text-center"
-                    label={q.label}
-                    options={measureOptions}
-                    questionKey={q.key}
-                    active={watch(q.key)}
-                    register={register}
-                    required
-                    errors={errors}
-                    //optionsContainer="!grid !grid-cols-3 !justify-center items-center"
-                    radioClassName=" !min-w-[48%] md:!min-w-[30%] lg:!min-w-[48%] xl:!min-w-[30%] !gap-0"
-                    labelMore={window.innerWidth < 1368}
-                    divider={"center"}
-                  />
-                )}
-              </>
-            ))}
-          </div>
+        <p className={styles.description}>{text.description}</p>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-[5vw] gap-y-4 lg:gap-y-6">
+          {questions.map((q, index) => (
+            <RadioOptions
+              //labelClassName="!text-center"
+              label={q.label}
+              options={measureOptions}
+              questionKey={q.key}
+              active={watch(q.key)}
+              register={register}
+              required
+              errors={errors}
+              radioClassName="!min-w-[48%] md:!min-w-[30%] lg:!min-w-[48%] xl:!min-w-[30%] !gap-0"
+              labelMore={window.innerWidth >= 672}
+              divider={"center"}
+            />
+          ))}
         </div>
         <div className="w-full flex justify-center mt-10">
           <Button

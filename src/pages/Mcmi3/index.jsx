@@ -69,7 +69,7 @@ const Mcmi3 = () => {
               labelClassName="!text-center"
               optionsContainer="!justify-between"
               radioClassName="xs:!max-w-[64px] md:!max-w-[74px] lg:!max-w-[84px] xl:!max-w-[104px]"
-              labelMore={window.innerWidth < 1368}
+              labelMore={window.innerWidth >= 672}
             />
           ))}
         </article>
