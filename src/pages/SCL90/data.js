@@ -1,4 +1,4 @@
-import { text } from "./text";
+import { text } from "./text"
 
 export const questions = [
     { label: text.sCLQ1, key: "1542088738138" },

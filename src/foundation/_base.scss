@@ -1,39 +1,33 @@
 // print
 .print {
-  @apply hover:!text-black !border-[#f7f7f7] !shadow-formItem hover:!bg-white !transition-all hover:!border-[1px] hover:!border-black  !bg-[#f7f7f7] active:!bg-success active:!border-success active:!text-white !text-black !h-[32px] xl:!h-[41px] lg:!w-[114px] !gap-2 !w-[74px] !p-0 !text-2xs md:!text-xs lg:!text-sm;
+    @apply hover:!text-black !border-[#f7f7f7] !shadow-formItem hover:!bg-white !transition-all hover:!border-[1px] hover:!border-black  !bg-[#f7f7f7] active:!bg-success active:!border-success active:!text-white !text-black !h-[32px] xl:!h-[41px] lg:!w-[114px] !gap-2 !w-[74px] !p-0 !text-2xs md:!text-xs lg:!text-sm;
 }
 
 // submit
 .submit {
-  @apply hover:!bg-success !shadow-formItem !bg-[#f7f7f7] !text-black !border-success  hover:!text-white transition-all  !h-[32px] xl:!h-[41px] flex-1 md:flex-[0] md:!min-w-[155px] lg:!min-w-[210px] !text-2xs md:!text-xs lg:!text-sm;
+    @apply hover:!bg-success !shadow-formItem !bg-[#f7f7f7] !text-black !border-success  hover:!text-white transition-all  !h-[32px] xl:!h-[41px] flex-1 md:flex-[0] md:!min-w-[155px] lg:!min-w-[210px] !text-2xs md:!text-xs lg:!text-sm;
 }
 
 .radioOptions {
-  &-boolean {
-    @apply xs:max-w-[450px] md:!w-[47%] lg:!w-[30%] xl:min-w-[325px] !gap-0;
-    &-optionsContainer {
-      @apply justify-between w-full;
+    &-boolean {
+        @apply xs:max-w-[450px] md:!w-[47%] lg:!w-[30%] xl:min-w-[325px] !gap-0;
+        &-optionsContainer {
+            @apply justify-between w-full;
+        }
+        &-radio {
+            @apply lg:!gap-0 lg:!min-w-[70px] xl:!min-w-[80px] lg:!py-[2.5px] !flex-none;
+        }
     }
-    &-radio {
-      @apply lg:!gap-0 lg:!min-w-[70px] xl:!min-w-[80px] lg:!py-[2.5px] !flex-none;
-    }
-  }
 }
 
 .form {
-  @apply flex flex-col gap-6 flex-1 pb-[10vh] mt-6;
-  background-image: url(../assets/icons/bg/bg-dentist.svg);
-  background-repeat: no-repeat;
-  background-position: bottom;
-  background-attachment: fixed;
-  background-position-y: 25%;
-  background-position-x: 80%;
+    @apply flex flex-col gap-6 flex-1 pb-[10vh] mt-6;
 }
 
 .grid-3 {
-  @apply grid md:grid-cols-2 lg:grid-cols-3 md:gap-x-[3vw] lg:gap-x-[5vw] gap-y-4 lg:gap-y-8;
+    @apply grid md:grid-cols-2 lg:grid-cols-3 md:gap-x-[3vw] lg:gap-x-[5vw] gap-y-4 lg:gap-y-8;
 }
 
 .grid-2 {
-  @apply grid md:grid-cols-2 md:gap-x-[3vw] lg:gap-x-[5vw] gap-y-4 lg:gap-y-8;
+    @apply grid md:grid-cols-2 md:gap-x-[3vw] lg:gap-x-[5vw] gap-y-4 lg:gap-y-8;
 }

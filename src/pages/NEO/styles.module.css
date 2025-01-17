@@ -1,72 +1,9 @@
-.container {
-    @apply flex flex-col   overflow-y-auto h-full px-4 overflow-x-hidden pb-[10vh];
-}
-.form {
-    @apply overflow-y-hidden  py-0 md:py-0;
-}
-
-.timer {
-    @apply sticky top-0 z-20 flex w-full justify-end bg-white pb-3;
-}
-
-.intro {
-    @apply mb-0 text-justify text-sm text-black lg:text-base;
-}
-
-.matchFormItem .question {
-    @apply mx-auto lg:mx-0;
-}
-
-.booleanFormItem {
-    @apply flex flex-col gap-2 md:w-[49%] md:gap-0 py-[0.75rem] md:py-[0.75rem] px-[0.5rem] md:flex-row items-center justify-between;
-    border-radius: 4px;
-    background: #f7f7f7;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.15);
-    z-index: 2;
-}
-
-.booleanFormItem .radios {
-    @apply flex w-full justify-between md:w-fit md:gap-2 lg:gap-3;
-}
-
-.booleanFormItem .radios label {
-    @apply w-[30%] md:w-[60px] lg:w-[80px] lg:min-h-[28px] flex justify-between;
-}
-
-.matchFormItem {
-    @apply flex items-center flex-col lg:flex-row justify-between md:w-[49%] py-[0.75rem] md:py-[0.75rem] px-[0.5rem] lg:w-full;
-    border-radius: 4px;
-    background: #f7f7f7;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.15);
-    z-index: 2;
-}
-
-.matchFormItem .radios {
-    @apply w-full flex flex-wrap gap-[1%] justify-center lg:justify-between gap-y-1.5 lg:flex-nowrap lg:w-3/5 lg:gap-2;
-}
-
-.matchFormItem .radios label {
-    @apply flex justify-between lg:min-h-[28px] w-[32%] lg:w-auto lg:flex-auto;
-}
-
-.matchFormItem .question {
-    @apply lg:max-w-[35%] text-center lg:text-right text-[8px] lg:text-[11px];
-}
-
-.booleanFormItem .question {
-    @apply text-center text-[8px] md:text-right lg:text-[11px] md:w-1/2;
-}
-
 .newAnimation {
     animation: newAnimate 0.25s 1;
 }
 
 .oldAnimation {
     animation: oldAnimate 0.25s 1;
-}
-
-.questions {
-    @apply flex w-full flex-col gap-y-4 px-2 md:flex-row md:flex-wrap md:justify-between md:px-4;
 }
 
 @keyframes newAnimate {
@@ -89,14 +26,6 @@
     }
 }
 
-/* .next {
-    @apply w-[200px] text-[10px] md:text-[12px] md:w-[200px] mt-8 md:mt-6 mx-auto;
-} */
-.gridcontainer {
-    @apply grid w-full grid-cols-1 gap-6 px-[2px] py-[2px] md:grid-cols-2;
-}
-
 .description {
     @apply px-2 text-justify font-400 text-2xs leading-4 md:font-600 md:text-xs md:leading-5 lg:text-sm lg:leading-7;
-   
-  }
+}

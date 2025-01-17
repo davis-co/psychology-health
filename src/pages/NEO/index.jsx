@@ -1,145 +1,148 @@
-import React, { useEffect, useState } from "react";
-import classNames from "classnames";
-import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
-import { Button, RadioOptions, Page } from "react-elements-davis";
-import { CountdownTimer, FormSteps } from "@/components/elements";
+import { useEffect, useState } from "react"
+import classNames from "classnames"
+import { useForm } from "react-hook-form"
+import { useNavigate } from "react-router-dom"
+import { toast } from "react-toastify"
+import { Button, RadioOptions, Page } from "react-elements-davis"
+import { CountdownTimer, FormSteps } from "@/components/elements"
 import {
-  booleanOptions,
-  FORM_SIZE,
-  matchOptions,
-  successMessage,
-} from "@/constants/form";
-import { NEO_JobId_Get, NEO_JobId_Post } from "@/constants/jobId";
-import { KEYS, NEO_KEYS } from "@/constants/keys";
-import useDevice from "@/hooks/useDevice";
-import fetchData from "@/services/fetchData";
-import submitForm from "@/services/submitForm";
-import { questions } from "./data";
-import { onFinishTime } from "./services";
-import styles from "./styles.module.css";
-import { text } from "./text";
+    booleanOptions,
+    FORM_SIZE,
+    matchOptions,
+    successMessage,
+} from "@/constants/form"
+import { NEO_JobId_Get, NEO_JobId_Post } from "@/constants/jobId"
+import { NEO_KEYS } from "@/constants/keys"
+import fetchData from "@/services/fetchData"
+import submitForm from "@/services/submitForm"
+import { questions } from "./data"
+import { onFinishTime } from "./services"
+import styles from "./styles.module.css"
+import { text } from "./text"
 
 export default function NEO() {
-  const {
-    watch,
-    register,
-    setValue,
-    handleSubmit,
-    formState: { errors, isSubmitting },
-  } = useForm({
-    mode: "all",
-  });
-  const [fetchLoading, setFetchLoading] = useState(false);
-  const [startIndex, setStartIndex] = useState(0);
-  const [oldAnimation, setOldAnimation] = useState(false);
-  const [newAnimation, setNewAnimation] = useState(false);
-  const navigate = useNavigate();
-  const [device] = useDevice();
-  const initialTime = 7200;
+    const {
+        watch,
+        register,
+        setValue,
+        handleSubmit,
+        formState: { errors, isSubmitting },
+    } = useForm({
+        mode: "all",
+    })
+    const [startIndex, setStartIndex] = useState(0)
+    const [oldAnimation, setOldAnimation] = useState(false)
+    const [newAnimation, setNewAnimation] = useState(false)
+    const navigate = useNavigate()
+    const initialTime = 7200
 
-  useEffect(() => {
-    fetchData(NEO_JobId_Get, NEO_KEYS, setValue);
-    // .finally(() => setFetchLoading(false))
-  }, []);
+    useEffect(() => {
+        fetchData(NEO_JobId_Get, NEO_KEYS, setValue)
+        // .finally(() => setFetchLoading(false))
+    }, [])
 
-  const goToNext = (data) => {
-    if (
-      questions
-        .slice(startIndex, startIndex + FORM_SIZE)
-        .every((q) => watch(q.key))
-    ) {
-      setOldAnimation(true);
-      setNewAnimation(false);
-      setTimeout(() => {
-        setStartIndex(startIndex + FORM_SIZE);
-        setOldAnimation(false);
-        setNewAnimation(true);
-        document
-          .getElementById("formContainer")
-          .scrollTo({ top: 0, behavior: "smooth" });
-      }, 250);
+    const goToNext = (data) => {
+        if (
+            questions
+                .slice(startIndex, startIndex + FORM_SIZE)
+                .every((q) => watch(q.key))
+        ) {
+            setOldAnimation(true)
+            setNewAnimation(false)
+            setTimeout(() => {
+                setStartIndex(startIndex + FORM_SIZE)
+                setOldAnimation(false)
+                setNewAnimation(true)
+                document
+                    .getElementById("formContainer")
+                    .scrollTo({ top: 0, behavior: "smooth" })
+            }, 250)
+        }
     }
-  };
 
-  const onSubmit = (data) => {
-    if (questions.length - startIndex != FORM_SIZE) {
-      goToNext();
-    } else {
-      console.log(data);
-      submitForm(NEO_JobId_Post, data, () =>
-        fetchData(NEO_JobId_Get, KEYS, setValue)
-      )
-        .then(() => {
-          toast.success(successMessage);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+    const onSubmit = (data) => {
+        if (questions.length - startIndex != FORM_SIZE) {
+            goToNext()
+        } else {
+            console.log(data)
+            submitForm(NEO_JobId_Post, data, () =>
+                fetchData(NEO_JobId_Get, NEO_KEYS, setValue)
+            )
+                .then(() => {
+                    toast.success(successMessage)
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+        }
     }
-  };
 
-  return (
-    <Page navigate={navigate} back>
-      <form
-        className={"form !gap-2"}
-        onSubmit={handleSubmit(onSubmit)}
-        id="formContainer"
-      >
-        <CountdownTimer
-          initialTime={initialTime}
-          onComplete={() => {
-            onFinishTime();
-          }}
-        />
-        <p className={styles.description}>{text.description}</p>
-        <FormSteps currentStep={startIndex / FORM_SIZE + 1} />
-        <div className="mt-5 grid md:grid-cols-2 lg:grid-cols-3 gap-x-[5vw] gap-y-4 lg:gap-y-6 z-10">
-          {questions
-            .slice(startIndex, startIndex + FORM_SIZE)
-            .map((q, index) => (
-              <div
-                className={classNames(
-                  styles.gridcontainer,
-                  // q.isBoolean ? styles.booleanFormItem : styles.matchFormItem,
-                  oldAnimation ? styles.oldAnimation : "",
-                  newAnimation ? styles.newAnimation : ""
-                )}
-                key={q.label}
-              >
-                <div className={q.isBoolean ? "" : "col-span-full"}>
-                  <RadioOptions
-                    label={q.label}
-                    questionKey={q.key}
-                    radioClassName=" !min-w-[48%] md:!min-w-[30%] lg:!min-w-[48%] xl:!min-w-[30%] !gap-0"
-                    required
-                    divider={"center"}
-                    errors={errors}
-                    active={watch(q.key)}
-                    register={register}
-                    options={q.isBoolean ? booleanOptions : matchOptions}
-                    labelMore={window.innerWidth >= 672}
-                  />
+    return (
+        <Page navigate={navigate} back>
+            <form
+                className={"form !gap-2"}
+                onSubmit={handleSubmit(onSubmit)}
+                id="formContainer"
+            >
+                <CountdownTimer
+                    initialTime={initialTime}
+                    onComplete={() => {
+                        onFinishTime()
+                    }}
+                />
+                <p className={styles.description}>{text.description}</p>
+                <FormSteps currentStep={startIndex / FORM_SIZE + 1} />
+                <div className="mt-5 grid md:grid-cols-2 lg:grid-cols-3 gap-x-[5vw] gap-y-4 lg:gap-y-6 z-10">
+                    {questions
+                        .slice(startIndex, startIndex + FORM_SIZE)
+                        .map((q) => (
+                            <div
+                                className={classNames(
+                                    "grid-2",
+                                    oldAnimation ? styles.oldAnimation : "",
+                                    newAnimation ? "animate-flipLeft" : ""
+                                )}
+                                key={q.label}
+                            >
+                                <div
+                                    className={
+                                        q.isBoolean ? "" : "col-span-full"
+                                    }
+                                >
+                                    <RadioOptions
+                                        label={q.label}
+                                        questionKey={q.key}
+                                        radioClassName=" !min-w-[48%] md:!min-w-[30%] lg:!min-w-[48%] xl:!min-w-[30%] !gap-0"
+                                        required
+                                        divider={"center"}
+                                        errors={errors}
+                                        active={watch(q.key)}
+                                        register={register}
+                                        options={
+                                            q.isBoolean
+                                                ? booleanOptions
+                                                : matchOptions
+                                        }
+                                        labelMore={window.innerWidth >= 672}
+                                    />
+                                </div>
+                            </div>
+                        ))}
                 </div>
-              </div>
-            ))}
-        </div>
 
-        <div className="w-full flex justify-center mt-10">
-          <Button
-            variant="outlined"
-            type="submit"
-            className="submit"
-            loading={isSubmitting}
-            title={
-              questions.length - startIndex != FORM_SIZE
-                ? text.next
-                : text.submit
-            }
-          />
-        </div>
-      </form>
-    </Page>
-  );
+                <div className="form-buttons">
+                    <Button
+                        type="submit"
+                        className="submit"
+                        loading={isSubmitting}
+                        title={
+                            questions.length - startIndex != FORM_SIZE
+                                ? text.next
+                                : text.submit
+                        }
+                    />
+                </div>
+            </form>
+        </Page>
+    )
 }

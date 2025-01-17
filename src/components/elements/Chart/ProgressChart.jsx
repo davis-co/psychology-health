@@ -1,4 +1,8 @@
-import classNames from 'classnames';
+import classNames from "classnames"
+
+// dar package npm ProgressChart to replace kon ba in
+// va props hash ro az git check kon.
+// sepas
 
 const ProgressChart = ({ className, generalData, userData }) => {
     let Max, target, targetColor, targetWidth
