@@ -1,3 +1,14 @@
+export const Number_Error = "پاسخ این سوال میبایست عدد باشد.";
+export const String_Error = "پاسخ این سوال میبایست متن باشد.";
+export const Required_Error = "پاسخ به این بخش الزامی است.";
+
+export const minMessage = (num) => {
+  return `مقدار وارد شده کمتر از حد مجاز (${num}) می باشد.`;
+};
+export const maxMessage = (num) => {
+  return `مقدار وارد شده بیش از حد مجاز (${num}) می باشد.`;
+};
+
 export const booleanOptions = [
   { label: "بلی", value: "10361" },
   { label: "خیر", value: "10362" },

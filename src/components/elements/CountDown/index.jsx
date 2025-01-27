@@ -10,7 +10,6 @@ const CountdownTimer = ({ initialTime, onComplete }) => {
     }
 
     const timerId = setInterval(() => {
-      console.log(timeLeft);
       setTimeLeft((prevTime) => prevTime - 1);
     }, 1000);
 

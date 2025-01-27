@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 
 import { BsFiletypePdf } from "react-icons/bs";
 
-import pdfDoc from "@/assets/multimedia/documents/violenceDoc.pdf";
 import { Label, Modal, FieldSet, RadioOptions } from "react-elements-davis";
 import { ProgressChart } from "@/components/elements";
 import useDevice from "@/hooks/useDevice";
@@ -56,7 +55,8 @@ export default function DomesticViolence({
   }, [watchedValues]);
 
   const downloadBtnHandle = () => {
-    const pdfUrl = pdfDoc;
+    const pdfUrl =
+      "https://nse2.salamatehr.ir/LFFO/?fid=11930&0.053407106673689864";
     const link = document.createElement("a");
     link.href = pdfUrl;
     link.download = "document.pdf"; // specify the filename
