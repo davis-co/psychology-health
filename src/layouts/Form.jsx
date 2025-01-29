@@ -5,11 +5,10 @@ import { Page } from "react-elements-davis";
 import { successMessage } from "@/constants/form";
 import { request } from "@/services";
 import { useNavigate } from "react-router-dom";
-// import { yupResolver } from "@hookform/resolvers/yup";
 import Loading from "@/pages/Loading";
 import fetchData from "@/services/fetchData";
 
-const Form = ({ formKeys, JID, children }) => {
+const Form = ({ formKeys, JID, children, onSubmit }) => {
   const navigate = useNavigate();
   const [fetchLoading, setFetchLoading] = useState(true);
   const user = localStorage.getItem("userData");
@@ -17,31 +16,32 @@ const Form = ({ formKeys, JID, children }) => {
   const methods = useForm({
     defaultValues: {},
     mode: "all",
-    // resolver: yupResolver(validationSchema),
   });
   const { handleSubmit, setValue } = methods;
 
-  const onSubmit = async (data) => {
-    console.log(data);
-    console.log(JID.submit);
-    await request({ jobId: JID.submit, dataInfo: data })
-      .then((res) => {
-        if (!res.error) {
-          toast.success(successMessage);
-        } else {
-          toast.error("خطای دریافت اطلاعات");
-        }
-      })
-      .catch((ERR) => {
-        console.log(ERR);
-      });
+  const handleFormSubmit = async (data) => {
+    if (onSubmit) {
+      onSubmit(data);
+    } else {
+      console.log(data);
+      await request({ jobId: JID.submit, dataInfo: data })
+        .then((res) => {
+          if (!res.error) {
+            toast.success(successMessage);
+          } else {
+            toast.error("خطای دریافت اطلاعات");
+          }
+        })
+        .catch((ERR) => {
+          console.log(ERR);
+        });
+    }
   };
 
   useEffect(() => {
     fetchData(JID.ID, formKeys, setValue)
       .catch((err) => console.log(err))
       .finally(() => {
-        // setValue("4946", "4956");
         setFetchLoading(false);
       });
     if (user) setValue("6483", user["6483"]);
@@ -53,7 +53,7 @@ const Form = ({ formKeys, JID, children }) => {
   ) : (
     <Page back navigate={navigate}>
       <FormProvider {...methods}>
-        <form onSubmit={handleSubmit(onSubmit)} className={"form"}>
+        <form onSubmit={handleSubmit(handleFormSubmit)} className={"form"}>
           {children}
         </form>
       </FormProvider>

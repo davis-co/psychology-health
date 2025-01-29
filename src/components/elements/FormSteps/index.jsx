@@ -26,7 +26,7 @@ export default function FormSteps({
             title={
               step === currentStep ? `سری ${stepToWord[step]} سوالات` : step
             }
-            key={"step" + step}
+            key={"stepMobile" + step}
           />
         ))}
       </div>
@@ -43,7 +43,7 @@ export default function FormSteps({
                   : styles.stepButton
               }
               title={`سری ${stepToWord[step]} سوالات`}
-              key={"step" + step}
+              key={"stepLg" + step}
             />
             {step !== steps.length ? (
               <span
@@ -54,6 +54,7 @@ export default function FormSteps({
                     ? styles.currentShape
                     : styles.shape
                 }
+                key={"stepS" + step}
               ></span>
             ) : null}
           </>

@@ -8,7 +8,7 @@ export default function useQuestions(questions) {
       <FormFields
         {...questions[label]}
         label={label}
-        BC={""}
+        BC={BC}
         request={request}
         useFormContext={useFormContext}
       />

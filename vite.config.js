@@ -30,6 +30,8 @@ export default defineConfig(({ mode }) => {
     define: {
       TEST_TOKEN: JSON.stringify(env.TEST_TOKEN),
       BASE_URL: JSON.stringify(env.BASE_URL),
+      GWT: JSON.stringify(env.GWT),
+      BC: JSON.stringify(env.BC),
     },
     resolve: {
       alias: {

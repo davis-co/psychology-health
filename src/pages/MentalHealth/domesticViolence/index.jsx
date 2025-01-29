@@ -1,39 +1,39 @@
-import React, { useEffect, useState } from "react";
-
+import { useEffect, useState } from "react";
 import { BsFiletypePdf } from "react-icons/bs";
-
-import { Label, Modal, FieldSet, RadioOptions } from "react-elements-davis";
-import { ProgressChart } from "@/components/elements";
+import {
+  Label,
+  Modal,
+  FieldSet,
+  RadioOptions,
+  ProgressChart,
+  Divider,
+} from "react-elements-davis";
 import useDevice from "@/hooks/useDevice";
 import { debounce } from "@/utils/helpers";
-
 import { yesNoQuestion } from "../i18n";
 import { questionsDomesticViolence } from "./data";
 import styles from "./styles.module.css";
 import { radioFiveMentalHealth, text } from "./text";
+import { useFormContext } from "react-hook-form";
+import { Required_Error } from "@/constants/form";
+import { ResultBox } from "@/components/elements";
 
-export default function DomesticViolence({
-  errors,
-  watch,
-  register,
-  setValue,
-  // setPointDomestic,
-  // pointDomestic,
-}) {
+export default function DomesticViolence() {
+  const { watch, formState, register, setValue } = useFormContext();
+
   const watchedValues = watch(["10443", "10444", "10445", "10446"]);
 
   const [iconCalc, setIconCalc] = useState(false);
   const [pdfContent, setPdfContent] = useState(false);
   const [pointDomestic, setPointDomestic] = useState(0);
-  const [downloadBtn, setDownloadBtn] = useState(true);
   const [device] = useDevice();
 
   const scoreMap = {
-    10428: 4,
-    10429: 3,
-    10430: 2,
-    10432: 1,
-    10431: 0,
+    10428: 5,
+    10429: 4,
+    10430: 3,
+    10432: 2,
+    10431: 1,
   };
 
   const calcTotalScore = debounce(() => {
@@ -85,39 +85,28 @@ export default function DomesticViolence({
     <FieldSet title={text.domesticViolenceTest}>
       <div className={styles.listOfQuestions}>
         <p className={styles.description}>{text.domesticViolenceDescription}</p>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-[5vw] gap-y-4 lg:gap-y-6">
+        <div className="grid-3">
           {questionsDomesticViolence.map((q) => (
             <RadioOptions
+              key={q.key}
               label={q.label}
               questionKey={q.key}
-              required={true}
               options={radioFiveMentalHealth}
               register={register}
               active={watch(q.key)}
-              isError={!!errors[q.key]}
-              errors={errors}
               divider={"center"}
+              errors={formState.errors}
+              validation={{ required: Required_Error }}
               radioClassName=" !min-w-[48%] md:!min-w-[30%] lg:!min-w-[48%] xl:!min-w-[30%] !gap-0"
             />
           ))}
-        </div>
-
-        <section className={styles.gridcontainer}>
-          <div className="flex items-center justify-between rounded bg-zinc-50 p-2 shadow-md xs:w-full">
-            <Label
-              className="lg:w-[40%]"
-              label={text.domesticAssesment}
-              required={true}
-            />
-            <div className="flex flex-1 items-center justify-center gap-2">
-              <div className="flex-1">
-                <ProgressChart
-                  generalData={generalData}
-                  userData={userData.value}
-                />
-              </div>
-            </div>
-          </div>
+          <ProgressChart
+            value={watch("10552")}
+            ranges={generalData}
+            label={text.domesticAssesment}
+            required={true}
+            containerClassName="max-h-fit"
+          />
           <RadioOptions
             label={text.willingnessReceiveSpecializedServices}
             options={yesNoQuestion}
@@ -127,33 +116,43 @@ export default function DomesticViolence({
             divider={"center"}
             optionsContainer={"radioOptions-boolean-optionsContainer"}
             radioClassName="radioOptions-boolean-radio"
-            labelClassName="lg:!text-[11px] xl:!text-sm"
-            containerClassName="gap-1"
+            containerClassName="max-h-fit"
+            validation={{ required: Required_Error }}
+            errors={formState.errors}
           />
+        </div>
+
+        <section className={"grid-3"}>
           <div className="col-span-full">
             {pointDomestic > 4 && pointDomestic <= 10 ? (
-              <div className={styles.message}>
-                <p>{text.result6MentalHealt}</p>
-              </div>
+              <ResultBox
+                title={"هشدار"}
+                content={text.result6MentalHealt}
+                alert={true}
+              />
             ) : null}
 
             {pointDomestic <= 4 ? (
-              <div className={styles.message}>
-                <p>{text.result7MentalHealt}</p>
-              </div>
+              <ResultBox title={"تبریک"} content={text.result7MentalHealt} />
+            ) : null}
+
+            {pointDomestic > 10 ? (
+              <ResultBox
+                title={"هشدار"}
+                content={text.result8MentalHealt}
+                alert={true}
+              />
             ) : null}
           </div>
-        </section>
-        <section className="col-span-full flex items-center justify-center">
-          <div className="m-auto flex w-full items-center justify-between rounded bg-zinc-50 p-2 shadow-md md:w-2/5">
-            <Label
-              containerClassName="text-[11px]"
-              label={text.violenceContent}
-              isError={!!errors[10435]}
-              labelClassName={"lg:w-[200px]"}
-            />
-            <div className="flex cursor-pointer items-center justify-center gap-3 rounded border border-zinc-500 p-1">
-              <span className="text-3xs md:text-sm" onClick={handelContentPdf}>
+
+          <div className="flex flex-col w-full items-center justify-between rounded bg-formItem1 p-1 py-2 shadow-md">
+            <Label label={text.violenceContent} required={true} />
+            <Divider position={"center"} />
+            <div className="flex cursor-pointer items-center justify-center gap-2 rounded border border-zinc-500 p-1">
+              <span
+                className=" text-black text-2xs lg:text-xs xl:text-sm"
+                onClick={handelContentPdf}
+              >
                 محتوای متنی
               </span>
               <span>

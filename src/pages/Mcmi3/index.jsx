@@ -8,6 +8,8 @@ import { useFormContext } from "react-hook-form";
 import { MCMI3_JobId_Get, MCMI3_JobId_Post } from "@/constants/jobId";
 import Form from "@/layouts/Form";
 import { KEYS } from "@/constants/keys";
+import { request } from "@/services";
+import { FormFields } from "react-elements-davis";
 
 const Mcmi3 = () => {
   return (
@@ -43,7 +45,7 @@ const Body = () => {
 };
 
 const Questions = () => {
-  const { formState, watch, register, setValue } = useFormContext();
+  const { setValue } = useFormContext();
   const [currentList, PagesButtons] = usePagination(Mcmi3Questions);
   const [user, setUser] = useState(null);
 
@@ -55,37 +57,26 @@ const Questions = () => {
     }
   }, [user]);
 
-  // useEffect(() => {
-  //   for (let i = 0; i < 60; i++) {
-  //     setValue(MCMI3_KEYS[i], "10361");
-  //   }
-  //   for (let i = 60; i < 120; i++) {
-  //     setValue(MCMI3_KEYS[i], "10362");
-  //   }
-  //   for (let i = 120; i < MCMI3_KEYS.length; i++) {
-  //     setValue(MCMI3_KEYS[i], "10361");
-  //   }
-  // }, []);
-
   return (
     <>
       <div className="grid-3">
         {currentList?.map((o) => (
-          <RadioOptions
-            key={o.label}
-            divider="center"
-            validation={{ required: Required_Error }}
-            label={o.label}
+          <FormFields
+            key={o.qKey}
+            component={"RadioOptions"}
             questionKey={o.qKey}
+            label={o.label}
+            divider="center"
+            archive={true}
+            validation={{ required: Required_Error }}
             options={baliYaXeirOptions}
-            errors={formState.errors}
-            register={register}
-            active={watch(o.qKey)}
-            archive={o.qKey}
             labelClassName="!text-center"
             optionsContainer="!justify-between"
             radioClassName="xs:!max-w-[64px] md:!max-w-[74px] lg:!max-w-[84px] xl:!max-w-[104px]"
             labelMore={window.innerWidth >= 672}
+            BC={BC}
+            request={request}
+            useFormContext={useFormContext}
           />
         ))}
       </div>

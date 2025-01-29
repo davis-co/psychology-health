@@ -11,10 +11,6 @@ import usePagination from "@/hooks/usePagination";
 import Form from "@/layouts/Form";
 
 const SCL90 = () => {
-  // useEffect(() => {
-  //   fetchData(SCL_JobId_Get, SCL90_KEYS, setValue);
-  //   // .finally(() => setFetchLoading(false))
-  // }, []);
   return (
     <Form
       formKeys={KEYS}
@@ -61,20 +57,6 @@ const Questions = () => {
       });
     }
   }, [user]);
-
-  // useEffect(() => {
-  //   // for (let i = 0; i < 42; i++) {
-  //   //   setValue(SCL90_KEYS[i], "10431");
-  //   // }
-
-  //   // for (let i = 42; i < 84; i++) {
-  //   //   setValue(SCL90_KEYS[i], "19790");
-  //   // }
-
-  //   // for (let i = 84; i < SCL90_KEYS.length; i++) {
-  //   //   setValue(SCL90_KEYS[i], "19787");
-  //   // }
-  // }, []);
 
   return (
     <>
