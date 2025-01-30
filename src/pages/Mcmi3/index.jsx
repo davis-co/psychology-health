@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, RadioOptions } from "react-elements-davis";
+import { Button } from "react-elements-davis";
 import { baliYaXeirOptions, Required_Error } from "@/constants/form";
 import { MCMI3_KEYS } from "@/constants/keys";
 import { Mcmi3Questions } from "./data";
@@ -7,14 +7,14 @@ import usePagination from "@/hooks/usePagination";
 import { useFormContext } from "react-hook-form";
 import { MCMI3_JobId_Get, MCMI3_JobId_Post } from "@/constants/jobId";
 import Form from "@/layouts/Form";
-import { KEYS } from "@/constants/keys";
+
 import { request } from "@/services";
 import { FormFields } from "react-elements-davis";
 
 const Mcmi3 = () => {
   return (
     <Form
-      formKeys={KEYS}
+      formKeys={MCMI3_KEYS}
       JID={{
         ID: MCMI3_JobId_Get,
         submit: MCMI3_JobId_Post,

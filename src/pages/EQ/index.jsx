@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { Button, RadioOptions } from "react-elements-davis";
-import { EQ_KEYS, KEYS } from "@/constants/keys";
+import { EQ_KEYS } from "@/constants/keys";
 import { answerOptions, EQuestions } from "./data";
 import usePagination from "@/hooks/usePagination";
 import { Required_Error } from "@/constants/form";
@@ -11,7 +11,7 @@ import Form from "@/layouts/Form";
 const EQ = () => {
   return (
     <Form
-      formKeys={KEYS}
+      formKeys={EQ_KEYS}
       JID={{
         ID: EQ_JobId_Get,
         submit: EQ_JobId_Post,

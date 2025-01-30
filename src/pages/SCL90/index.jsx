@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Button, RadioOptions } from "react-elements-davis";
 import { measureOptions, Required_Error } from "@/constants/form";
 import { SCL_JobId_Get, SCL_JobId_Post } from "@/constants/jobId";
-import { KEYS, SCL90_KEYS } from "@/constants/keys";
+import { SCL90_KEYS } from "@/constants/keys";
 import { questions } from "./data";
 import styles from "./styles.module.css";
 import { text } from "./text";
@@ -13,7 +13,7 @@ import Form from "@/layouts/Form";
 const SCL90 = () => {
   return (
     <Form
-      formKeys={KEYS}
+      formKeys={SCL90_KEYS }
       JID={{
         ID: SCL_JobId_Get,
         submit: SCL_JobId_Post,
