@@ -1,7 +1,6 @@
-import "react-toastify/dist/ReactToastify.css";
-import AppRouter from "./Router";
+import AppRouter from "./Router"
 
 function App() {
-  return <AppRouter />;
+    return <AppRouter />
 }
-export default App;
+export default App
