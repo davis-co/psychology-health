@@ -65,16 +65,11 @@ export default function NEO() {
     if (questions.length - startIndex != FORM_SIZE) {
       goToNext();
     }
-    console.log(data);
     submitForm(NEO_JobId_Post, data, () =>
       fetchData(NEO_JobId_Get, NEO_KEYS, setValue)
-    )
-      .then(() => {
-        toast.success(successMessage);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    ).then(() => {
+      toast.success(successMessage);
+    });
   };
 
   return (

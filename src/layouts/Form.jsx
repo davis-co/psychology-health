@@ -23,27 +23,20 @@ const Form = ({ formKeys, JID, children, onSubmit }) => {
     if (onSubmit) {
       onSubmit(data);
     } else {
-      console.log(data);
-      await request({ jobId: JID.submit, dataInfo: data })
-        .then((res) => {
-          if (!res.error) {
-            toast.success(successMessage);
-          } else {
-            toast.error("خطای دریافت اطلاعات");
-          }
-        })
-        .catch((ERR) => {
-          console.log(ERR);
-        });
+      await request({ jobId: JID.submit, dataInfo: data }).then((res) => {
+        if (!res.error) {
+          toast.success(successMessage);
+        } else {
+          toast.error("خطای دریافت اطلاعات");
+        }
+      });
     }
   };
 
   useEffect(() => {
-    fetchData(JID.ID, formKeys, setValue)
-      .catch((err) => console.log(err))
-      .finally(() => {
-        setFetchLoading(false);
-      });
+    fetchData(JID.ID, formKeys, setValue).finally(() => {
+      setFetchLoading(false);
+    });
     if (user) setValue("6483", user["6483"]);
     // setValue("6483", "1735991161416");
   }, []);
