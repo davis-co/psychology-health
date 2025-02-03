@@ -25,12 +25,12 @@ export const handlePostMessage = async (e, callback) => {
     const oToken = data.token;
     if (oToken) {
       localStorage.setItem("oToken", oToken);
+      localStorage.setItem("token", data.token);
       const data = { token: oToken };
       const response = await request({
         jobId: AUTH_JobId,
         dataInfo: data,
       });
-      localStorage.setItem("token", data.token);
       if (response.error === false) {
         localStorage.setItem("userData", JSON.stringify(response.data));
         callback(true);
