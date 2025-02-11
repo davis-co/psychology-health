@@ -30,7 +30,7 @@ const Body = () => {
 
   return (
     <>
-      <p className={styles.description}>{text.description}</p>
+      <p className={"guide-description"}>{text.description}</p>
       <Questions />
       <div className="w-full flex justify-center">
         <Button
@@ -45,10 +45,8 @@ const Body = () => {
 };
 
 const Questions = () => {
-  const { formState, watch, register, setValue } = useFormContext();
+  const { formState, watch, register } = useFormContext();
   const [currentList, PagesButtons] = usePagination(questions, 48);
-
-  const [user, setUser] = useState(null);
 
   return (
     <>
@@ -76,9 +74,10 @@ const Questions = () => {
               register={register}
               validation={{ required: Required_Error }}
               errors={formState.errors}
-              radioClassName="!min-w-[48%] md:!min-w-[30%] lg:!min-w-[48%] xl:!min-w-[30%] !gap-0"
-              labelMore={window.innerWidth >= 672}
-              divider={"center"}
+              containerClassName="col-span-full"
+              radioClassName="!min-w-[48%] md:!min-w-[19%] !gap-0"
+              labelMore
+              divider={"right"}
             />
           )
         )}

@@ -60,16 +60,17 @@ const Questions = () => {
         {currentList.map((o) => (
           <RadioOptions
             key={o.label}
-            divider={"center"}
+            divider={"right"}
             validation={{ required: Required_Error }}
             label={o.label}
             active={watch(o.qKey)}
             questionKey={o.qKey}
             options={answerOptions}
             register={register}
-            radioClassName=" !min-w-[48%] md:!min-w-[30%] lg:!min-w-[48%] xl:!min-w-[30%] !gap-0"
+            containerClassName="col-span-full"
+            radioClassName="!min-w-[48%] md:!min-w-[19%] !gap-0"
             errors={formState.errors}
-            labelMore={window.innerWidth >= 672}
+            labelMore
           />
         ))}
       </div>

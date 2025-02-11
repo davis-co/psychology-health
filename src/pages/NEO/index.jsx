@@ -85,37 +85,35 @@ export default function NEO() {
             onFinishTime();
           }}
         />
-        <p className={styles.description}>{text.description}</p>
+        <p className={"guide-description"}>{text.description}</p>
         <FormSteps currentStep={startIndex / FORM_SIZE + 1} />
-        <div className="mt-5 grid md:grid-cols-2 lg:grid-cols-3 gap-x-[5vw] gap-y-4 lg:gap-y-6 z-10">
+        <div className="mt-5 grid-1 z-10">
           {questions.slice(startIndex, startIndex + FORM_SIZE).map((q) => (
             <div
               className={classNames(
-                "grid-2",
+                "grid-1",
                 oldAnimation ? styles.oldAnimation : "",
                 newAnimation ? "animate-flipLeft" : ""
               )}
               key={q.label}
             >
-              <div className={"col-span-full"}>
-                <RadioOptions
-                  label={q.label}
-                  questionKey={q.key}
-                  radioClassName={
-                    q.isBoolean
-                      ? "!max-w-fit"
-                      : " !min-w-[48%] md:!min-w-[30%] lg:!min-w-[48%] xl:!min-w-[30%] !gap-0"
-                  }
-                  optionsContainer={q.isBoolean ? "justify-between" : ""}
-                  validation={{ required: Required_Error }}
-                  divider={"center"}
-                  errors={errors}
-                  active={watch(q.key)}
-                  register={register}
-                  options={q.isBoolean ? booleanOptions : matchOptions}
-                  labelMore={window.innerWidth >= 672}
-                />
-              </div>
+              <RadioOptions
+                label={q.label}
+                questionKey={q.key}
+                radioClassName={
+                  q.isBoolean
+                    ? "!max-w-fit"
+                    : " !min-w-[48%] md:!min-w-[19%] !gap-0"
+                }
+                optionsContainer={q.isBoolean ? "justify-between" : ""}
+                validation={{ required: Required_Error }}
+                divider={"right"}
+                errors={errors}
+                active={watch(q.key)}
+                register={register}
+                options={q.isBoolean ? booleanOptions : matchOptions}
+                labelMore={window.innerWidth >= 672}
+              />
             </div>
           ))}
         </div>

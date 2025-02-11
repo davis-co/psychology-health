@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { FieldSet, RadioOptions, ProgressChart } from "react-elements-davis";
 import { debounce } from "@/utils/helpers";
 import { questionsK6 } from "./data";
-import styles from "./styles.module.css";
 import { radioFiveMentalHealth, text } from "./text";
 import { useFormContext } from "react-hook-form";
 import { Required_Error } from "@/constants/form";
@@ -10,9 +9,7 @@ import { ResultBox } from "@/components/elements";
 
 export default function K6Test() {
   const { watch, formState, register, setValue } = useFormContext();
-
   const [pointK6, setPointK6] = useState(0);
-  const [iconCalc, setIconCalc] = useState(false);
 
   const scoreMap = {
     10428: 4,
@@ -39,8 +36,11 @@ export default function K6Test() {
 
     setPointK6(totalScore);
     setValue("10435", totalScore);
-    setIconCalc(true);
   }, 300);
+
+  useEffect(() => {
+    calculateTotalScore();
+  }, []);
 
   useEffect(() => {
     calculateTotalScore();
@@ -52,18 +52,17 @@ export default function K6Test() {
     { name: "level3", value: { min: 12.1, max: 18 }, color: "#FFB200" },
     { name: "level4", value: { min: 18.1, max: 24 }, color: "#FF0000" },
   ];
-  const userData = {
-    name: "userMentalPoint",
-    value: pointK6,
-  };
 
   return (
     <FieldSet title={text.k6Test}>
-      <div className={styles.listOfQuestions}>
-        <p className={styles.description}>{text.k6Description}</p>
-        <div className="grid-3">
+      <div className={"grid-3"}>
+        <p className={"guide-description col-span-full"}>
+          {text.k6Description}
+        </p>
+        <div className="grid-3 col-span-full">
           {questionsK6.map((q) => (
             <RadioOptions
+              containerClassName="col-span-full"
               key={q.key}
               label={q.label}
               questionKey={q.key}
@@ -72,8 +71,8 @@ export default function K6Test() {
               options={radioFiveMentalHealth}
               register={register}
               active={watch(q.key)}
-              divider={"center"}
-              radioClassName=" !min-w-[48%] md:!min-w-[30%] lg:!min-w-[48%] xl:!min-w-[30%] !gap-0"
+              divider={"right"}
+              radioClassName=" !min-w-[48%] md:!min-w-[19%] !gap-0"
             />
           ))}
           <ProgressChart
@@ -84,7 +83,7 @@ export default function K6Test() {
             containerClassName={"md:!mb-5 !con-span-1"}
           />
           <div className="flex flex-col col-span-full gap-5">
-            {watch("11892") === "10361" ? (
+            {watch("11892") == "10361" ? (
               <ResultBox
                 title={"هشدار"}
                 content={text.result5MentalHealth}

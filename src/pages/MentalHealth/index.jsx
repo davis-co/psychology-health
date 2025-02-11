@@ -7,7 +7,6 @@ import { KEYS } from "@/constants/keys";
 import DomesticViolence from "./domesticViolence";
 import { text } from "./i18n";
 import K6Test from "./k6";
-import styles from "./styles.module.css";
 import TextGuide from "./TextGuide";
 import useQuestions from "../useQuestions";
 import { questions } from "./data";
@@ -61,18 +60,24 @@ const Body = () => {
 
   //showing result2MentalHealth and result1MentalHealth
   useEffect(() => {
-    let arg1 = [
-      "10652",
-      "10653",
-      "1514109185115",
-      "1513768760443",
-      "1514108884563",
-      "1514190240786",
-    ].some((val) => watch("10437").includes(val));
+    let arg1;
+    if (watch("10437")) {
+      arg1 = [
+        "10652",
+        "10653",
+        "1514109185115",
+        "1513768760443",
+        "1514108884563",
+        "1514190240786",
+      ].some((val) => watch("10437").includes(val));
+    }
 
-    let arg2 =
-      watch("10437").includes("1514109071882") &&
-      watch("10437").includes("1514109106067");
+    let arg2;
+    if (watch("10437")) {
+      arg2 =
+        watch("10437").includes("1514109071882") &&
+        watch("10437").includes("1514109106067");
+    }
 
     let arg3 = watch("10435") < 10 && watch("10435") >= 0;
 
@@ -86,15 +91,17 @@ const Body = () => {
 
   //showing result3MentalHealth
   useEffect(() => {
-    let arg1 = [
-      "1514109071882",
-      "1514108884563",
-      "1514109106067",
-      "1514109185115",
-      "1513768760443",
-      "1514190240786",
-    ].some((val) => watch("10437").includes(val));
-
+    let arg1;
+    if (watch("10437")?.length) {
+      arg1 = [
+        "1514109071882",
+        "1514108884563",
+        "1514109106067",
+        "1514109185115",
+        "1513768760443",
+        "1514190240786",
+      ].some((val) => watch("10437")?.includes(val));
+    }
     let arg2 =
       watch("11892") == "10362" &&
       watch("10441") == "10362" &&
@@ -105,30 +112,23 @@ const Body = () => {
   }, [watch("10437"), watch("11892"), watch("10441"), watch("10440")]);
 
   return (
-    <>
-      <main
-        className={classNames("py-2 ", styles.container)}
-        id="formContainer"
-      >
-        <section className={styles.titleSection}>
-          <p className={styles.description}>{text.description}</p>
-        </section>
+    <div className={"grid-1"} id="formContainer">
+      <p className={"guide-description"}>{text.description}</p>
 
-        <Questions />
-        <K6Test />
-        <DomesticViolence />
+      <Questions />
+      <K6Test />
+      <DomesticViolence />
 
-        <div className="flex justify-center">
-          <Button
-            variant="outlined"
-            type="submit"
-            className="submit"
-            loading={formState.isSubmitting}
-            title="ذخیره اطلاعات"
-          />
-        </div>
-      </main>
-    </>
+      <div className="flex justify-center mt-6">
+        <Button
+          variant="outlined"
+          type="submit"
+          className="submit"
+          loading={formState.isSubmitting}
+          title="ذخیره اطلاعات"
+        />
+      </div>
+    </div>
   );
 };
 
