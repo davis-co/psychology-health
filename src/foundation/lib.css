@@ -2063,7 +2063,6 @@ video {
 .duration-500 {
   transition-duration: 0.5s;
 }
-
 .error {
   bottom: -1.5rem;
   display: flex;
