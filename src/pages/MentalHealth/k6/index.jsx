@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { FieldSet, RadioOptions, ProgressChart } from "react-elements-davis";
+import { FieldSet, RadioOptions, ProgressChart } from "davis-components";
 import { debounce } from "@/utils/helpers";
 import { questionsK6 } from "./data";
 import { radioFiveMentalHealth, text } from "./text";

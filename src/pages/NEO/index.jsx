@@ -3,7 +3,7 @@ import classNames from "classnames";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { Button, RadioOptions, Page } from "react-elements-davis";
+import { Button, RadioOptions, Page } from "davis-components";
 import { CountdownTimer, FormSteps } from "@/components/elements";
 import {
   booleanOptions,

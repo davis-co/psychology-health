@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { toast } from "react-toastify";
-import { Page } from "react-elements-davis";
+import { Page } from "davis-components";
 import { successMessage } from "@/constants/form";
 import { request } from "@/services";
 import { useNavigate } from "react-router-dom";

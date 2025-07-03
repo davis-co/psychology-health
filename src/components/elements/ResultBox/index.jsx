@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { Label, Divider } from "react-elements-davis";
+import { Label, Divider } from "davis-components";
 
 const ResultBox = ({ title, content, alert = false }) => {
   return (

@@ -7,7 +7,7 @@ import {
   RadioOptions,
   ProgressChart,
   Divider,
-} from "react-elements-davis";
+} from "davis-components";
 import useDevice from "@/hooks/useDevice";
 import { debounce } from "@/utils/helpers";
 import { yesNoQuestion } from "../i18n";

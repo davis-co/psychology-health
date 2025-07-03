@@ -2,7 +2,7 @@ import React from "react";
 
 import classNames from "classnames";
 
-import { Button } from "react-elements-davis";
+import { Button } from "davis-components";
 import { stepToWord } from "./data";
 import styles from "./styles.module.css";
 

@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import { useState } from "react";
-import { Button } from "react-elements-davis";
+import { Button } from "davis-components";
 
 export default function usePagination(list, counts = 60) {
   const [page, setPage] = useState(1);

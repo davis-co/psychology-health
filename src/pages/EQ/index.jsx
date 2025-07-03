@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
-import { Button, RadioOptions } from "react-elements-davis";
+import { Button, RadioOptions } from "davis-components";
 import { EQ_KEYS } from "@/constants/keys";
 import { answerOptions, EQuestions } from "./data";
 import usePagination from "@/hooks/usePagination";

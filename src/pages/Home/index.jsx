@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { links } from "./data";
-import { Page } from "react-elements-davis";
+import { Page } from "davis-components";
 
 export default function Home() {
   const navigate = useNavigate();

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button } from "react-elements-davis";
+import { Button } from "davis-components";
 import { baliYaXeirOptions, Required_Error } from "@/constants/form";
 import { MCMI3_KEYS } from "@/constants/keys";
 import { Mcmi3Questions } from "./data";
@@ -9,7 +9,7 @@ import { MCMI3_JobId_Get, MCMI3_JobId_Post } from "@/constants/jobId";
 import Form from "@/layouts/Form";
 
 import { request } from "@/services";
-import { FormFields } from "react-elements-davis";
+import { FormFields } from "davis-components";
 
 const Mcmi3 = () => {
   return (
