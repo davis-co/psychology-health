@@ -111,6 +111,22 @@ const Body = () => {
     arg1 && arg2 ? setValue("11888", true) : setValue("11888", false);
   }, [watch("10437"), watch("11892"), watch("10441"), watch("10440")]);
 
+  useEffect(() => {
+    const selected = watch("10437") || [];
+
+    // اگر "هیچکدام" انتخاب شده و تعداد انتخاب بیشتر از 1 باشه، فقط "هیچکدام" باقی بمونه
+    if (selected.includes("10653") && selected.length > 1) {
+      setValue("10437", ["10653"]);
+    }
+
+    // اگر گزینه‌ای به‌جز "هیچکدام" انتخاب شد، "هیچکدام" رو حذف کن
+    if (selected.includes("10653") && selected.some((val) => val !== "10653")) {
+      const filtered = selected.filter((val) => val !== "10653");
+      setValue("10437", filtered);
+    }
+  }, [watch("10437")]);
+
+  
   return (
     <div className={"grid-1"} id="formContainer">
       <p className={"guide-description"}>{text.description}</p>
@@ -126,7 +142,7 @@ const Body = () => {
           className="submit"
           loading={formState.isSubmitting}
           title="ذخیره اطلاعات"
-        />
+          />
       </div>
     </div>
   );
@@ -135,19 +151,20 @@ const Body = () => {
 const Questions = () => {
   const [getQuestion] = useQuestions(questions);
   const { watch } = useFormContext();
-
+  const selected10437 = watch("10437") || [];
+  
   return (
     <>
       <div
-        className={classNames(
-          "grid-3",
-          watch("10437")?.includes("1514109071882") ||
-            watch("10437")?.includes("1514109106067") ||
-            watch("10437")?.includes("10652")
-            ? "bg-formItem2 rounded p-1 md:animate-flipBottom"
-            : ""
-        )}
-      >
+  className={classNames(
+    "grid-3",
+    (selected10437.includes("1514109071882") ||
+      selected10437.includes("1514109106067") ||
+      selected10437.includes("10652")) &&
+      "bg-formItem2 rounded p-1 md:animate-flipBottom",
+    selected10437.includes("10653") && "!border-2 !border-red-500 !rounded-md"
+  )}
+>
         {getQuestion("ابتلا به اختلالات روان (با تشخیص پزشک)")}
 
         {watch("10437")?.includes("10652")
