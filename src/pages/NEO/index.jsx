@@ -28,9 +28,8 @@ export default function NEO() {
     setValue,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm({
-    mode: "all",
-  });
+  } = useForm({ mode: "all" });
+
   const [startIndex, setStartIndex] = useState(0);
   const [oldAnimation, setOldAnimation] = useState(false);
   const [newAnimation, setNewAnimation] = useState(false);
@@ -39,10 +38,9 @@ export default function NEO() {
 
   useEffect(() => {
     fetchData(NEO_JobId_Get, NEO_KEYS, setValue);
-    // .finally(() => setFetchLoading(false))
   }, []);
 
-  const goToNext = (data) => {
+  const goToNext = () => {
     if (
       questions
         .slice(startIndex, startIndex + FORM_SIZE)
@@ -62,7 +60,7 @@ export default function NEO() {
   };
 
   const onSubmit = (data) => {
-    if (questions.length - startIndex != FORM_SIZE) {
+    if (questions.length - startIndex !== FORM_SIZE) {
       goToNext();
     }
     submitForm(NEO_JobId_Post, data, () =>
@@ -72,10 +70,14 @@ export default function NEO() {
     });
   };
 
+  const currentPageQuestions = questions.slice(startIndex, startIndex + FORM_SIZE);
+  const isLastPage = startIndex + FORM_SIZE >= questions.length;
+  const lastThreeKeys = questions.slice(-3).map((q) => q.key);
+
   return (
     <Page navigate={navigate} back>
       <form
-        className={"form !gap-2"}
+        className="form !gap-2"
         onSubmit={handleSubmit(onSubmit)}
         id="formContainer"
       >
@@ -85,37 +87,110 @@ export default function NEO() {
             onFinishTime();
           }}
         />
-        <p className={"guide-description"}>{text.description}</p>
+        <p className="guide-description">{text.description}</p>
         <FormSteps currentStep={startIndex / FORM_SIZE + 1} />
-        <div className="mt-5 grid-1 z-10">
-          {questions.slice(startIndex, startIndex + FORM_SIZE).map((q) => (
-            <div
-              className={classNames(
-                "grid-1",
-                oldAnimation ? styles.oldAnimation : "",
-                newAnimation ? "animate-flipLeft" : ""
-              )}
-              key={q.label}
-            >
-              <RadioOptions
-                label={q.label}
-                questionKey={q.key}
-                radioClassName={
-                  q.isBoolean
-                    ? "!max-w-fit"
-                    : " !min-w-[48%] md:!min-w-[19%] !gap-0"
-                }
-                optionsContainer={q.isBoolean ? "justify-between" : ""}
-                validation={{ required: Required_Error }}
-                divider={"right"}
-                errors={errors}
-                active={watch(q.key)}
-                register={register}
-                options={q.isBoolean ? booleanOptions : matchOptions}
-                labelMore={window.innerWidth >= 672}
-              />
+
+        <div className="mt-5 z-10">
+          {isLastPage ? (
+            <>
+              {/* سؤالات غیر از ۳ تای آخر */}
+              <div className="grid-1">
+                {currentPageQuestions
+                  .filter((q) => !lastThreeKeys.includes(q.key))
+                  .map((q) => (
+                    <div
+                      key={q.label}
+                      className={classNames(
+                        oldAnimation ? styles.oldAnimation : "",
+                        newAnimation ? "animate-flipLeft" : ""
+                      )}
+                    >
+                      <RadioOptions
+                        label={q.label}
+                        questionKey={q.key}
+                        radioClassName={
+                          q.isBoolean
+                            ? "!max-w-fit"
+                            : "!min-w-[48%] md:!min-w-[19%] !gap-0"
+                        }
+                        optionsContainer={q.isBoolean ? "justify-between" : ""}
+                        validation={{ required: Required_Error }}
+                        divider="right"
+                        errors={errors}
+                        active={watch(q.key)}
+                        register={register}
+                        options={q.isBoolean ? booleanOptions : matchOptions}
+                        labelMore={window.innerWidth >= 672}
+                      />
+                    </div>
+                  ))}
+              </div>
+
+              {/* ۳ سؤال آخر در grid-3 */}
+              <div className="grid-3 mt-8">
+                {currentPageQuestions
+                  .filter((q) => lastThreeKeys.includes(q.key))
+                  .map((q) => (
+                    <div
+                      key={q.label}
+                      className={classNames(
+                        oldAnimation ? styles.oldAnimation : "",
+                        newAnimation ? "animate-flipLeft" : ""
+                      )}
+                    >
+                      <RadioOptions
+                        label={q.label}
+                        divider="center"
+                        questionKey={q.key}
+                        radioClassName={
+                          q.isBoolean
+                            ? "!max-w-fit"
+                            : "!min-w-[48%] md:!min-w-[19%] !gap-0"
+                        }
+                        optionsContainer={q.isBoolean ? "justify-between" : ""}
+                        validation={{ required: Required_Error }}
+                        errors={errors}
+                        active={watch(q.key)}
+                        register={register}
+                        options={q.isBoolean ? booleanOptions : matchOptions}
+                        labelMore={window.innerWidth >= 672}
+                      />
+                    </div>
+                  ))}
+              </div>
+            </>
+          ) : (
+            // صفحات غیر از آخر
+            <div className="grid-1">
+              {currentPageQuestions.map((q) => (
+                <div
+                  key={q.label}
+                  className={classNames(
+                    oldAnimation ? styles.oldAnimation : "",
+                    newAnimation ? "animate-flipLeft" : ""
+                  )}
+                >
+                  <RadioOptions
+                    label={q.label}
+                    questionKey={q.key}
+                    radioClassName={
+                      q.isBoolean
+                        ? "!max-w-fit"
+                        : "!min-w-[48%] md:!min-w-[19%] !gap-0"
+                    }
+                    optionsContainer={q.isBoolean ? "justify-between" : ""}
+                    validation={{ required: Required_Error }}
+                    divider="right"
+                    errors={errors}
+                    active={watch(q.key)}
+                    register={register}
+                    options={q.isBoolean ? booleanOptions : matchOptions}
+                    labelMore={window.innerWidth >= 672}
+                  />
+                </div>
+              ))}
             </div>
-          ))}
+          )}
         </div>
 
         <div className="w-full flex justify-center mt-5">
@@ -124,7 +199,7 @@ export default function NEO() {
             className="submit"
             loading={isSubmitting}
             title={
-              questions.length - startIndex != FORM_SIZE
+              questions.length - startIndex !== FORM_SIZE
                 ? text.next
                 : text.submit
             }

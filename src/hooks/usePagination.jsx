@@ -47,5 +47,5 @@ export default function usePagination(list, counts = 60) {
     </div>
   );
 
-  return [currentList, PagesButtons];
+  return [currentList, PagesButtons, page, totalPages];
 }

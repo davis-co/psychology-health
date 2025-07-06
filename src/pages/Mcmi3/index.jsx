@@ -7,9 +7,10 @@ import usePagination from "@/hooks/usePagination";
 import { useFormContext } from "react-hook-form";
 import { MCMI3_JobId_Get, MCMI3_JobId_Post } from "@/constants/jobId";
 import Form from "@/layouts/Form";
-
 import { request } from "@/services";
 import { FormFields } from "davis-components";
+
+const PAGE_SIZE = 60;
 
 const Mcmi3 = () => {
   return (
@@ -28,25 +29,28 @@ const Mcmi3 = () => {
 
 const Body = () => {
   const { formState } = useFormContext();
-
+  const [currentList, PagesButtons, currentPage, totalPages] = usePagination(Mcmi3Questions, PAGE_SIZE);
+  const isLastPage = currentPage === totalPages;
+  
   return (
     <>
-      <Questions />
-      <div className="w-full flex justify-center">
-        <Button
-          type="submit"
-          className={"submit"}
-          loading={formState.isSubmitting}
-          title={"ذخیره اطلاعات"}
-        />
-      </div>
+      <Questions currentList={currentList} PagesButtons={PagesButtons} />
+      {isLastPage && (
+        <div className="w-full flex justify-center mt-4">
+          <Button
+            type="submit"
+            className={"submit"}
+            loading={formState.isSubmitting}
+            title={"ذخیره اطلاعات"}
+          />
+        </div>
+      )}
     </>
   );
 };
 
-const Questions = () => {
+const Questions = ({ currentList, PagesButtons }) => {
   const { setValue } = useFormContext();
-  const [currentList, PagesButtons] = usePagination(Mcmi3Questions);
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -55,7 +59,7 @@ const Questions = () => {
         setValue(key, user[key]);
       });
     }
-  }, [user]);
+  }, [user, setValue]);
 
   return (
     <>
