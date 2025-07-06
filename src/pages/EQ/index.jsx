@@ -8,6 +8,9 @@ import { Required_Error } from "@/constants/form";
 import { EQ_JobId_Get, EQ_JobId_Post } from "@/constants/jobId";
 import Form from "@/layouts/Form";
 
+const TOTAL_PAGES = 3;
+const PAGE_SIZE = Math.ceil(EQuestions.length / TOTAL_PAGES);
+
 const EQ = () => {
   return (
     <Form
@@ -25,25 +28,28 @@ const EQ = () => {
 
 const Body = () => {
   const { formState } = useFormContext();
+  const [currentList, PagesButtons, currentPage, totalPages] = usePagination(EQuestions, PAGE_SIZE);
+  const isLastPage = currentPage === totalPages;
 
   return (
     <>
-      <Questions />
-      <div className="w-full flex justify-center">
-        <Button
-          type="submit"
-          className={"submit"}
-          loading={formState.isSubmitting}
-          title={"ذخیره اطلاعات"}
-        />
-      </div>
+      <Questions currentList={currentList} PagesButtons={PagesButtons} />
+      {isLastPage && (
+        <div className="w-full flex justify-center">
+          <Button
+            type="submit"
+            className={"submit"}
+            loading={formState.isSubmitting}
+            title={"ذخیره اطلاعات"}
+          />
+        </div>
+      )}
     </>
   );
 };
 
-const Questions = () => {
+const Questions = ({ currentList, PagesButtons }) => {
   const { formState, watch, register, setValue } = useFormContext();
-  const [currentList, PagesButtons] = usePagination(EQuestions, 45);
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -52,7 +58,7 @@ const Questions = () => {
         setValue(key, user[key]);
       });
     }
-  }, [user]);
+  }, [user, setValue]);
 
   return (
     <>

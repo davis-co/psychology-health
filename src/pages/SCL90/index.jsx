@@ -10,6 +10,9 @@ import { useFormContext } from "react-hook-form";
 import usePagination from "@/hooks/usePagination";
 import Form from "@/layouts/Form";
 
+const TOTAL_PAGES = 3;
+const PAGE_SIZE = Math.ceil(questions.length / TOTAL_PAGES);
+
 const SCL90 = () => {
   return (
     <Form
@@ -27,26 +30,29 @@ const SCL90 = () => {
 
 const Body = () => {
   const { formState } = useFormContext();
+  const [currentList, PagesButtons, currentPage, totalPages] = usePagination(questions, PAGE_SIZE);
+  const isLastPage = currentPage === totalPages;
 
   return (
     <>
       <p className={"guide-description"}>{text.description}</p>
-      <Questions />
-      <div className="w-full flex justify-center">
-        <Button
-          type="submit"
-          className={"submit"}
-          loading={formState.isSubmitting}
-          title={"ذخیره اطلاعات"}
-        />
-      </div>
+      <Questions currentList={currentList} PagesButtons={PagesButtons} />
+      {isLastPage && (
+        <div className="w-full flex justify-center">
+          <Button
+            type="submit"
+            className={"submit"}
+            loading={formState.isSubmitting}
+            title={"ذخیره اطلاعات"}
+          />
+        </div>
+      )}
     </>
   );
 };
 
-const Questions = () => {
+const Questions = ({ currentList, PagesButtons }) => {
   const { formState, watch, register } = useFormContext();
-  const [currentList, PagesButtons] = usePagination(questions, 48);
 
   return (
     <>
