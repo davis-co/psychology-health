@@ -45,6 +45,7 @@ input[type="number"] {
   justify-content: center !important;
 }
 .label-right {
+  min-width: 100% !important;
   justify-content: flex-start !important;
 }
 .label-left {

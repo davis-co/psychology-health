@@ -117,8 +117,8 @@ export default function DomesticViolence() {
         errors={formState.errors}
       />
       <div className="flex flex-col w-full items-center justify-between rounded bg-formItem1 p-2 shadow-md">
-        <Label label={text.violenceContent} required={true} />
-        <Divider position={"center"} />
+        <Label label={text.violenceContent} required={true} className={"flex  justify-center"}/>
+        <Divider position="center" />
         <div className="w-full  flex cursor-pointer items-center justify-center gap-2 rounded border border-zinc-500 p-1">
           <span
             className=" text-black text-2xs lg:text-xs xl:text-sm"
