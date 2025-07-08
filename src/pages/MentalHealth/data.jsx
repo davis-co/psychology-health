@@ -17,7 +17,7 @@ export const questions = {
   "ابتلا به اختلالات روان (با تشخیص پزشک)": {
     component: "CheckBoxGroup",
     questionKey: "10437",
-    divider: "right",
+    divider: "center",
     options: mentalHealthDisOrder,
     validation: { required: Required_Error },
     containerClassName: "col-span-full",

@@ -162,7 +162,7 @@ const Questions = () => {
       selected10437.includes("1514109106067") ||
       selected10437.includes("10652")) &&
       "bg-formItem2 rounded p-1 md:animate-flipBottom",
-    selected10437.includes("10653") && "!border !border-red-500 !rounded-md"
+    selected10437.includes("10653") && ""
   )}
 >
         {getQuestion("ابتلا به اختلالات روان (با تشخیص پزشک)")}
