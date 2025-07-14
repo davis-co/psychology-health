@@ -38,7 +38,7 @@ const Body = () => {
       <p className={"guide-description"}>{text.description}</p>
       <Questions currentList={currentList} PagesButtons={PagesButtons} />
       {isLastPage && (
-        <div className="w-full flex justify-center">
+        <div className="w-full flex justify-center mt-10">
           <Button
             type="submit"
             className={"submit"}
