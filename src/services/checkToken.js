@@ -2,7 +2,7 @@ import { AUTH_JobId } from "@/constants/jobId";
 import { request } from "@/services";
 
 export default function checkToken(type, callback) {
-  if (type == "development") {
+  if (type == "productions") {
     localStorage.setItem("token", TEST_TOKEN);
     callback(true);
   } else {
