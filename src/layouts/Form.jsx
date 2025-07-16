@@ -62,7 +62,7 @@ const Form = ({ formKeys, JID, children, onSubmit }) => {
 
       {/* Modal با طراحی جدید */}
       <Modal isOpen={isModalOpen} onClose={closeModal}>
-        <div className="flex flex-col items-center justify-center p-8 bg-white rounded-xl shadow-2xl space-y-6 transform transition-all duration-300 scale-95">
+        <div className="flex flex-col items-center justify-center p-8 rounded-xl  space-y-6 transform transition-all duration-300 scale-95">
           <div className="w-24 h-24 mb-4">
             <Approveicon />
           </div>
