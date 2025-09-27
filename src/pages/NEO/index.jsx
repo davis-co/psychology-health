@@ -16,6 +16,7 @@ import { NEO_JobId_Get, NEO_JobId_Post } from "@/constants/jobId";
 import { NEO_KEYS } from "@/constants/keys";
 import fetchData from "@/services/fetchData";
 import submitForm from "@/services/submitForm";
+import { request } from "@/services";
 import { questions } from "./data";
 import { onFinishTime } from "./services";
 import styles from "./styles.module.css";
@@ -70,7 +71,10 @@ export default function NEO() {
     });
   };
 
-  const currentPageQuestions = questions.slice(startIndex, startIndex + FORM_SIZE);
+  const currentPageQuestions = questions.slice(
+    startIndex,
+    startIndex + FORM_SIZE
+  );
   const isLastPage = startIndex + FORM_SIZE >= questions.length;
   const lastThreeKeys = questions.slice(-3).map((q) => q.key);
 
@@ -121,6 +125,22 @@ export default function NEO() {
                         register={register}
                         options={q.isBoolean ? booleanOptions : matchOptions}
                         labelMore={window.innerWidth >= 672}
+                        archive={
+                          q.archive
+                            ? {
+                                userID: watch("6483"),
+                                BC: SCL90_BC,
+                                jobID: 164,
+                                request,
+                                renderCell: (val) =>
+                                  q.isBoolean
+                                    ? booleanOptions.find((o) => o.value == val)
+                                        ?.label
+                                    : matchOptions.find((o) => o.value == val)
+                                        ?.label,
+                              }
+                            : null
+                        }
                       />
                     </div>
                   ))}
@@ -154,6 +174,22 @@ export default function NEO() {
                         register={register}
                         options={q.isBoolean ? booleanOptions : matchOptions}
                         labelMore={window.innerWidth >= 672}
+                        archive={
+                          q.archive
+                            ? {
+                                userID: watch("6483"),
+                                BC: SCL90_BC,
+                                jobID: 164,
+                                request,
+                                renderCell: (val) =>
+                                  q.isBoolean
+                                    ? booleanOptions.find((o) => o.value == val)
+                                        ?.label
+                                    : matchOptions.find((o) => o.value == val)
+                                        ?.label,
+                              }
+                            : null
+                        }
                       />
                     </div>
                   ))}
@@ -186,6 +222,22 @@ export default function NEO() {
                     register={register}
                     options={q.isBoolean ? booleanOptions : matchOptions}
                     labelMore={window.innerWidth >= 672}
+                    archive={
+                      q.archive
+                        ? {
+                            userID: watch("6483"),
+                            BC: SCL90_BC,
+                            jobID: 164,
+                            request,
+                            renderCell: (val) =>
+                              q.isBoolean
+                                ? booleanOptions.find((o) => o.value == val)
+                                    ?.label
+                                : matchOptions.find((o) => o.value == val)
+                                    ?.label,
+                          }
+                        : null
+                    }
                   />
                 </div>
               ))}

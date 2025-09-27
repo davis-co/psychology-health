@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
-import { Button, RadioOptions } from "davis-components";
+import { Button } from "davis-components";
 import { EQ_KEYS } from "@/constants/keys";
 import { answerOptions, EQuestions } from "./data";
 import usePagination from "@/hooks/usePagination";
 import { Required_Error } from "@/constants/form";
 import { EQ_JobId_Get, EQ_JobId_Post } from "@/constants/jobId";
 import Form from "@/layouts/Form";
+import { request } from "@/services";
+import { RadioOptions } from "@/components/elements/RadioOptions";
 
 const TOTAL_PAGES = 3;
 const PAGE_SIZE = Math.ceil(EQuestions.length / TOTAL_PAGES);
@@ -28,7 +30,10 @@ const EQ = () => {
 
 const Body = () => {
   const { formState } = useFormContext();
-  const [currentList, PagesButtons, currentPage, totalPages] = usePagination(EQuestions, PAGE_SIZE);
+  const [currentList, PagesButtons, currentPage, totalPages] = usePagination(
+    EQuestions,
+    PAGE_SIZE
+  );
   const isLastPage = currentPage === totalPages;
 
   return (
@@ -71,6 +76,14 @@ const Questions = ({ currentList, PagesButtons }) => {
             label={o.label}
             active={watch(o.qKey)}
             questionKey={o.qKey}
+            archive={{
+              watch: watch("6483"),
+              BC: EQ_BC,
+              jobID: 164,
+              request: request,
+              renderCell: (val) =>
+                answerOptions.find((o) => o.value == val)?.label || val,
+            }}
             options={answerOptions}
             register={register}
             containerClassName="col-span-full"

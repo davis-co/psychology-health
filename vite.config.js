@@ -32,6 +32,10 @@ export default defineConfig(({ mode }) => {
       BASE_URL: JSON.stringify(env.BASE_URL),
       GWT: JSON.stringify(env.GWT),
       BC: JSON.stringify(env.BC),
+      NEO_BC: JSON.stringify(env.NEO_BC),
+      SCL90_BC: JSON.stringify(env.SCL90_BC),
+      MCMI3_BC: JSON.stringify(env.MCMI3_BC),
+      EQ_BC: JSON.stringify(env.EQ_BC),
     },
     resolve: {
       alias: {

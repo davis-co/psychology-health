@@ -1,13 +1,6 @@
 import { useEffect, useState } from "react";
 import { BsFiletypePdf } from "react-icons/bs";
-import {
-  Label,
-  Modal,
-  FieldSet,
-  RadioOptions,
-  ProgressChart,
-  Divider,
-} from "davis-components";
+import { Modal, FieldSet, ProgressChart, Divider } from "davis-components";
 import useDevice from "@/hooks/useDevice";
 import { debounce } from "@/utils/helpers";
 import { yesNoQuestion } from "../i18n";
@@ -18,6 +11,8 @@ import { useFormContext } from "react-hook-form";
 import { Required_Error } from "@/constants/form";
 import { ResultBox } from "@/components/elements";
 import { fileURL } from "@/config/config";
+import { RadioOptions } from "@/components/elements/RadioOptions";
+import { Label } from "@/components/elements/Label";
 
 export default function DomesticViolence() {
   const { watch, formState, register, setValue } = useFormContext();
@@ -117,7 +112,11 @@ export default function DomesticViolence() {
         errors={formState.errors}
       />
       <div className="flex flex-col w-full items-center justify-between rounded bg-formItem1 p-2 shadow-md">
-        <Label label={text.violenceContent} required={true} className={"flex  justify-center"}/>
+        <Label
+          label={text.violenceContent}
+          required={true}
+          className={"flex  justify-center"}
+        />
         <Divider position="center" />
         <div className="w-full  flex cursor-pointer items-center justify-center gap-2 rounded border border-zinc-500 p-1">
           <span

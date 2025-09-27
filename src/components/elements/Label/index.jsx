@@ -1,12 +1,12 @@
 /* eslint-disable react/prop-types */
 import { Fragment, useEffect, useRef, useState } from "react";
 import styles from "./styles.module.css";
-import GuideIcon from "@/assets/icons/guide.svg";
-import ArchiveIcon from "@/assets/icons/archive.svg";
-import LockIcon from "@/assets/icons/lock.svg";
-import DangerIcon from "@/assets/icons/danger.svg";
-import MoreIcon from "@/assets/icons/more.svg";
-import CloseIcon from "@/assets/icons/close.svg"; // ← آیکون بستن سفارشی (دلخواه)
+import GuideIcon from "@/assets/icons/icons/guide.svg";
+import ArchiveIcon from "@/assets/icons/icons/archive.svg";
+import LockIcon from "@/assets/icons/icons/lock.svg";
+import DangerIcon from "@/assets/icons/icons/danger.svg";
+import MoreIcon from "@/assets/icons/icons/more.svg";
+import CloseIcon from "@/assets/icons/icons/close.svg"; // ← آیکون بستن سفارشی (دلخواه)
 
 import classNames from "classnames";
 import { Modal } from "davis-components";

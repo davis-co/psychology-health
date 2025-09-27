@@ -1,14 +1,15 @@
-import { useEffect, useState } from "react";
-import { Button, RadioOptions, TextField } from "davis-components";
+import { Button } from "davis-components";
 import { measureOptions, Required_Error } from "@/constants/form";
 import { SCL_JobId_Get, SCL_JobId_Post } from "@/constants/jobId";
 import { SCL90_KEYS } from "@/constants/keys";
 import { questions } from "./data";
-import styles from "./styles.module.css";
 import { text } from "./text";
 import { useFormContext } from "react-hook-form";
 import usePagination from "@/hooks/usePagination";
 import Form from "@/layouts/Form";
+import { RadioOptions } from "@/components/elements/RadioOptions";
+import { TextField } from "@/components/elements/TextField";
+import { request } from "@/services";
 
 const TOTAL_PAGES = 3;
 const PAGE_SIZE = Math.ceil(questions.length / TOTAL_PAGES);
@@ -30,7 +31,10 @@ const SCL90 = () => {
 
 const Body = () => {
   const { formState } = useFormContext();
-  const [currentList, PagesButtons, currentPage, totalPages] = usePagination(questions, PAGE_SIZE);
+  const [currentList, PagesButtons, currentPage, totalPages] = usePagination(
+    questions,
+    PAGE_SIZE
+  );
   const isLastPage = currentPage === totalPages;
 
   return (
@@ -66,6 +70,14 @@ const Questions = ({ currentList, PagesButtons }) => {
               validation={{ required: Required_Error }}
               errors={formState.errors}
               divider={"center"}
+              archive={{
+                watch: watch("6483"),
+                BC: SCL90_BC,
+                jobID: 164,
+                request: request,
+                renderCell: (val) =>
+                  measureOptions.find((o) => o.value == val)?.label || val,
+              }}
               register={register}
               watch={watch}
               questionKey={q.key}
@@ -80,6 +92,14 @@ const Questions = ({ currentList, PagesButtons }) => {
               register={register}
               validation={{ required: Required_Error }}
               errors={formState.errors}
+              archive={{
+                watch: watch("6483"),
+                BC: SCL90_BC,
+                jobID: 164,
+                request: request,
+                renderCell: (val) =>
+                  measureOptions.find((o) => o.value == val)?.label || val,
+              }}
               containerClassName="col-span-full"
               radioClassName="!min-w-[48%] md:!min-w-[19%] !gap-0"
               labelMore

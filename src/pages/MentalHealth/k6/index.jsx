@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { FieldSet, RadioOptions, ProgressChart } from "davis-components";
+import { FieldSet, ProgressChart } from "davis-components";
 import { debounce } from "@/utils/helpers";
 import { questionsK6 } from "./data";
 import { radioFiveMentalHealth, text } from "./text";
@@ -7,6 +7,7 @@ import { useFormContext } from "react-hook-form";
 import { Required_Error } from "@/constants/form";
 import { ResultBox } from "@/components/elements";
 import { request } from "@/services";
+import { RadioOptions } from "@/components/elements/RadioOptions";
 
 export default function K6Test() {
   const { watch, formState, register, setValue } = useFormContext();

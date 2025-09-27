@@ -29,9 +29,12 @@ const Mcmi3 = () => {
 
 const Body = () => {
   const { formState } = useFormContext();
-  const [currentList, PagesButtons, currentPage, totalPages] = usePagination(Mcmi3Questions, PAGE_SIZE);
+  const [currentList, PagesButtons, currentPage, totalPages] = usePagination(
+    Mcmi3Questions,
+    PAGE_SIZE
+  );
   const isLastPage = currentPage === totalPages;
-  
+
   return (
     <>
       <Questions currentList={currentList} PagesButtons={PagesButtons} />
@@ -50,7 +53,7 @@ const Body = () => {
 };
 
 const Questions = ({ currentList, PagesButtons }) => {
-  const { setValue } = useFormContext();
+  const { setValue, watch } = useFormContext();
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -71,14 +74,21 @@ const Questions = ({ currentList, PagesButtons }) => {
             questionKey={o.qKey}
             label={o.label}
             divider="center"
-            archive={true}
+            archive={{
+              watch: watch("6483"),
+              BC: MCMI3_BC,
+              jobID: 164,
+              request: request,
+              renderCell: (val) =>
+                baliYaXeirOptions.find((o) => o.value == val)?.label || val,
+            }}
             validation={{ required: Required_Error }}
             options={baliYaXeirOptions}
             labelClassName="!text-center"
             optionsContainer="!justify-between"
             radioClassName="xs:!max-w-[64px] md:!max-w-[74px] lg:!max-w-[84px] xl:!max-w-[104px]"
             labelMore={window.innerWidth >= 672}
-            BC={BC}
+            BC={MCMI3_BC}
             request={request}
             useFormContext={useFormContext}
           />
