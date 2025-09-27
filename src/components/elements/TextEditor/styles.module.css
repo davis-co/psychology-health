@@ -1,0 +1,37 @@
+.toolbar {
+  @apply bg-formItem m-0 rounded-t-md border-none;
+
+  * {
+    @apply cursor-pointer;
+    direction: ltr;
+  }
+}
+
+.wrapper {
+  box-shadow: none;
+}
+
+.editor {
+  @apply h-fit min-h-32 border border-formItem2 !bg-white !m-0 !px-4 hover:bg-white rounded-b-md;
+  * {
+    direction: rtl;
+  }
+}
+
+/* Fullscreen API styles */
+.fullscreen:fullscreen {
+  background: white;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.fullscreen:fullscreen .wrapper {
+  width: 100vw;
+  height: 100svh;
+}
+
+.fullscreen:fullscreen .editor {
+  height: calc(100svh - 3rem);
+  min-height: unset;
+}

@@ -6,6 +6,7 @@ import { radioFiveMentalHealth, text } from "./text";
 import { useFormContext } from "react-hook-form";
 import { Required_Error } from "@/constants/form";
 import { ResultBox } from "@/components/elements";
+import { request } from "@/services";
 
 export default function K6Test() {
   const { watch, formState, register, setValue } = useFormContext();
@@ -66,6 +67,14 @@ export default function K6Test() {
               key={q.key}
               label={q.label}
               questionKey={q.key}
+              archive={{
+                userID: watch("6483"),
+                BC,
+                jobID: 164,
+                request,
+                renderCell: (val) =>
+                  radioFiveMentalHealth.find((o) => o.value == val)?.label,
+              }}
               validation={{ required: Required_Error }}
               errors={formState.errors}
               options={radioFiveMentalHealth}

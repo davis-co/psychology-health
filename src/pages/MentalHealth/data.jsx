@@ -2,7 +2,6 @@ import { text, yesNoQuestion } from "./i18n";
 import { mentalHealthDisOrder } from "@/constants/i18n";
 import { Required_Error } from "@/constants/form";
 import TextGuide from "./TextGuide";
-import { i18n } from "../Home/i18n";
 
 export const questionsK6 = [
   { label: text.k6Q1, key: "10422" },
@@ -17,10 +16,11 @@ export const questions = {
   "ابتلا به اختلالات روان (با تشخیص پزشک)": {
     component: "CheckBoxGroup",
     questionKey: "10437",
+    archive: true,
     divider: "center",
     options: mentalHealthDisOrder,
     validation: { required: Required_Error },
-    containerClassName: "col-span-full",
+    containerClassName: "col-span-full ",
     checkBoxClassName: "md:!min-w-[20%] !min-w-[48%]",
   },
   "تعیین نوع بیماری روان": {
@@ -41,6 +41,7 @@ export const questions = {
   "دارای افکار خودکشی در حال حاضر": {
     component: "RadioOptions",
     questionKey: "11892",
+    archive: true,
     userGuide: (
       <TextGuide
         text={`می توان درباره " احساس سیر شدن از زندگی" ، " آرزوی پایان زندگی " ، " فکر از بین بردن خود " و ... سوال پرسید و اگر پاسخ مثبت بود درباره چگونگی آن پرسید. `}

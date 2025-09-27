@@ -1,0 +1,7 @@
+.container{
+  @apply flex justify-center items-center;
+}
+
+.spinner{
+  @apply  border-t-4 border-solid rounded-full animate-spin;
+}
